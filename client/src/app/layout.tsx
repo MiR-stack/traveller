@@ -7,9 +7,10 @@ import {
   roboto_Condensed,
   roboto_Slab,
   rock_salt,
-  wellfleet,
+  didot,
 } from "./fonts";
 import Navbar from "@/components/global/navbar";
+import Brand from "@/components/global/brand";
 
 export const metadata: Metadata = {
   title: "traveller",
@@ -24,10 +25,11 @@ async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${wellfleet.variable}`}
+        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${didot.variable}`}
       >
         <ThemeContextProvider>
           <Navbar />
+          <Brand />
           {children}
         </ThemeContextProvider>
       </body>

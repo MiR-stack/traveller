@@ -31,3 +31,11 @@
   @include text($fs-3);
   font-weight: 600;
 }
+
+.#{$brand-name}-body1 {
+  @include text($fs-3);
+}
+
+.#{$brand-name}-body2 {
+  @include text($fs-1);
+}

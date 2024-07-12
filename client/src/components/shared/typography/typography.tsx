@@ -7,6 +7,7 @@ const variants = {
   h3: "h3",
   h4: "h4",
   body1: "p",
+  body2: "p",
 };
 
 interface typographyProps {

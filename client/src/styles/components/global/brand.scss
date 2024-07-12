@@ -1,0 +1,35 @@
+@import "../../foundations/all";
+
+.brand {
+  @include flex(0, center, center);
+  padding: 35px;
+
+  @include sm {
+    padding: 50px;
+  }
+
+  @include gthemed {
+    background-color: t(background);
+  }
+
+  &-logo {
+    aspect-ratio: 28/7;
+  }
+
+  &-container {
+    @include flex(0, center);
+    flex-direction: column;
+  }
+
+  &-name {
+    font-family: $didot;
+    text-transform: uppercase;
+    font-size: calc(1.5vw + 1.5rem);
+  }
+
+  &-moto {
+    @include gthemed {
+      color: t(text-2);
+    }
+  }
+}

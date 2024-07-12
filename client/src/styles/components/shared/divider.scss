@@ -1,0 +1,15 @@
+@import "../../base/constant.module";
+@import "../../foundations/all";
+
+.#{$brand-name}-divider {
+  @include gthemed {
+    background-color: t(divider);
+  }
+
+  &--horizontal {
+    height: 1px;
+  }
+  &--verticale {
+    width: 1px;
+  }
+}

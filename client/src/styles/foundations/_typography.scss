@@ -1,0 +1,33 @@
+@import "./variables";
+@import "./theme";
+@import "../base/constant.module";
+
+@mixin text($font-size, $color: text, $font-family: --roboto) {
+  font-size: $font-size;
+  @include gthemed {
+    color: t($color);
+  }
+  font-family: var($font-family, "sans");
+  margin: 0;
+  padding: 0;
+}
+
+.#{$brand-name}-h1 {
+  @include text($fs-6);
+  font-weight: 800;
+}
+
+.#{$brand-name}-h2 {
+  @include text($fs-5);
+  font-weight: 700;
+}
+
+.#{$brand-name}-h3 {
+  @include text($fs-4, text, --roboto-condensed);
+  font-weight: 600;
+}
+
+.#{$brand-name}-h4 {
+  @include text($fs-3);
+  font-weight: 600;
+}

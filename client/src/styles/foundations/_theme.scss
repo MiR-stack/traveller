@@ -1,0 +1,62 @@
+@import "./variables";
+
+$themes: (
+  "dark": (
+    background: $black-80,
+    background-2: $black-70,
+    text: $white,
+    text-2: $white-20,
+    text-muted: $white-40,
+    divider: $white-40,
+  ),
+  "light": (
+    background: $white,
+    background-2: $white-10,
+    text: $black,
+    text-2: $black-10,
+    text-muted: $black-20,
+    divider: $white-50,
+  ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    :global(.theme--#{$theme}) & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin gthemed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key: "text") {
+  @return map-get($theme-map, $key);
+}

@@ -1,0 +1,21 @@
+@import "../../foundations/all";
+
+@each $key, $value in $breakpoints {
+  .container-#{$key} {
+    max-width: $value;
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+.container {
+  @include flex(0, center);
+  padding: 0 10px;
+
+  @include sm {
+    padding: 0 30px;
+  }
+  @include md {
+    padding: 0 50px;
+  }
+}

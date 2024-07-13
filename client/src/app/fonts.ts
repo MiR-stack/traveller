@@ -37,3 +37,10 @@ export const didot = GFS_Didot({
   weight: ["400"],
   display: "swap",
 });
+
+export const wellfleet = Wellfleet({
+  subsets: ["latin"],
+  variable: "--wellfleet",
+  weight: ["400"],
+  display: "swap",
+});

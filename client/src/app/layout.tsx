@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/base/_normalize.scss";
 import "@/styles/base/_global.scss";
+import "@/styles/base/_root.scss";
 import { ThemeContextProvider } from "@/contexts/themeContext";
 import {
   roboto,
@@ -8,6 +9,7 @@ import {
   roboto_Slab,
   rock_salt,
   didot,
+  wellfleet,
 } from "./fonts";
 import Navbar from "@/components/global/navbar";
 import Brand from "@/components/global/brand";
@@ -25,7 +27,7 @@ async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${didot.variable}`}
+        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${didot.variable} ${wellfleet.variable}`}
       >
         <ThemeContextProvider>
           <Navbar />

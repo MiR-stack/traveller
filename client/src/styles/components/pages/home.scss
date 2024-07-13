@@ -160,3 +160,86 @@
 }
 
 /*=====  End of categories section  ======*/
+
+/*=============================================
+=            latest posts section            =
+=============================================*/
+
+.latest_posts {
+  &-container {
+    @include flex(10px, space-between);
+    flex-wrap: wrap;
+
+    @include md {
+      gap: 30px;
+    }
+  }
+
+  &-blog {
+    width: 100%;
+
+    @include xs {
+      width: 46%;
+    }
+    @include md {
+      width: 28%;
+    }
+    // @include xs {
+    //   width: 46%;
+    // }
+  }
+}
+
+/*=====  End of latest posts section  ======*/
+
+/*=============================================
+=            section title            =
+=============================================*/
+
+.section_title {
+  @include flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  &-title {
+    text-transform: uppercase;
+    font-size: calc(1.2rem + 1vw);
+  }
+  &-description {
+    text-align: center;
+
+    @include gthemed {
+      color: t(text-2);
+    }
+
+    @include sm {
+      max-width: 80%;
+    }
+    @include md {
+      max-width: 600px;
+    }
+  }
+}
+
+/*=====  End of section title  ======*/
+
+/*=============================================
+=            section layout            =
+=============================================*/
+
+.section_layout {
+  padding: 50px 0;
+
+  &-bg1 {
+    @include gthemed {
+      background-color: t(background);
+    }
+  }
+  &-bg2 {
+    @include gthemed {
+      background-color: t(background-2);
+    }
+  }
+}
+
+/*=====  End of section layout  ======*/

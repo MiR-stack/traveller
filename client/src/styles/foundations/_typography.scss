@@ -1,5 +1,4 @@
-@import "./variables";
-@import "./theme";
+@import "./all";
 @import "../base/constant.module";
 
 @mixin text($font-size, $color: text, $font-family: --roboto) {
@@ -10,6 +9,11 @@
   font-family: var($font-family, "sans");
   margin: 0;
   padding: 0;
+  font-size: 90%;
+
+  @include sm {
+    font-size: 100%;
+  }
 }
 
 .#{$brand-name}-h1 {

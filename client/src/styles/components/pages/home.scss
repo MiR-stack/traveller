@@ -117,3 +117,46 @@
 }
 
 /*=====  End of hero section  ======*/
+
+/*=============================================
+=            categories section            =
+=============================================*/
+
+.category {
+  padding: 50px 0;
+
+  @include gthemed {
+    background-color: t(background);
+  }
+  &-slide {
+    @include flex(10px);
+    flex-direction: column;
+    svg {
+      font-size: calc(3rem + 2.5vw);
+
+      @include gthemed {
+        color: t(text);
+
+        &:hover {
+          color: t(text-2);
+        }
+      }
+    }
+  }
+
+  &-details {
+    text-align: center;
+  }
+  &-blogsCount {
+    font-size: 12px;
+    @include gthemed {
+      color: t(text-2);
+    }
+  }
+  &-title {
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+}
+
+/*=====  End of categories section  ======*/

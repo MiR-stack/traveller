@@ -1,10 +1,10 @@
-import "@/styles/foundations/_typography.scss";
-import Typography from "@/components/shared/typography/typography";
+import Hero from "@/components/pages/home/hero";
+import "@/styles/components/pages/home.scss";
 
 function page() {
   return (
-    <div className="nothing">
-      <Typography component="h1">this is h1</Typography>
+    <div className="home">
+      <Hero />
     </div>
   );
 }

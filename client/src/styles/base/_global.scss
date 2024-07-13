@@ -7,6 +7,12 @@
   font-family: var(--roboto, "sans");
 }
 
+body {
+  @include gthemed {
+    background-color: t(background);
+  }
+}
+
 p {
   padding: 0;
 }

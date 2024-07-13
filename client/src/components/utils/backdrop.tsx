@@ -1,7 +1,19 @@
 import "@/styles/components/utils.scss";
 
-function Backdrop({ onClick }: { onClick: () => void }) {
-  return <div className="backdrop" onClick={onClick}></div>;
+interface backdropPropTypes {
+  onClick?: () => void;
+  opacity?: number;
+  className?: string;
+}
+
+function Backdrop({ onClick, opacity = 0.315, className }: backdropPropTypes) {
+  return (
+    <div
+      className={`backdrop ${className ? className : ""}`}
+      style={{ backgroundColor: `rgba(0, 0, 0,${opacity})` }}
+      onClick={onClick}
+    />
+  );
 }
 
 export default Backdrop;

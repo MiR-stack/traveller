@@ -1,5 +1,5 @@
-import React from "react";
 import constants from "@/styles/base/_constant.module.scss";
+import "@/styles/foundations/_typography.scss";
 
 const variants = {
   h1: "h1",

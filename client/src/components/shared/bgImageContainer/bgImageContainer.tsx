@@ -29,7 +29,6 @@ function CustomImage({
   blurDataURL?: string;
   loading?: "lazy";
 }) {
-  console.log(src);
   return (
     <div
       className={className}

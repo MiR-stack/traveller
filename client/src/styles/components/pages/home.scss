@@ -1,0 +1,119 @@
+@import "../../foundations/all";
+
+/*=============================================
+=            hero section            =
+=============================================*/
+
+.hero {
+  @include gthemed {
+    background-color: t(background);
+  }
+
+  &-container {
+    @include flex(0, center);
+  }
+  &-slider {
+    max-width: 1535px;
+
+    .slider {
+      &-navigation {
+        @include centerEl;
+        @include flex(10px, space-between);
+        color: $white-50;
+        z-index: 7;
+        width: 100%;
+        padding: 10px;
+        font-size: calc(1.5rem + 1vw);
+        display: none;
+
+        @include sm {
+          padding: 30px;
+          display: flex;
+        }
+
+        &--item {
+          cursor: pointer;
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    .swiper-pagination {
+      &-bullet {
+        background-color: $white;
+        height: 5px;
+        width: 15px;
+        border-radius: 0;
+
+        &-active {
+          background-color: $white;
+        }
+      }
+
+      @include sm {
+        display: none;
+      }
+    }
+  }
+  &-image {
+    height: 50vh;
+    width: 100%;
+    background-color: black;
+
+    @include sm {
+      height: 40vh;
+    }
+
+    @include md {
+      height: unset;
+      aspect-ratio: 14/6;
+    }
+  }
+
+  &-content {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    @include flex;
+    flex-direction: column;
+
+    @include sm {
+      width: unset;
+    }
+    &--title {
+      color: white !important;
+      font-family: $roboto-condensed;
+      font-size: calc(1.3vw + 1.3rem);
+      text-align: center;
+      font-weight: 600;
+    }
+    &--short_description {
+      color: white !important;
+      text-align: center;
+      font-size: 90%;
+
+      @include sm {
+        font-size: 100%;
+      }
+    }
+  }
+  &-btn {
+    margin-top: 20px;
+    text-transform: capitalize;
+    @include flex;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: $white-10;
+    background-color: $primary;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+/*=====  End of hero section  ======*/

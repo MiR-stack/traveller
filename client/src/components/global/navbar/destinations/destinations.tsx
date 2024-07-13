@@ -23,7 +23,6 @@ function Destinations({ destinations }: destinationsPropTypes) {
     if (destination) {
       setCurrentDestination(destinations[destination]);
     }
-    console.log("destination");
   }, []);
 
   const [menu, setMenue] = useState<boolean>(false);

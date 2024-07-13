@@ -10,7 +10,7 @@ const brandData = {
 
 function Brand() {
   return (
-    <div className="brand">
+    <section className="brand">
       {brandData.logo ? (
         <CustomImage
           src={brandData.logo}
@@ -28,7 +28,7 @@ function Brand() {
           </Typography>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 

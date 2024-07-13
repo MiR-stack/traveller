@@ -1,0 +1,9 @@
+@import "../../foundations/all";
+
+.date {
+  @include flex;
+
+  @include gthemed {
+    color: t(text-2);
+  }
+}

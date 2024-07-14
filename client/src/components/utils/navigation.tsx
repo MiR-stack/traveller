@@ -1,11 +1,16 @@
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { useSwiper } from "swiper/react";
+import "@/styles/components/utils.scss";
 
-const Navigation = () => {
+interface slideNavigationPropTypes {
+  className?: string;
+}
+
+const Navigation = ({ className }: slideNavigationPropTypes) => {
   const swiper = useSwiper();
 
   return (
-    <div className="slider-navigation">
+    <div className={`slider-navigation ${className ?? ""}`}>
       <FaLongArrowAltLeft
         className="slider-navigation--item"
         onClick={() => swiper.slidePrev()}

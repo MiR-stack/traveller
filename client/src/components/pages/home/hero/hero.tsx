@@ -11,7 +11,7 @@ import Backdrop from "@/components/utils/backdrop";
 import Typography from "@/components/shared/typography/typography";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
-import Navigation from "./navigation";
+import Navigation from "../../../utils/navigation";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 
 const Hero = () => {

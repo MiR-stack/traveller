@@ -15,31 +15,6 @@
   &-slider {
     max-width: 1535px;
 
-    .slider {
-      &-navigation {
-        @include centerEl;
-        @include flex(10px, space-between);
-        color: $white-50;
-        z-index: 7;
-        width: 100%;
-        padding: 10px;
-        font-size: calc(1.5rem + 1vw);
-        display: none;
-
-        @include sm {
-          padding: 30px;
-          display: flex;
-        }
-
-        &--item {
-          cursor: pointer;
-          &:hover {
-            color: $white;
-          }
-        }
-      }
-    }
-
     .swiper-pagination {
       &-bullet {
         background-color: $white;
@@ -324,6 +299,22 @@
 }
 
 /*=====  End of essentials product section  ======*/
+
+/*=============================================
+=            suggested place section            =
+=============================================*/
+
+.slider {
+  &-navigation {
+    padding: 10px;
+    display: flex;
+    &--item {
+      color: $white-10;
+    }
+  }
+}
+
+/*=====  End of suggested place section  ======*/
 
 /*=============================================
 =            section title            =

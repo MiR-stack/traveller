@@ -27,3 +27,34 @@
   }
   width: 100%;
 }
+
+/**
+ *
+ * slider navigation
+ *
+ */
+
+.slider {
+  &-navigation {
+    @include centerEl;
+    @include flex(10px, space-between);
+    color: $white-50;
+    z-index: 7;
+    width: 100%;
+    padding: 10px;
+    font-size: calc(1.5rem + 1vw);
+    display: none;
+
+    @include sm {
+      padding: 30px;
+      display: flex;
+    }
+
+    &--item {
+      cursor: pointer;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

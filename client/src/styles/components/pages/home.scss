@@ -259,6 +259,73 @@
 /*=====  End of special post  ======*/
 
 /*=============================================
+=            essentials product section            =
+=============================================*/
+
+.products {
+  @include flex(20px, space-around);
+
+  @include md {
+    gap: 30px;
+  }
+  @include lg {
+    gap: 50px;
+  }
+
+  .product {
+    @include flex(15px, center);
+    flex-direction: column;
+    width: 100%;
+
+    &:nth-last-child(-n + 2) {
+      display: none;
+    }
+
+    @include sm {
+      &:nth-last-child(2) {
+        display: flex;
+      }
+    }
+    @include md {
+      &:nth-last-child(1) {
+        display: flex;
+      }
+    }
+    &-image {
+      width: 100%;
+      aspect-ratio: 18/14;
+    }
+
+    &-content {
+      text-align: center;
+    }
+
+    &-price {
+      @include flex(5px, center);
+      @include gthemed {
+        color: t(text-muted);
+      }
+
+      &--active {
+        font-weight: 500;
+      }
+
+      &--disabled {
+        text-decoration: line-through;
+      }
+    }
+
+    &-name {
+      text-transform: uppercase;
+      font-size: calc(0.6rem + 0.4vw);
+      margin-top: 5px;
+    }
+  }
+}
+
+/*=====  End of essentials product section  ======*/
+
+/*=============================================
 =            section title            =
 =============================================*/
 

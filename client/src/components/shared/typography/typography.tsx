@@ -23,7 +23,7 @@ function Typography({
   children,
   variant,
 }: typographyProps) {
-  let Tag = variant as keyof JSX.IntrinsicElements;
+  let Tag = variants[variant || "body1"] as keyof JSX.IntrinsicElements;
 
   if (component) {
     Tag = component;

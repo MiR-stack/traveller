@@ -1,0 +1,81 @@
+@import "../../foundations/all";
+
+.newsletter {
+  @include gthemed {
+    background-color: t(background-2);
+  }
+  &-container {
+    @include flex(50px, center);
+    padding: 50px 0;
+  }
+
+  &-image {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 5/3;
+    display: none;
+
+    @include md {
+      display: block;
+    }
+    @include lg {
+      display: block;
+      max-width: 490px;
+    }
+  }
+  &-wraper {
+    @include flex(5px, center, center);
+    flex-direction: column;
+    width: 100%;
+
+    @include sm {
+      align-items: flex-start;
+    }
+    @include md {
+      width: unset;
+    }
+  }
+  &-title {
+    text-transform: uppercase;
+    font-size: calc(1.7rem + 0.5vw);
+  }
+  &-description {
+    max-width: 600px;
+
+    @include gthemed {
+      color: t(text-muted);
+      margin-bottom: 20px;
+    }
+  }
+  &-form {
+    @include flex(5px, space-between, flex-start);
+    flex-wrap: wrap;
+    width: 100%;
+
+    @include lg {
+      width: unset;
+    }
+  }
+  &-input {
+    width: 49%;
+    margin-bottom: 10px;
+    @include lg {
+      width: 204px;
+    }
+  }
+  &-btn {
+    padding: 6px 20px;
+    background-color: $primary;
+    color: $white;
+    text-transform: uppercase;
+    width: 100%;
+
+    @include lg {
+      width: unset;
+    }
+
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+}

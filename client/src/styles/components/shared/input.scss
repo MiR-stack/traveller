@@ -1,0 +1,19 @@
+@import "../../foundations/all";
+
+.input {
+  @include input;
+  @include gthemed {
+    border: 1px solid t(text);
+  }
+  width: 100%;
+
+  &-error {
+    .input {
+      border: 1px solid $warning;
+    }
+    span {
+      font-size: 12px;
+      color: $warning;
+    }
+  }
+}

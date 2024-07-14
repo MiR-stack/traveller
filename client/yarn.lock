@@ -1123,6 +1123,11 @@ foreground-child@^3.1.0:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
 
+formfast@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/formfast/-/formfast-1.3.0.tgz#a5c1cc1ba46484ff2993379337fcc25f3511a643"
+  integrity sha512-JQhPd/Yu9wbc/rI6vqT/Vpv4JmvD5wFJ6uPXshFrnuxr6P0F3rizlFIbSjdBDEBuuBN+2m4MmYPbIfWaOwdKAQ==
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"

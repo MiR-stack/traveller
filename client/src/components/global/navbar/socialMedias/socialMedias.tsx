@@ -6,7 +6,7 @@ import {
   IoLogoTwitter,
 } from "react-icons/io5";
 
-const socialMedias = [
+export const socialMedias = [
   {
     name: "facebook",
     icon: <IoLogoFacebook />,

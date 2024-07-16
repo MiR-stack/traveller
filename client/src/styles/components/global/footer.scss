@@ -1,0 +1,116 @@
+@import "../../foundations/all";
+
+.footer {
+  @include gthemed {
+    background-color: t(background);
+  }
+  &-container {
+    @include flex(30px, center, flex-start);
+    flex-wrap: wrap;
+    padding: 50px 0;
+  }
+
+  &-title {
+    text-transform: uppercase;
+    font-size: 18px !important;
+
+    @include md {
+      font-size: calc(0.8rem + 0.4vw) !important;
+    }
+  }
+
+  &-wraper {
+    @include flex(5px, flex-start, flex-start);
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  &-brand {
+    width: 100%;
+
+    @include sm {
+      width: 50%;
+    }
+
+    @include md {
+      width: 30%;
+    }
+
+    &-name {
+      font-size: calc(1.5rem + 0.5vw);
+      font-family: var(--wellfleet, $wellfleet);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    &-description {
+      margin-top: 5px !important;
+    }
+
+    &-medias {
+      @include flex(10px);
+      font-size: 30px;
+      @include baseColor;
+      margin-top: 20px;
+    }
+  }
+  &-destinations {
+    width: 100%;
+
+    @include sm {
+      width: 30%;
+    }
+
+    @include md {
+      width: 20%;
+    }
+  }
+  &-destination {
+    text-transform: capitalize;
+    @include baseColor;
+  }
+  &-posts {
+    width: 100%;
+
+    @include sm {
+      width: 50%;
+    }
+    @include md {
+      width: 40%;
+    }
+  }
+  &-blog {
+    &-title {
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 16px;
+
+      @include md {
+        font-size: calc(0.7rem + 0.3vw);
+      }
+    }
+    &-country {
+      font-family: var(--rock-salt, $rock-salt) !important;
+      font-size: 12px !important;
+      @include gthemed {
+        color: t(text-muted) !important;
+      }
+    }
+  }
+
+  &-bottom {
+    width: 100%;
+    padding: 20px 10px;
+
+    @include gthemed {
+      border-top: 1px solid t(divider);
+    }
+
+    &-text {
+      @include flex(5px, center);
+      @include gthemed {
+        color: t(text);
+      }
+    }
+  }
+}

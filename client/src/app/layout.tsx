@@ -13,6 +13,7 @@ import {
 } from "./fonts";
 import Navbar from "@/components/global/navbar";
 import Brand from "@/components/global/brand";
+import Footer from "@/components/global/footer";
 
 export const metadata: Metadata = {
   title: "traveller",
@@ -33,6 +34,7 @@ async function RootLayout({
           <Navbar />
           <Brand />
           {children}
+          <Footer />
         </ThemeContextProvider>
       </body>
     </html>

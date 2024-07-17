@@ -50,8 +50,6 @@ async function Navbar() {
   const header = headers();
   const ip = (header.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0];
 
-  console.log("ip address", ip);
-
   return (
     <nav className="nav">
       <Container maxWidth="xlg">

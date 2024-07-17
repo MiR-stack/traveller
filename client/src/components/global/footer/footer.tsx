@@ -23,7 +23,12 @@ function Footer() {
             </Typography>
             <div className="footer-brand-medias">
               {socialMedias.map((media) => (
-                <Link className="link" href={media.url} key={media.name}>
+                <Link
+                  className="link"
+                  href={media.url}
+                  key={media.name}
+                  aria-label={media.name}
+                >
                   {media.icon}
                 </Link>
               ))}

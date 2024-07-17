@@ -14,7 +14,7 @@ function page() {
       <Hero />
       <Categories />
       <LatestPosts />
-      <SpecialPost {...blogsData[1]} />
+      <SpecialPost {...blogsData[2]} />
       <Products />
       <SuggestedPlace />
       <Newsletter />

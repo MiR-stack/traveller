@@ -25,6 +25,7 @@ function Products() {
                 className="product-image"
                 src={product.image.url}
                 alt={product.image.alt}
+                sizes={`(max-width:600px) 30vw,(max-widht:900px) 25vw,(max-width:1200px)20vw ,18vw`}
               />
               <div className="product-content">
                 {product.price.discounted !== 0 &&
@@ -49,7 +50,11 @@ function Products() {
                   </Typography>
                 )}
 
-                <Typography className="product-name" variant="h4">
+                <Typography
+                  className="product-name"
+                  variant="h4"
+                  component="h2"
+                >
                   {product.name}
                 </Typography>
               </div>

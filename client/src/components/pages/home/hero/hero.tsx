@@ -10,11 +10,13 @@ import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Backdrop from "@/components/utils/backdrop";
 import Typography from "@/components/shared/typography/typography";
 import { GoArrowUpRight } from "react-icons/go";
-import Link from "next/link";
 import Navigation from "../../../utils/navigation";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
+
   return (
     <section className="hero">
       <Swiper
@@ -37,6 +39,8 @@ const Hero = () => {
               className="hero-image"
               src={blog.image.url}
               alt={blog.image.alt}
+              priority
+              sizes={`(min-width:1550px) 1550px, 100vw`}
             >
               <div className="hero-content">
                 <Typography className="hero-content--title" variant="h1">
@@ -48,9 +52,12 @@ const Hero = () => {
                 >
                   {blog.shortDescription}{" "}
                 </Typography>
-                <Link className="hero-btn" href={blog.slug}>
+                <button
+                  className="hero-btn btn"
+                  onClick={() => router.push(blog.slug)}
+                >
                   read more <GoArrowUpRight />
-                </Link>
+                </button>
               </div>
               <Backdrop opacity={0.2} />
             </CustomImage>

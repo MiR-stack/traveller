@@ -2,6 +2,8 @@
 
 import Typography from "@/components/shared/typography/typography";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 import categoriesData from "./category.data";
 import Container from "@/components/shared/container";
 import Link from "next/link";
@@ -46,7 +48,11 @@ function Categories() {
                   <Typography className="category-blogsCount" variant="body2">
                     {category.count} destinations
                   </Typography>
-                  <Typography className="category-title" variant="h4">
+                  <Typography
+                    className="category-title"
+                    variant="h4"
+                    component="h2"
+                  >
                     {category.title}
                   </Typography>
                 </div>

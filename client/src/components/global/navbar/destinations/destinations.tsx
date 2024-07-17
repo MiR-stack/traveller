@@ -5,7 +5,7 @@ import Typography from "@/components/shared/typography/typography";
 import { destinationsType, destinationType } from "@/types/navbar.types";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TbWorld } from "react-icons/tb";
 
 interface destinationsPropTypes {

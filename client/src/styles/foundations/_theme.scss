@@ -4,6 +4,7 @@ $themes: (
   "dark": (
     background: $black-80,
     background-2: $black-70,
+    background-transparent: $black-transparent,
     text: $white,
     text-2: $white-20,
     text-muted: $white-40,
@@ -12,6 +13,7 @@ $themes: (
   "light": (
     background: $white,
     background-2: $white-10,
+    background-transparent: $white-transparent,
     text: $black,
     text-2: $black-30,
     text-muted: $black-20,

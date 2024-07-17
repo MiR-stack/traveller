@@ -9,7 +9,12 @@ import "@/styles/components/shared/cards.scss";
 function Card2({ slug, image, title, createdAt, country }: basicBlogTypes) {
   return (
     <Link href={slug} className="card2">
-      <CustomImage className="card2-image" src={image.url} alt={image.alt}>
+      <CustomImage
+        className="card2-image"
+        src={image.url}
+        alt={image.alt}
+        sizes={`(max-width:600px) 45vw,(max-width:900px) 30vw, (max-width:1200px) 25vw, 20vw`}
+      >
         <div className="card2-content">
           <Typography variant="body2" className="card2-content-country">
             {country.name}

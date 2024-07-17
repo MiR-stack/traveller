@@ -19,7 +19,12 @@ function Card1({
   return (
     <div className={`card1 ${className ?? ""}`}>
       <Link className="card1-image-link" href={slug}>
-        <CustomImage className="card1-image" src={image.url} alt={image.alt} />
+        <CustomImage
+          className="card1-image"
+          src={image.url}
+          alt={image.alt}
+          sizes={`(max-width:900px) 46vw, 30vw`}
+        />
       </Link>
       <div className="card1-contents">
         <Typography className="card1-country" variant="body2">

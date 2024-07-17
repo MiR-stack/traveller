@@ -3,7 +3,6 @@ import Date from "@/components/shared/date";
 import Typography from "@/components/shared/typography";
 import { basicBlogTypes } from "@/types/blog.types";
 import Link from "next/link";
-import React from "react";
 
 function SpecialPost({ title, slug, createdAt, image }: basicBlogTypes) {
   return (
@@ -12,6 +11,8 @@ function SpecialPost({ title, slug, createdAt, image }: basicBlogTypes) {
         className="special_post-image"
         src={image.url}
         alt={image.alt}
+        sizes={`(min-width:1440px) 80vw, 100vw`}
+        priority
       >
         <div className="special_post-content">
           <Typography
@@ -23,7 +24,6 @@ function SpecialPost({ title, slug, createdAt, image }: basicBlogTypes) {
           </Typography>
           <Date className="special_post-content-date" date={createdAt} />
           <Link className="special_post-content-button link" href={slug}>
-            {" "}
             read post
           </Link>
         </div>

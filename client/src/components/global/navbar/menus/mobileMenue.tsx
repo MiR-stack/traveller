@@ -20,6 +20,8 @@ function MobileMenus({ extended }: mobileMenusPropsType) {
     setIsOpen(false);
   };
 
+  console.log(extended);
+
   return (
     <div className="nav-mobile_menus">
       <IoMenu className="nav-mobile_menus--icon" onClick={toggleMenu} />

@@ -1,10 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { navData } from "../nav.data";
 import { IoClose } from "react-icons/io5";
 import DropdownMenu from "./dropdownMenu";
-import { useEffect } from "react";
 import { objDeepClone } from "@/utils/utils";
 
 interface menusPropTypes {

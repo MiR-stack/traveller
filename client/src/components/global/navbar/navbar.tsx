@@ -62,7 +62,7 @@ async function Navbar({ extented = true }: navPropsType) {
       <Container maxWidth="xlg">
         <div className="nav-wraper">
           <div className="nav-left">
-            <MobileMenus extended />
+            <MobileMenus extended={extented} />
             {extented ? (
               <Brand variant="nav" />
             ) : (

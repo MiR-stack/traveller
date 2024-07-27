@@ -5,7 +5,11 @@ import Menus from "./menus";
 import { useState } from "react";
 import Backdrop from "@/components/utils/backdrop";
 
-function MobileMenus() {
+interface mobileMenusPropsType {
+  extended: boolean;
+}
+
+function MobileMenus({ extended }: mobileMenusPropsType) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
@@ -20,7 +24,12 @@ function MobileMenus() {
     <div className="nav-mobile_menus">
       <IoMenu className="nav-mobile_menus--icon" onClick={toggleMenu} />
       {isOpen ? <Backdrop onClick={handleClose} /> : ""}
-      <Menus type="mobile" onClose={handleClose} isOpen={isOpen} />
+      <Menus
+        navExtended={extended}
+        type="mobile"
+        onClose={handleClose}
+        isOpen={isOpen}
+      />
     </div>
   );
 }

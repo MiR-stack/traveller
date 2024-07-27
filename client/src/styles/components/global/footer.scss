@@ -26,20 +26,22 @@
   }
 
   &-brand {
-    width: 100%;
+    justify-content: flex-start;
 
-    @include sm {
-      width: 50%;
-    }
+    &-container {
+      width: 100%;
 
-    @include md {
-      width: 30%;
+      @include sm {
+        width: 50%;
+      }
+
+      @include md {
+        width: 30%;
+      }
     }
 
     &-name {
       font-size: calc(1.5rem + 0.5vw);
-      font-family: var(--wellfleet, $wellfleet);
-      text-transform: uppercase;
       margin-bottom: 15px;
     }
 

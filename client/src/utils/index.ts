@@ -1,1 +1,3 @@
-export { getData } from "./utils";
+export { getData, getStrapiData, getStrapiURL } from "./utils";
+
+export { getBlog } from "./blog";

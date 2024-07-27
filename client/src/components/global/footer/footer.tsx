@@ -8,16 +8,15 @@ import { blogsData } from "@/components/pages/home/blogsData";
 import "@/styles/components/global/footer.scss";
 import { footerData } from "./footer.data";
 import { FaRegCopyright } from "react-icons/fa6";
+import Brand from "@/components/shared/brand";
 
 function Footer() {
   return (
     <footer className="footer">
       <Container maxWidth="xlg">
         <div className="footer-container">
-          <div className="footer-brand">
-            <Link href={"/"} className="footer-brand-name link">
-              {footerData.brand.name}{" "}
-            </Link>
+          <div className="footer-brand-container">
+            <Brand variant="footer" />
             <Typography className="footer-brand-description" variant="body1">
               {footerData.brand.description}
             </Typography>

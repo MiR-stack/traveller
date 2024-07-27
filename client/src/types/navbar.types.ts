@@ -11,3 +11,9 @@ export interface destinationType {
 export interface destinationsType {
   [key: string]: destinationType;
 }
+
+export interface menuTypes {
+  name: string;
+  slug: string;
+  childrens?: menuTypes[];
+}

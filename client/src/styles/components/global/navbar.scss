@@ -15,6 +15,19 @@
   &-left {
     @include flex;
   }
+
+  &-brand {
+    line-height: 60px;
+
+    &-name {
+      font-size: calc(1rem + 0.8vw) !important;
+
+      @include lg {
+        font-size: 25px !important;
+      }
+    }
+  }
+
   &-destination {
     @include flex;
     @include gthemed {
@@ -87,7 +100,7 @@
    */
 
   &-menus {
-    a {
+    &-name {
       text-transform: capitalize;
       text-decoration: none;
       font-weight: 500;
@@ -99,8 +112,60 @@
         }
       }
     }
+
+    &-dropdown {
+      position: relative;
+
+      &:hover .nav-menus-dropdown--wraper {
+        display: flex;
+      }
+      &--title {
+        @include flex;
+        cursor: pointer;
+      }
+
+      &--icon {
+        font-size: 10px;
+
+        @include gthemed {
+          color: t(text);
+        }
+      }
+      &--wraper {
+        position: absolute;
+        top: 101%;
+        left: 0;
+        @include flex(0, flex-start, flex-start);
+        flex-direction: column;
+        min-width: 200px;
+        z-index: 7;
+        @include gthemed {
+          background-color: t(background);
+        }
+        display: none;
+      }
+      &--item {
+        padding: 10px;
+        @include gthemed {
+          border-bottom: 1px solid t(divider);
+          &:hover {
+            background-color: t(background-2);
+          }
+        }
+        width: 100%;
+      }
+
+      &--open {
+        display: flex;
+      }
+    }
+
     &-desktop {
       display: none;
+
+      @include sm {
+        display: block;
+      }
 
       .nav-menus-icon {
         display: none;
@@ -110,7 +175,7 @@
         @include flex(15px);
         list-style: none;
 
-        a {
+        .nav-menus-name {
           line-height: 60px;
           font-size: 90%;
 
@@ -119,8 +184,14 @@
           }
         }
       }
-
+    }
+    &-extended {
+      color: red;
       @include sm {
+        display: none;
+      }
+
+      @include md {
         display: block;
       }
     }
@@ -138,13 +209,50 @@
         background-color: t(background);
       }
 
-      li {
-        padding: 15px 10px;
-        @include gthemed {
-          border-bottom: 1px solid t(divider);
+      .nav-menus {
+        &-name {
+          display: block;
+          width: 100%;
+          padding: 15px 10px;
+          @include gthemed {
+            border-bottom: 1px solid t(divider);
 
-          &:hover {
-            background-color: t(background-2);
+            &:hover {
+              background-color: t(background-2);
+            }
+          }
+        }
+
+        &-dropdown {
+          &--title {
+            width: 100%;
+            @include gthemed {
+              border-bottom: 1px solid t(divider);
+            }
+          }
+          &--wraper {
+            margin: 10px;
+            position: unset;
+            @include gthemed {
+              background-color: t(background-2);
+            }
+          }
+
+          &--item {
+            &:nth-last-child(1) {
+              border: none;
+            }
+
+            @include gthemed {
+              &:hover {
+                background-color: t(background);
+              }
+            }
+          }
+
+          .nav-menus-name {
+            width: unset;
+            border: none;
           }
         }
       }

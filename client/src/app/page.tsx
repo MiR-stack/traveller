@@ -1,3 +1,4 @@
+import Brand from "@/components/shared/brand";
 import { blogsData } from "@/components/pages/home/blogsData";
 import Categories from "@/components/pages/home/categories";
 import Hero from "@/components/pages/home/hero";
@@ -7,10 +8,14 @@ import SpecialPost from "@/components/pages/home/specialPost";
 import SuggestedPlace from "@/components/pages/home/suggestedPlace";
 import Newsletter from "@/components/shared/newsletter";
 import "@/styles/components/pages/home.scss";
+import Navbar from "@/components/global/navbar";
+import Footer from "@/components/global/footer";
 
 function page() {
   return (
     <div className="home">
+      <Navbar extented={false} />
+      <Brand moto variant="extended" />
       <Hero />
       <Categories />
       <LatestPosts />
@@ -18,6 +23,7 @@ function page() {
       <Products />
       <SuggestedPlace />
       <Newsletter />
+      <Footer />
     </div>
   );
 }

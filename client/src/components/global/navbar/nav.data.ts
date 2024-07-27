@@ -1,4 +1,14 @@
-export const navData = {
+import { menuTypes } from "@/types/navbar.types";
+
+interface navDataTypes {
+  destinations: {
+    name: string;
+    slug: string;
+  }[];
+  menus: menuTypes[];
+}
+
+export const navData: navDataTypes = {
   destinations: [
     {
       name: "bangladesh",

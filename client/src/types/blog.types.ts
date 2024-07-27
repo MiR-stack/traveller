@@ -11,11 +11,13 @@ export interface countryTypes {
   slug: string;
 }
 
+export interface imageTypes {
+  url: string;
+  alt: string;
+}
+
 export interface basicBlogTypes {
-  image: {
-    url: string;
-    alt: string;
-  };
+  image: imageTypes;
   title: string;
   slug: string;
   country: countryTypes;

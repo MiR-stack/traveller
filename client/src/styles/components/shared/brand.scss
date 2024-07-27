@@ -2,17 +2,13 @@
 
 .brand {
   @include flex(0, center, center);
-  padding: 35px;
-
-  @include sm {
-    padding: 50px;
-  }
 
   @include gthemed {
     background-color: t(background);
   }
 
   &-logo {
+    width: 100%;
     aspect-ratio: 28/7;
   }
 
@@ -24,12 +20,23 @@
   &-name {
     font-family: var(--wellfleet, $didot) !important;
     text-transform: uppercase;
-    font-size: calc(1.5vw + 1.5rem) !important;
   }
 
   &-moto {
     @include gthemed {
       color: t(text-2);
     }
+  }
+}
+
+.extended-brand {
+  padding: 35px 0;
+
+  @include sm {
+    padding: 50px;
+  }
+
+  &-name {
+    font-size: calc(1.5vw + 1.5rem) !important;
   }
 }

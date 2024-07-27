@@ -20,6 +20,9 @@
   &-name {
     font-family: var(--wellfleet, $didot) !important;
     text-transform: uppercase;
+    @include gthemed {
+      color: t(text) !important;
+    }
   }
 
   &-moto {

@@ -1,3 +1,5 @@
+import { formatedImageTypes, imageTypes } from "@/types";
+
 async function getData(url: string) {
   const res = await fetch(url);
 
@@ -80,3 +82,45 @@ const objDeepClone = (obj: object) => {
 /*=====  End of deepclone  ======*/
 
 export { getData, getStrapiURL, getStrapiData, objDeepClone };
+
+/**
+ *
+ * @param url short url of image
+ * @returns
+ */
+export function getStrapiMedia(url: string) {
+  if (url == null) {
+    return null;
+  }
+  if (url.startsWith("http") || url.startsWith("//")) {
+    return url;
+  }
+  return `${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337"}${url}`;
+}
+
+/**
+ *
+ * @param image raw image object from strapi response
+ * @returns image sizes
+ */
+
+export const getFormatedImage = (
+  image: imageTypes
+): formatedImageTypes | null => {
+  if (!image.data) return null;
+
+  const {
+    formats: { large, small, medium, thumbnail },
+    url,
+    alternativeText,
+  } = image.data.attributes;
+  const srcs = {
+    large: getStrapiMedia(large.url)!,
+    small: getStrapiMedia(small.url)!,
+    medium: getStrapiMedia(medium.url)!,
+    thumbnail: getStrapiMedia(thumbnail.url)!,
+    main: getStrapiMedia(url)!,
+  };
+
+  return { srcs, alt: alternativeText };
+};

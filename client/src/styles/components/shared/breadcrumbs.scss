@@ -1,0 +1,35 @@
+@import "../../foundations/all";
+@import "../../base/constant.module";
+
+.#{$brand-name}-breadcrumbs {
+  @include flex;
+  padding: 10px 0;
+
+  &-item {
+    text-transform: uppercase;
+    color: $primary !important;
+    font-weight: 600;
+    font-size: 14px;
+
+    &:hover {
+      color: $primary-dark !important;
+      text-decoration: underline;
+    }
+
+    &--active {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 14px;
+      @include gthemed {
+        color: t(text-muted) !important;
+      }
+    }
+  }
+
+  &-separator {
+    font-size: 8px;
+    @include gthemed {
+      color: t(text-muted);
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import "../../../base/constant.module";
+@import "../../../foundations/all";
+
+.#{$brand-name}-card3 {
+  @include flex(10px);
+
+  &--image {
+    width: 100%;
+    aspect-ratio: 1/0.7;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &-link {
+      width: 100%;
+      max-width: 100px;
+    }
+  }
+
+  &-header {
+    @include flex(10px);
+  }
+
+  &--country {
+    text-transform: capitalize;
+    font-size: 12px;
+  }
+  &--readTime {
+    font-size: 12px;
+  }
+
+  &--title {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

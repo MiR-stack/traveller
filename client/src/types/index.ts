@@ -23,3 +23,22 @@ export interface imageAttrTypes {
   url: string;
   alternativeText: string;
 }
+
+export interface imageTypes {
+  data: {
+    attributes: imageAttrTypes;
+  };
+}
+
+export interface formatedImageSrcsTypes {
+  large: string;
+  small: string;
+  medium: string;
+  thumbnail: string;
+  main: string;
+}
+
+export interface formatedImageTypes {
+  srcs: formatedImageSrcsTypes;
+  alt: string;
+}

@@ -1,0 +1,585 @@
+@import "../../foundations/all";
+
+.blog {
+  @include gthemed {
+    background-color: t(background);
+  }
+
+  &-image {
+    width: 100%;
+    aspect-ratio: 7/4;
+    margin: 10px 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @include sm {
+      aspect-ratio: 7/3;
+    }
+
+    @include lg {
+      aspect-ratio: 7/2.6;
+    }
+  }
+
+  &-header {
+    &-title {
+      font-size: calc(1.3rem + 1.2vw) !important;
+      text-transform: capitalize;
+      font-family: var(--oswald, sans-sarif);
+
+      @include xlg {
+        font-size: 45px !important;
+      }
+    }
+
+    &-blog_info {
+      @include flex(10px);
+      flex-wrap: wrap;
+    }
+
+    &-country {
+      font-family: var(--rock-salt, $rock-salt);
+      font-size: 14px;
+      text-transform: capitalize;
+
+      @include gthemed {
+        color: t(text-muted);
+      }
+    }
+  }
+
+  /*----------  blog main  ----------*/
+
+  &-main {
+    @include flex(20px, space-between, flex-start);
+    flex-wrap: wrap;
+    @include lg {
+      padding-top: 20px;
+    }
+  }
+
+  /*----------  content  ----------*/
+
+  &-content {
+    width: 100%;
+
+    @include lg {
+      width: 65%;
+    }
+
+    &-main {
+      @include gthemed {
+        color: t(text-muted);
+      }
+
+      p {
+        line-height: 1.4;
+      }
+      h1 {
+        font-size: calc(1.4rem + 0.8vw);
+        text-transform: capitalize;
+      }
+      h2 {
+        font-size: calc(1.5rem + 0.5vw);
+      }
+      h3 {
+        font-size: calc(1rem + 0.3vw);
+      }
+
+      h1,
+      h2,
+      h3 {
+        @include gthemed {
+          color: t(text);
+        }
+      }
+      .image {
+        width: 100% !important;
+        padding-top: 20px;
+
+        img {
+          width: 100%;
+          aspect-ratio: 1.7/1 !important;
+          height: unset;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+
+      blockquote {
+        padding: 20px 30px;
+        border-left: 5px solid $primary;
+        text-transform: capitalize;
+        @include gthemed {
+          background-color: t(background-2);
+        }
+        i {
+          font-family: var(--roboto-condensed, $roboto-condensed);
+          font-weight: 600;
+        }
+      }
+    }
+    &-footer {
+      @include flex(0, flex-end);
+      font-size: 20px;
+      padding: 30px 0 20px 0;
+    }
+    &-share {
+      @include flex(15px);
+    }
+  }
+
+  /*----------  author  ----------*/
+
+  &-author {
+    @include flex(15px, flex-start);
+    padding: 30px 0;
+    flex-direction: column;
+    text-align: center;
+    @include gthemed {
+      border-top: 1px solid t(divider);
+      border-bottom: 1px solid t(divider);
+    }
+
+    @include sm {
+      align-items: flex-start;
+      text-align: left;
+      flex-direction: row;
+    }
+
+    &--name {
+      text-transform: capitalize;
+    }
+    &--role {
+      color: $primary;
+    }
+
+    &--bio {
+      max-width: 600px;
+    }
+
+    &--social_medias {
+      margin-top: 16px;
+      @include flex(20px, center);
+
+      @include sm {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  /*----------  section layout  ----------*/
+
+  &-section {
+    @include flex(20px, flex-start, flex-start);
+    flex-direction: column;
+    width: 100%;
+
+    &--title {
+      text-transform: uppercase;
+      font-family: var(--oswald, $roboto-slab) !important;
+      text-align: left;
+      width: 100%;
+      font-size: calc(1.2rem + 0.4vw) !important;
+    }
+  }
+
+  /*----------  related blogs  ----------*/
+
+  &-related {
+    @include flex(10px, center, flex-start);
+
+    @include lg {
+      gap: 30px;
+    }
+
+    &-container {
+      width: 100%;
+      margin: 30px 0;
+
+      @include sm {
+        margin: 50px 0;
+      }
+    }
+
+    &-card {
+      &:nth-last-child(1) {
+        display: none;
+
+        @include sm {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  /*----------  product  ----------*/
+
+  &-product {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 3/2;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      padding-top: 40px;
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.9)
+      );
+      width: 100%;
+
+      @include flex(10px, flex-end, flex-start);
+      flex-direction: column;
+    }
+
+    &--name {
+      text-transform: uppercase;
+      color: $white !important;
+    }
+
+    &--link {
+      padding: 10px 20px;
+      background-color: $primary;
+      color: $white-10 !important;
+      border-radius: 10px;
+      text-transform: capitalize;
+
+      &:hover {
+        color: $white !important;
+        background-color: $primary-dark;
+      }
+    }
+  }
+
+  &-sidebar {
+    width: 100%;
+    @include flex(30px, space-between, flex-start);
+    flex-wrap: wrap;
+
+    .blog-section {
+      @include sm {
+        width: 47%;
+      }
+
+      @include lg {
+        width: 100%;
+      }
+    }
+
+    @include lg {
+      width: 30%;
+    }
+    /*----------  connect and follow  ----------*/
+    &-follow {
+      @include flex(10px);
+      flex-wrap: wrap;
+
+      &-card {
+        @include flex(10px, center);
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 10px;
+
+        @include gthemed {
+          border: 2px solid t(text);
+        }
+
+        &:hover {
+          border: 2px solid $primary;
+
+          svg {
+            color: $primary !important;
+          }
+          .blog-sidebar-follow--name {
+            color: $primary;
+          }
+        }
+
+        svg {
+          font-size: 30px;
+          @include gthemed {
+            color: t(text);
+          }
+        }
+      }
+
+      &--name {
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+    }
+
+    /*----------  latest post  ----------*/
+
+    &-latest {
+      &-card {
+        margin-bottom: 20px;
+      }
+    }
+
+    /*----------  categories  ----------*/
+
+    &-categories {
+      width: 100%;
+
+      @include sm {
+        max-width: 300px;
+      }
+    }
+
+    &-category {
+      @include flex(10px, space-between);
+      text-transform: capitalize;
+      padding: 20px 0;
+      width: 100%;
+      font-weight: 500;
+      @include gthemed {
+        border-bottom: 1px solid t(divider);
+
+        &:hover {
+          .blog-sidebar-category {
+            &--name {
+              color: $primary !important;
+            }
+            &--count {
+              color: $primary !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*----------  comment  ----------*/
+
+  &-comments {
+    width: 100%;
+    @include flex(20px, flex-start, flex-start);
+    flex-direction: column;
+  }
+  &-comment {
+    @include flex(10px);
+    width: 100%;
+    max-width: 600px;
+
+    &-container {
+      width: 100%;
+      position: relative;
+    }
+    &-content {
+      width: 100%;
+    }
+    &-header {
+      @include flex(10px, space-between);
+      width: 100%;
+
+      &--left {
+        @include flex(5px, flex-end, flex-end);
+      }
+    }
+
+    &-posting {
+      @include flex(2px);
+
+      &--text {
+        @include gthemed {
+          color: t(text-2);
+          font-size: 14px;
+        }
+      }
+
+      .loader {
+        width: 12px;
+        height: 12px;
+        @include gthemed {
+          border: 3px solid t(text-2);
+          border-bottom-color: transparent;
+        }
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    &-authorName {
+      text-transform: capitalize;
+    }
+
+    &-reply {
+      @include flex;
+      text-transform: capitalize;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      @include gthemed {
+        color: t(text-muted);
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+
+    &-line {
+      position: absolute;
+      left: 25px;
+      top: 50px;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+      border-radius: 0 0 0 10px;
+    }
+  }
+
+  /*----------  reply  ----------*/
+
+  &-reply {
+    &-container {
+      padding-left: 60px;
+      padding-top: 10px;
+    }
+
+    &-view {
+      @include btn;
+      font-size: 14px;
+      text-transform: capitalize;
+      font-weight: 700;
+
+      @include gthemed {
+        color: t(text);
+      }
+    }
+  }
+
+  /*=============================================
+  =            comment bar section            =
+  =============================================*/
+
+  &-commentBar {
+    width: 100%;
+
+    &-title {
+      @include flex(20px);
+      svg {
+        cursor: pointer;
+      }
+    }
+
+    &-comment--text {
+      text-transform: uppercase;
+      font-size: calc(1.2rem + 0.4vw);
+      font-family: var(--oswald, $roboto);
+    }
+    &-reply--text {
+      text-transform: uppercase;
+      font-size: calc(0.8rem + 0.4vw);
+      font-family: var(--oswald, $roboto);
+    }
+    &-wraper {
+      @include flex(25px, flex-start, flex-start);
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &-user_info {
+      width: 100%;
+      @include flex(15px, space-between, flex-start);
+      flex-wrap: wrap;
+
+      @include sm {
+        flex-wrap: nowrap;
+      }
+    }
+
+    &-input {
+      padding: 10px 16px;
+      width: 100%;
+      outline: none;
+      background-color: transparent;
+
+      @include gthemed {
+        border: 1px solid t(divider);
+        color: t(text-muted);
+        &::placeholder {
+          color: t(text-muted);
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &-comment {
+      aspect-ratio: 77/17;
+    }
+
+    &-feature {
+      @include flex(10px, flex-start, flex-start);
+      @include gthemed {
+        color: t(emperor);
+      }
+
+      input {
+        height: 15px;
+        @include gthemed {
+          border: 1px solid t(nobel);
+          accent-color: green;
+        }
+      }
+    }
+
+    &-button {
+      padding: 13px 20px;
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+      background-color: $primary;
+      color: $white-10;
+    }
+
+    .section-title {
+      padding-bottom: 50px;
+    }
+    .error-boundary {
+      width: 100%;
+    }
+
+    .error {
+      input {
+        @include gthemed {
+          border: 1px solid t(warning);
+        }
+      }
+      textarea {
+        @include gthemed {
+          border: 1px solid t(warning);
+        }
+      }
+      p {
+        margin-top: 5px;
+        text-transform: capitalize;
+        font-size: 14px;
+        @include gthemed {
+          color: t(warning);
+        }
+      }
+    }
+  }
+
+  /*=====  End of comment bar section  ======*/
+}

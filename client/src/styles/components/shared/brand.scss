@@ -18,7 +18,7 @@
   }
 
   &-name {
-    font-family: var(--wellfleet, $didot) !important;
+    font-family: var(--wellfleet, sans-serif) !important;
     text-transform: uppercase;
     @include gthemed {
       color: t(text) !important;

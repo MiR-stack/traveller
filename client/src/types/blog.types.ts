@@ -24,3 +24,13 @@ export interface basicBlogTypes {
   createdAt: string;
   category: categoryTypes;
 }
+
+export interface commentTypes {
+  author: {
+    name: string;
+  };
+  content: string;
+  id: number;
+  children: commentTypes[];
+  createdAt: Date;
+}

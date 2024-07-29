@@ -1,0 +1,78 @@
+@import "../../../foundations/all";
+
+.card1 {
+  @include flex;
+  flex-direction: column;
+
+  &-image {
+    aspect-ratio: 4/2.8;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    &-link {
+      width: 100%;
+    }
+  }
+  &-contents {
+    @include flex(5px, center, center);
+    flex-direction: column;
+    text-align: center;
+  }
+  &-country {
+    font-family: var(--rock-salt, $rock-salt);
+    text-transform: capitalize;
+    @include gthemed {
+      color: t(text-2);
+    }
+  }
+
+  &-title {
+    font-family: var(--robot-condensed, $roboto-condensed);
+    text-transform: capitalize;
+    font-size: calc(0.9rem + 0.3vw);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &-category {
+    text-transform: uppercase;
+    @include gthemed {
+      color: t(text-2);
+    }
+  }
+
+  &-category,
+  &-country {
+    font-size: 10px;
+
+    @include sm {
+      font-size: 14px;
+    }
+  }
+}
+
+/*----------  card1 related variant  ----------*/
+
+.card1-related {
+  flex: 1 1 0;
+
+  &-contents {
+    align-items: flex-start;
+  }
+
+  &-title {
+    text-align: left;
+  }
+
+  &-country {
+    font-family: var(--roboto, $roboto-slab);
+    text-align: left;
+  }
+
+  &-footer {
+    font-size: 13px;
+    text-align: left;
+  }
+}

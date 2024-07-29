@@ -32,6 +32,12 @@
   }
 }
 
+@mixin btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
 @mixin centerEl($position: absolute) {
   position: $position;
   top: 50%;

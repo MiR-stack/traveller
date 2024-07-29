@@ -8,9 +8,10 @@ import {
   roboto_Condensed,
   roboto_Slab,
   rock_salt,
-  didot,
+  oswald,
   wellfleet,
 } from "./fonts";
+import ReduxProvider from "@/store/provider";
 
 export const metadata: Metadata = {
   title: "traveller",
@@ -25,9 +26,11 @@ async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${didot.variable} ${wellfleet.variable}`}
+        className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${oswald.variable} ${wellfleet.variable}`}
       >
-        <ThemeContextProvider>{children}</ThemeContextProvider>
+        <ReduxProvider>
+          <ThemeContextProvider>{children}</ThemeContextProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

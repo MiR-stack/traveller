@@ -1,0 +1,38 @@
+import Avatar from "@/components/shared/avatar";
+import Typography from "@/components/shared/typography";
+import { icons } from "@/components/utils/icons";
+import { imageAttrTypes } from "@/types";
+import Link from "next/link";
+
+export interface authorPropsType {
+  name: string;
+  role: string;
+  bio: string;
+  social_medias: { name: string; url: string; icon: string }[];
+  avatar?: imageAttrTypes;
+}
+
+function Author({ name, role, bio, social_medias, avatar }: authorPropsType) {
+  return (
+    <section className="blog-author">
+      <Avatar name={name} avatar={avatar} size="lg" />
+      <div className="blog-author-content">
+        <Typography className="blog-author--name" variant="h4">
+          {name} . <span className="blog-author--role">{role}</span>
+        </Typography>
+        <Typography className="blog-author--bio" variant="body2">
+          {bio}
+        </Typography>
+        <div className="blog-author--social_medias">
+          {social_medias.map((media) => (
+            <Link className="link" key={media.name} href={media.url}>
+              {icons[media.icon as keyof typeof icons]}{" "}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Author;

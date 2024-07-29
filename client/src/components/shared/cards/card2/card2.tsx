@@ -4,7 +4,7 @@ import React from "react";
 import CustomImage from "../../bgImageContainer/bgImageContainer";
 import Typography from "../../typography";
 import Date from "../../date";
-import "@/styles/components/shared/cards.scss";
+import "@/styles/components/shared/cards/card2.scss";
 
 function Card2({ slug, image, title, createdAt, country }: basicBlogTypes) {
   return (

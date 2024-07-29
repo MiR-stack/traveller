@@ -1,0 +1,15 @@
+@import "../../foundations/all";
+@import "../../base/constant.module";
+
+.#{$brand-name}-shortInfo {
+  @include flex;
+  font-size: 14px;
+  text-transform: capitalize;
+  @include gthemed {
+    color: t(text-muted);
+  }
+
+  svg {
+    font-size: 110%;
+  }
+}

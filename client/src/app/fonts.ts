@@ -5,6 +5,7 @@ import {
   Rock_Salt,
   Wellfleet,
   GFS_Didot,
+  Oswald,
 } from "next/font/google";
 
 export const roboto = Roboto({
@@ -31,16 +32,16 @@ export const rock_salt = Rock_Salt({
   display: "swap",
 });
 
-export const didot = GFS_Didot({
-  subsets: ["greek"],
-  variable: "--didot",
-  weight: ["400"],
-  display: "swap",
-});
-
 export const wellfleet = Wellfleet({
   subsets: ["latin"],
   variable: "--wellfleet",
   weight: ["400"],
+  display: "swap",
+});
+
+export const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--oswald",
+  weight: ["400", "600", "700"],
   display: "swap",
 });

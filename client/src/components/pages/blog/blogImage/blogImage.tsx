@@ -1,5 +1,4 @@
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
-import { imageTypes } from "@/types/blog.types";
 import React from "react";
 import { blogData } from "../blog.data";
 

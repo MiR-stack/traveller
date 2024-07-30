@@ -1,6 +1,6 @@
 import Author from "../author";
 import { authorPropsType } from "../author/author";
-// import Comments from "../comments";
+import Comments from "../comments";
 import RelatedBlogs from "../relatedBlogs";
 import ContentFooter from "./contentFooter";
 
@@ -19,7 +19,7 @@ function Content({ content, author }: contentPropsType) {
       <ContentFooter url="" />
       <Author {...author} />
       <RelatedBlogs />
-      {/* <Comments blogId={1} /> */}
+      <Comments blogId={1} />
     </div>
   );
 }

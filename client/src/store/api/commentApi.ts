@@ -3,8 +3,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const api_token = process.env.NEXT_PUBLIC_API_TOKEN;
 const relation = "api::blog.blog:";
 
-console.log("api token", api_token);
-
 interface getCommentsTypes {
   id: number;
   query?: string;

@@ -3,7 +3,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import variables from "@/styles/base/_constant.module.scss";
 import Link from "next/link";
 import "@/styles//components/shared/breadcrumbs.scss";
-import { breadcrumbTypes } from "@/types/shared";
+import { breadcrumbTypes } from "@/types/shared.types";
 
 interface breadcrumbsPropsType {
   breadcrumbs: breadcrumbTypes[];

@@ -3,10 +3,6 @@
 .brand {
   @include flex(0, center, center);
 
-  @include gthemed {
-    background-color: t(background);
-  }
-
   &-logo {
     width: 100%;
     aspect-ratio: 28/7;
@@ -34,7 +30,9 @@
 
 .extended-brand {
   padding: 35px 0;
-
+  @include gthemed {
+    background-color: t(background);
+  }
   @include sm {
     padding: 50px;
   }

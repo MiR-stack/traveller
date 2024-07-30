@@ -15,8 +15,8 @@ const sizes = {
     fontSize: "1.3rem",
   },
   sm: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
   },
 };
 

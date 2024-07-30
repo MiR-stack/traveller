@@ -53,7 +53,7 @@ async function Page() {
           <Sidebar product={blogData.product} />
         </main>
       </Container>
-      <Footer />
+      <Footer bg="bg2" />
     </div>
   );
 }

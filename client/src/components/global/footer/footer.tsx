@@ -10,9 +10,13 @@ import { footerData } from "./footer.data";
 import { FaRegCopyright } from "react-icons/fa6";
 import Brand from "@/components/shared/brand";
 
-function Footer() {
+interface footerPropsType {
+  bg?: "bg1" | "bg2";
+}
+
+function Footer({ bg = "bg1" }: footerPropsType) {
   return (
-    <footer className="footer">
+    <footer className={`footer footer-${bg}`}>
       <Container maxWidth="xlg">
         <div className="footer-container">
           <div className="footer-brand-container">

@@ -1,8 +1,15 @@
 @import "../../foundations/all";
 
 .footer {
-  @include gthemed {
-    background-color: t(background);
+  &-bg1 {
+    @include gthemed {
+      background-color: t(background);
+    }
+  }
+  &-bg2 {
+    @include gthemed {
+      background-color: t(background-2);
+    }
   }
   &-container {
     @include flex(30px, center, flex-start);

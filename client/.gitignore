@@ -4,9 +4,6 @@
 
 /pictures
 
-/src/components/pages/blog/comments
-/src/components/pages/blog/commentBar
-
 
 # dependencies
 /node_modules

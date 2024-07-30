@@ -364,16 +364,37 @@
     width: 100%;
     @include flex(20px, flex-start, flex-start);
     flex-direction: column;
+
+    &-empty {
+      @include flex(10px, center, center);
+      flex-direction: column;
+      padding: 30px 0;
+
+      @include gthemed {
+        color: t(text-muted);
+      }
+
+      &-icon {
+        font-size: calc(8rem + 5vw);
+      }
+
+      &-text {
+        font-size: calc(1rem + 0.5vw);
+        text-transform: capitalize;
+        text-align: center;
+      }
+    }
   }
   &-comment {
-    @include flex(10px);
+    @include flex(10px, flex-start, flex-start);
     width: 100%;
-    max-width: 600px;
 
     &-container {
       width: 100%;
+      max-width: 600px;
       position: relative;
     }
+
     &-content {
       width: 100%;
     }
@@ -423,7 +444,7 @@
       text-transform: capitalize;
     }
 
-    &-reply {
+    &-replyBtn {
       @include flex;
       text-transform: capitalize;
       cursor: pointer;
@@ -438,13 +459,25 @@
       }
     }
 
+    &-text {
+      @include gthemed {
+        color: t(text-2);
+      }
+    }
+
+    &-reply {
+      width: 100%;
+    }
     &-line {
       position: absolute;
       left: 25px;
       top: 50px;
-      border-left: 1px solid black;
-      border-bottom: 1px solid black;
+
       border-radius: 0 0 0 10px;
+      @include gthemed {
+        border-left: 1px solid t(text);
+        border-bottom: 1px solid t(text);
+      }
     }
   }
 
@@ -452,8 +485,14 @@
 
   &-reply {
     &-container {
-      padding-left: 60px;
-      padding-top: 10px;
+      padding-left: 40px;
+      padding-top: 20px;
+
+      @include sm {
+        padding-left: 60px;
+      }
+      @include flex(20px, flex-start, flex-start);
+      flex-direction: column;
     }
 
     &-view {
@@ -461,6 +500,7 @@
       font-size: 14px;
       text-transform: capitalize;
       font-weight: 700;
+      text-decoration: underline;
 
       @include gthemed {
         color: t(text);
@@ -479,6 +519,10 @@
       @include flex(20px);
       svg {
         cursor: pointer;
+
+        @include gthemed {
+          color: t(text);
+        }
       }
     }
 
@@ -486,11 +530,17 @@
       text-transform: uppercase;
       font-size: calc(1.2rem + 0.4vw);
       font-family: var(--oswald, $roboto);
+      @include gthemed {
+        color: t(text);
+      }
     }
     &-reply--text {
       text-transform: uppercase;
       font-size: calc(0.8rem + 0.4vw);
       font-family: var(--oswald, $roboto);
+      @include gthemed {
+        color: t(text) !important;
+      }
     }
     &-wraper {
       @include flex(25px, flex-start, flex-start);
@@ -531,13 +581,13 @@
     &-feature {
       @include flex(10px, flex-start, flex-start);
       @include gthemed {
-        color: t(emperor);
+        color: t(text);
       }
 
       input {
         height: 15px;
         @include gthemed {
-          border: 1px solid t(nobel);
+          border: 1px solid t(text);
           accent-color: green;
         }
       }
@@ -552,9 +602,6 @@
       color: $white-10;
     }
 
-    .section-title {
-      padding-bottom: 50px;
-    }
     .error-boundary {
       width: 100%;
     }

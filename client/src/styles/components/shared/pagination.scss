@@ -3,6 +3,8 @@
 
 .#{$brand-name}-pagination {
   @include flex(10px);
+  margin: 50px auto;
+  justify-content: center;
 
   &-item {
     padding: 2px 5px;

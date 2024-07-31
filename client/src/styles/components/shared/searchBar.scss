@@ -22,7 +22,7 @@
     padding: 10px 10px;
     @include gthemed {
       background-color: t(primary);
-      color: t(background);
+      color: $white;
       text-transform: capitalize;
     }
   }

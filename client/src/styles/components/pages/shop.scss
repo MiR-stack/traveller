@@ -1,0 +1,98 @@
+@import "../../foundations/all";
+
+.shop {
+  @include gthemed {
+    background-color: t(background);
+  }
+  &-banner {
+    text-align: center;
+
+    &-searchInfo {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  &-products {
+    @include flex(10px, space-around);
+    flex-wrap: wrap;
+  }
+
+  /*----------  product card  ----------*/
+
+  &-productCard {
+    @include flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 47%;
+
+    @include md {
+      width: 29%;
+      margin: 20px 0;
+    }
+
+    @include lg {
+      width: 22%;
+      margin: 25px 0;
+    }
+
+    &--image {
+      width: 100%;
+      aspect-ratio: 2.5/2;
+    }
+
+    &--price {
+      @include flex;
+      margin-top: 10px;
+
+      .price-active {
+        font-size: calc(1rem + 0.3vw);
+        font-weight: 500;
+      }
+      .price-discount {
+        text-decoration: line-through;
+      }
+    }
+
+    &--name {
+      text-transform: capitalize;
+      font-size: calc(1rem + 0.4vw);
+    }
+    &--afiliates {
+      @include flex;
+      flex-direction: column;
+      text-transform: capitalize;
+      width: 100%;
+      &-title {
+        font-size: 14px;
+
+        @include gthemed {
+          color: t(text);
+        }
+
+        @include sm {
+          font-size: 16px;
+        }
+      }
+
+      &-btn {
+        width: 100%;
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 10px;
+
+        @include gthemed {
+          border: 1px solid t(primary);
+          color: t(primary);
+          font-weight: 600;
+
+          &:hover {
+            color: $white;
+            background-color: t(primary);
+          }
+        }
+      }
+    }
+  }
+}

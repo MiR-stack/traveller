@@ -41,8 +41,8 @@ export const navData: navDataTypes = {
       slug: "shop",
     },
     {
-      name: "about us",
-      slug: "about-us",
+      name: "contact",
+      slug: "contact",
     },
   ],
 };

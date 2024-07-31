@@ -1,0 +1,77 @@
+@import "../../foundations/all";
+
+.contact {
+  @include gthemed {
+    background-color: t(background);
+  }
+
+  &__map {
+    max-width: 100%;
+    list-style: none;
+    transition: none;
+    overflow: hidden;
+    @include gthemed {
+      border: 1px solid t(primary);
+    }
+  }
+  &__iframe {
+    width: 100%;
+    aspect-ratio: 1/0.5;
+    border: 0;
+
+    @include md {
+      aspect-ratio: 1/0.3;
+    }
+  }
+}
+
+.contactForm {
+  max-width: 600px;
+  padding: 50px 0;
+  &__title {
+    text-transform: capitalize;
+    font-size: calc(1.5rem + 1vw);
+  }
+
+  &__form {
+    margin-top: 20px;
+
+    @include flex(10px, space-between);
+    flex-wrap: wrap;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+
+    &--wraper {
+      width: 100%;
+
+      @include sm {
+        width: 49%;
+      }
+    }
+  }
+  &__textarea {
+    height: 200px;
+    width: 100%;
+
+    &--wraper {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    padding: 10px 20px;
+    text-transform: capitalize;
+
+    @include gthemed {
+      background-color: t(primary);
+      color: $white;
+
+      &:hover {
+        background-color: $primary-dark;
+      }
+    }
+  }
+}

@@ -28,3 +28,25 @@ p {
   outline: none;
   background-color: transparent;
 }
+
+.input {
+  outline: none;
+  padding: 5px 10px;
+
+  @include gthemed {
+    border: 1px solid t(text);
+  }
+
+  &--error {
+    @include gthemed {
+      border: 1px solid t(warning);
+    }
+  }
+}
+
+.text--error {
+  font-size: 14px;
+  @include gthemed {
+    color: t(warning);
+  }
+}

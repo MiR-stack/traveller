@@ -10,6 +10,7 @@ $themes: (
     text-muted: $white-40,
     divider: $white-40,
     warning: $warning,
+    primary: $primary,
   ),
   "light": (
     background: $white,
@@ -20,6 +21,7 @@ $themes: (
     text-muted: $black-20,
     divider: $white-50,
     warning: $warning,
+    primary: $primary-dark,
   ),
 );
 

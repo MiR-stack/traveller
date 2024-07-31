@@ -38,7 +38,7 @@ function Footer({ bg = "bg1" }: footerPropsType) {
             </div>
           </div>
           <div className="footer-destinations">
-            <Typography className="footer-title" variant="h3">
+            <Typography className="footer-title" variant="h3" component="h2">
               top destinations
             </Typography>
             <div className="footer-wraper">
@@ -55,7 +55,7 @@ function Footer({ bg = "bg1" }: footerPropsType) {
           </div>
 
           <div className="footer-posts">
-            <Typography className="footer-title" variant="h3">
+            <Typography className="footer-title" variant="h3" component="h2">
               popular posts
             </Typography>
             <div className="footer-wraper">

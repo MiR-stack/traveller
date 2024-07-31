@@ -6,6 +6,8 @@ export const blogsData = [
     },
     title: "Unforgettable Adventures Around the World",
     slug: "slug",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "canada",
       slug: "canada",
@@ -23,6 +25,8 @@ export const blogsData = [
     },
     title: "My Epic Guide to Adventure Travel",
     slug: "slug2",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "australia",
       slug: "australia",
@@ -40,6 +44,8 @@ export const blogsData = [
     },
     title: "Conquering My Fears Through Adventure Travel",
     slug: "slug3",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "brazil",
       slug: "brazil",
@@ -57,6 +63,8 @@ export const blogsData = [
     },
     title: " Unconventional Experiences in Popular Places",
     slug: "slug4",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "canada",
       slug: "canada",
@@ -74,6 +82,8 @@ export const blogsData = [
     },
     title: "Adventure for Every Budget in Popular Locations",
     slug: "slug5",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "france",
       slug: "france",
@@ -91,6 +101,8 @@ export const blogsData = [
     },
     title: " Checking Off Dream Destinations One by One",
     slug: "slug6",
+    shortDescription:
+      "Welcome to the journey of radiant and healthy skin! In a world filled with skincare products and beauty trends, it's time to explore the holistic approach to unlocking that coveted glow. In this guide, we will delve into the interconnected facets of skincare, lifestyle, and well-being to reveal the secrets to a luminous complexion.",
     country: {
       name: "itali",
       slug: "itali",

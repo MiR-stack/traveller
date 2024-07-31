@@ -1,0 +1,29 @@
+@import "../../base/constant.module";
+@import "../../foundations/all";
+
+.#{$brand-name}-searchBar {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  @include flex;
+
+  @include gthemed {
+    border: 1px solid t(text);
+  }
+
+  &-field {
+    @include input;
+    border: none;
+    flex-grow: 1;
+  }
+  &-btn {
+    @include btn;
+    padding: 10px 10px;
+    @include gthemed {
+      background-color: t(primary);
+      color: t(background);
+      text-transform: capitalize;
+    }
+  }
+}

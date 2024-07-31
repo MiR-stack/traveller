@@ -1,0 +1,35 @@
+@import "../../base/constant.module";
+@import "../../foundations/all";
+
+.#{$brand-name}-pagination {
+  @include flex(10px);
+
+  &-item {
+    padding: 2px 5px;
+    @include gthemed {
+      border: 1px solid t(text);
+      &:hover {
+        background-color: t(background-2);
+      }
+    }
+
+    &--active {
+      @include gthemed {
+        color: $primary;
+        border: 2px solid $primary;
+      }
+    }
+  }
+
+  svg {
+    @include gthemed {
+      color: t(text-muted);
+      font-size: 25px;
+      display: flex;
+
+      &:hover {
+        color: t(text);
+      }
+    }
+  }
+}

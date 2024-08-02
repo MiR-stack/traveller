@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "blog",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    },
+    "slug": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "minLength": 20
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isSuggested": {
+      "type": "boolean",
+      "default": false
+    },
+    "isSpecial": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPopular": {
+      "type": "boolean",
+      "default": false
+    },
+    "readTime": {
+      "type": "integer"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "blogs"
+    },
+    "continent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::continent.continent",
+      "inversedBy": "blogs"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "blogs"
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "blogs"
+    }
+  }
+}

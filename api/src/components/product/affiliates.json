@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_product_affiliates",
+  "info": {
+    "displayName": "affiliates",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

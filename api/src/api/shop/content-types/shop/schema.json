@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shops",
+  "info": {
+    "singularName": "shop",
+    "pluralName": "shops",
+    "displayName": "product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "price": {
+      "displayName": "price",
+      "type": "component",
+      "repeatable": false,
+      "component": "product.price",
+      "required": true
+    },
+    "affiliates": {
+      "displayName": "affiliates",
+      "type": "component",
+      "repeatable": true,
+      "component": "product.affiliates",
+      "required": true
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "product"
+    }
+  }
+}

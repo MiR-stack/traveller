@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "share_options",
+  "info": {
+    "singularName": "share-option",
+    "pluralName": "share-options",
+    "displayName": "shareOption"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "facebook",
+        "whatsapp",
+        "twitter",
+        "mail"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

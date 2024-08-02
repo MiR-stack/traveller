@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "brands",
+  "info": {
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "brand",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 12
+    },
+    "moto": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text",
+      "maxLength": 250,
+      "minLength": 20
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "social_medias": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-medias"
+    }
+  }
+}

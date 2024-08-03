@@ -1,6 +1,6 @@
 import Theme from "./theme";
 import Destinations from "./destinations/destinations";
-import { getData } from "@/utils";
+import { getData, getStrapiData } from "@/utils";
 import { countryType, destinationsType } from "@/types/navbar.types";
 import { navData } from "./nav.data";
 import "@/styles/components/global/navbar.scss";
@@ -12,6 +12,7 @@ import SearchBar from "./searchBar/searchBar";
 import Divider from "@/components/shared/divider";
 import SocialMedias from "./socialMedias";
 import Brand from "@/components/shared/brand";
+import qs from "qs";
 
 interface navPropsType {
   extented?: boolean;
@@ -28,6 +29,8 @@ function IP() {
   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
 }
 
+const destinationQuery = qs.stringify({});
+
 async function Navbar({ extented = true }: navPropsType) {
   // destinations data
   const countries = await getData(
@@ -41,21 +44,27 @@ async function Navbar({ extented = true }: navPropsType) {
       alt: "world",
     },
   };
-  countries.forEach((country: countryType) => {
-    const len = navData.destinations.length;
-    for (let i = 0; i < len; i++) {
-      const destinationName = navData.destinations[i].name.toLowerCase();
-      const countryName = country.name.common;
+  // countries.forEach((country: countryType) => {
+  //   const len = navData.destinations.length;
+  //   for (let i = 0; i < len; i++) {
+  //     const destinationName = navData.destinations[i].name.toLowerCase();
+  //     const countryName = country.name.common;
 
-      if (destinationName === countryName.toLowerCase()) {
-        destinations[countryName] = {
-          name: countryName,
-          flag: country.flags.png,
-          alt: country.flags.alt,
-        };
-      }
-    }
+  //     if (destinationName === countryName.toLowerCase()) {
+  //       destinations[countryName] = {
+  //         name: countryName,
+  //         flag: country.flags.png,
+  //         alt: country.flags.alt,
+  //       };
+  //     }
+  //   }
+  // });
+
+  const { data } = await getStrapiData(destinationQuery, {
+    tags: ["destinations"],
   });
+
+  console.log(data);
 
   return (
     <nav className="nav">

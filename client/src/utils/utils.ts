@@ -81,14 +81,12 @@ const objDeepClone = (obj: object) => {
 
 /*=====  End of deepclone  ======*/
 
-export { getData, getStrapiURL, getStrapiData, objDeepClone };
-
 /**
  *
  * @param url short url of image
  * @returns
  */
-export function getStrapiMedia(url: string) {
+function getStrapiMedia(url: string) {
   if (url == null) {
     return null;
   }
@@ -104,9 +102,7 @@ export function getStrapiMedia(url: string) {
  * @returns image sizes
  */
 
-export const getFormatedImage = (
-  image: imageTypes
-): formatedImageTypes | null => {
+const getFormatedImage = (image: imageTypes): formatedImageTypes | null => {
   if (!image.data) return null;
 
   const {
@@ -123,4 +119,13 @@ export const getFormatedImage = (
   };
 
   return { srcs, alt: alternativeText };
+};
+
+export {
+  getData,
+  getStrapiURL,
+  getStrapiData,
+  objDeepClone,
+  getStrapiMedia,
+  getFormatedImage,
 };

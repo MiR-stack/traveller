@@ -22,7 +22,7 @@ module.exports = ({ env }) => {
 
   return {
     connection: {
-      client: postgres,
+      client: "postgres",
       ...connection,
       acquireConnectionTimeout: env.int("DB_CONNECTION_TIMEOUT", 60000),
     },

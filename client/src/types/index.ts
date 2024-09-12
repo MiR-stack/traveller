@@ -5,6 +5,13 @@ export interface paginationTypes {
   limit?: number;
 }
 
+export interface strapiDataResTypes {
+  id: number;
+  attributes: {
+    [key: string]: any;
+  };
+}
+
 export interface queryTypes {
   populate?: string[] | object | string;
   fields?: string[];

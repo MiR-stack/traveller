@@ -23,7 +23,7 @@ function Destinations({ destinations }: destinationsPropTypes) {
     if (destination) {
       setCurrentDestination(destinations[destination]);
     }
-  }, []);
+  }, [destinations, params]);
 
   const [menu, setMenue] = useState<boolean>(false);
 
@@ -66,28 +66,28 @@ function Destinations({ destinations }: destinationsPropTypes) {
           menu ? `nav-destinations--active` : ""
         }`}
       >
-        {Object.keys(destinations).map((name: string) => (
+        {Object.keys(destinations).map((slug: string) => (
           <Link
-            href={`/search?destination=${name}`}
+            href={`/search?destination=${slug}`}
             className="nav-destination"
-            key={name}
+            key={slug}
             onClick={() => {
-              handleDestination(destinations[name]);
+              handleDestination(destinations[slug]);
               toggleMenu();
             }}
           >
-            {name === "World" ? (
+            {destinations[slug].name === "world" ? (
               <TbWorld />
             ) : (
               <CustomImage
-                src={destinations[name].flag}
+                src={destinations[slug].flag}
                 height="15px"
                 width="20px"
-                alt={destinations[name].alt}
+                alt={destinations[slug].alt}
                 sizes="10vw"
               />
             )}
-            <Typography component="p">{name} </Typography>
+            <Typography component="p">{destinations[slug].name} </Typography>
           </Link>
         ))}
       </div>

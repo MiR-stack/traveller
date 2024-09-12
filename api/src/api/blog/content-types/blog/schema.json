@@ -26,9 +26,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "description": {
       "type": "text",
@@ -66,10 +64,10 @@
       "target": "api::continent.continent",
       "inversedBy": "blogs"
     },
-    "country": {
+    "destination": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::country.country",
+      "target": "api::destination.destination",
       "inversedBy": "blogs"
     },
     "content": {

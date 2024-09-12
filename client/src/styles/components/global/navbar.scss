@@ -86,8 +86,9 @@
       z-index: 5;
       display: none;
       margin-top: 1px;
+      white-space: nowrap;
       @include gthemed {
-        background-color: t(background);
+        background-color: t(background-2);
       }
     }
 

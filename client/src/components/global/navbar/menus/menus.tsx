@@ -3,11 +3,13 @@ import { navData } from "../nav.data";
 import { IoClose } from "react-icons/io5";
 import DropdownMenu from "./dropdownMenu";
 import { objDeepClone } from "@/utils/utils";
+import { destinationsType } from "@/types/navbar.types";
 
 interface menusPropTypes {
   type?: "mobile" | "desktop";
   isOpen?: boolean;
   navExtended?: boolean;
+  navDestinations: destinationsType;
   onClose?: () => void;
 }
 
@@ -15,15 +17,23 @@ function Menus({
   type = "desktop",
   isOpen,
   navExtended,
+  navDestinations,
   onClose,
 }: menusPropTypes) {
   let menus: typeof navData.menus = objDeepClone(navData.menus);
+
+  const destinations = Object.keys(navDestinations || {}).map(
+    (slug: string) => ({
+      name: navDestinations[slug].name,
+      slug: `search?destination=${slug}`,
+    })
+  );
 
   if (navExtended) {
     menus.splice(1, 0, {
       name: "destinations",
       slug: "",
-      childrens: navData.destinations,
+      childrens: destinations,
     });
   }
 

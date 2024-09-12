@@ -1,4 +1,4 @@
-import { formatedImageTypes, imageTypes } from "@/types";
+import { formatedImageTypes, imageTypes, strapiDataResTypes } from "@/types";
 
 async function getData(url: string) {
   const res = await fetch(url);
@@ -13,7 +13,7 @@ async function getData(url: string) {
 const getStrapiURL = (query: string) => {
   const baseURL = process.env.BASE_URL;
 
-  return `${baseURL}/${query}`;
+  return `${baseURL}/api/${query}`;
 };
 
 /*=============================================
@@ -25,6 +25,7 @@ export interface optionsTypes {
   authorization?: string;
   tags?: string[];
   revalidate?: number;
+  public?: boolean;
 }
 
 interface fetchOptionsTypes {
@@ -35,12 +36,20 @@ interface fetchOptionsTypes {
   next?: NextFetchRequestConfig;
 }
 
-const getStrapiData = async (query: string, options: optionsTypes) => {
+const getStrapiData = async (
+  path: string,
+  query: string,
+  options: optionsTypes
+) => {
   if (!options.authorization) {
-    options.authorization = process.env.API_TOKEN;
+    options.authorization = options.public
+      ? process.env.NEXT_PUBLIC_API_TOKEN
+      : process.env.API_TOKEN;
   }
 
-  let url = getStrapiURL(query);
+  if (!path) return;
+
+  let url = getStrapiURL(`${path}?${query}`);
 
   // create options for fetch
 

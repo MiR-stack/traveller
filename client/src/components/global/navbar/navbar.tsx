@@ -13,6 +13,7 @@ import Divider from "@/components/shared/divider";
 import SocialMedias from "./socialMedias";
 import Brand from "@/components/shared/brand";
 import qs from "qs";
+import { destinationAdapter } from "@/adapters/destination.adapter";
 
 interface navPropsType {
   extented?: boolean;
@@ -29,42 +30,27 @@ function IP() {
   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
 }
 
-const destinationQuery = qs.stringify({});
+const destinationQuery = qs.stringify({
+  populate: ["flag"],
+});
 
 async function Navbar({ extented = true }: navPropsType) {
   // destinations data
-  const countries = await getData(
-    "https://restcountries.com/v3.1/all?fields=name,flags"
-  );
 
-  const destinations: destinationsType = {
-    World: {
+  const { data } = await getStrapiData("destinations", destinationQuery, {
+    tags: ["destinations"],
+  });
+
+  const destinations = destinationAdapter(data, "nav");
+
+  const navDestinations: destinationsType = {
+    world: {
       name: "world",
       flag: "",
       alt: "world",
     },
+    ...destinations,
   };
-  // countries.forEach((country: countryType) => {
-  //   const len = navData.destinations.length;
-  //   for (let i = 0; i < len; i++) {
-  //     const destinationName = navData.destinations[i].name.toLowerCase();
-  //     const countryName = country.name.common;
-
-  //     if (destinationName === countryName.toLowerCase()) {
-  //       destinations[countryName] = {
-  //         name: countryName,
-  //         flag: country.flags.png,
-  //         alt: country.flags.alt,
-  //       };
-  //     }
-  //   }
-  // });
-
-  const { data } = await getStrapiData(destinationQuery, {
-    tags: ["destinations"],
-  });
-
-  console.log(data);
 
   return (
     <nav className="nav">
@@ -75,10 +61,10 @@ async function Navbar({ extented = true }: navPropsType) {
             {extented ? (
               <Brand variant="nav" />
             ) : (
-              <Destinations destinations={destinations} />
+              <Destinations destinations={navDestinations} />
             )}
           </div>
-          <Menus navExtended={extented} />
+          <Menus navExtended={extented} navDestinations={navDestinations} />
           <div className="nav-right">
             <SearchBar />
             <Divider size={12} direction="verticale" />

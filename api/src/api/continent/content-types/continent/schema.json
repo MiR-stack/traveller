@@ -19,9 +19,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "blogs": {
       "type": "relation",
@@ -29,10 +27,10 @@
       "target": "api::blog.blog",
       "mappedBy": "continent"
     },
-    "countries": {
+    "destinations": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::country.country",
+      "target": "api::destination.destination",
       "mappedBy": "continent"
     }
   }

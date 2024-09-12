@@ -949,10 +949,10 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'manyToOne',
       'api::continent.continent'
     >;
-    country: Attribute.Relation<
+    destination: Attribute.Relation<
       'api::blog.blog',
       'manyToOne',
-      'api::country.country'
+      'api::destination.destination'
     >;
     content: Attribute.RichText &
       Attribute.Required &
@@ -1085,10 +1085,10 @@ export interface ApiContinentContinent extends Schema.CollectionType {
       'oneToMany',
       'api::blog.blog'
     >;
-    countries: Attribute.Relation<
+    destinations: Attribute.Relation<
       'api::continent.continent',
       'oneToMany',
-      'api::country.country'
+      'api::destination.destination'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1108,11 +1108,11 @@ export interface ApiContinentContinent extends Schema.CollectionType {
   };
 }
 
-export interface ApiCountryCountry extends Schema.CollectionType {
-  collectionName: 'countries';
+export interface ApiDestinationDestination extends Schema.CollectionType {
+  collectionName: 'destinations';
   info: {
-    singularName: 'country';
-    pluralName: 'countries';
+    singularName: 'destination';
+    pluralName: 'destinations';
     displayName: 'destination';
     description: '';
   };
@@ -1130,12 +1130,12 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     visitor: Attribute.Integer & Attribute.DefaultTo<0>;
     image: Attribute.Media<'images'>;
     continent: Attribute.Relation<
-      'api::country.country',
+      'api::destination.destination',
       'manyToOne',
       'api::continent.continent'
     >;
     blogs: Attribute.Relation<
-      'api::country.country',
+      'api::destination.destination',
       'oneToMany',
       'api::blog.blog'
     >;
@@ -1143,13 +1143,13 @@ export interface ApiCountryCountry extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::country.country',
+      'api::destination.destination',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::country.country',
+      'api::destination.destination',
       'oneToOne',
       'admin::user'
     > &
@@ -1311,7 +1311,7 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::continent.continent': ApiContinentContinent;
-      'api::country.country': ApiCountryCountry;
+      'api::destination.destination': ApiDestinationDestination;
       'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::photo.photo': ApiPhotoPhoto;
       'api::share-option.share-option': ApiShareOptionShareOption;

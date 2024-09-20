@@ -1,15 +1,4 @@
-import { GiBackpack, GiCampfire, GiCompass } from "react-icons/gi";
-import { SiGooglemaps } from "react-icons/si";
-import { TbBeach, TbBus } from "react-icons/tb";
-
-export const icons = {
-  camping: <GiCampfire />,
-  beaches: <TbBeach />,
-  adventure: <GiCompass />,
-  "low budget": <GiBackpack />,
-  trekking: <TbBus />,
-  popular: <SiGooglemaps />,
-};
+export const icons = {};
 
 export const categories = [
   {

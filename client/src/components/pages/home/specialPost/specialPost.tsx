@@ -3,14 +3,41 @@ import Date from "@/components/shared/date";
 import Typography from "@/components/shared/typography";
 import { basicBlogTypes } from "@/types/blog.types";
 import Link from "next/link";
+import { getFormatedImage, getStrapiData } from "@/utils";
+import qs from "qs";
+import { getDate } from "@/utils";
+import { MASTER_TAG } from "@/utils/constants";
 
-function SpecialPost({ title, slug, createdAt, image }: basicBlogTypes) {
+const query = qs.stringify({
+  fields: ["title", "slug", "createdAt"],
+  populate: "images.landscape",
+  filters: {
+    isSpecial: {
+      $eq: true,
+    },
+  },
+  sort: "updatedAt:desc",
+});
+
+async function SpecialPost() {
+  const blog = await getStrapiData("blogs", query, {
+    tags: [MASTER_TAG, "specialPost"],
+  });
+
+  if (!blog.data.length) return null;
+
+  const { title, slug, createdAt, images } = blog.data[0].attributes;
+
+  const image = getFormatedImage({ data: images.landscape.data[0] });
+
+  const date = getDate(createdAt);
+
   return (
     <section className="special_post">
       <CustomImage
         className="special_post-image"
-        src={image.url}
-        alt={image.alt}
+        src={image?.srcs.main || ""}
+        alt={image?.alt || "special post image"}
         sizes={`(min-width:1440px) 80vw, 100vw`}
         priority
       >
@@ -22,7 +49,7 @@ function SpecialPost({ title, slug, createdAt, image }: basicBlogTypes) {
           >
             {title}
           </Typography>
-          <Date className="special_post-content-date" date={createdAt} />
+          <Date className="special_post-content-date" date={date} />
           <Link className="special_post-content-button link" href={slug}>
             read post
           </Link>

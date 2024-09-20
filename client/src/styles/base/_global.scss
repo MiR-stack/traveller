@@ -50,3 +50,22 @@ p {
     color: t(warning);
   }
 }
+
+.bg {
+  @include gthemed {
+    &--1 {
+      background-color: t(background);
+    }
+    &--2 {
+      background-color: t(background-2);
+    }
+    &--none {
+      background-color: transparent;
+    }
+  }
+}
+
+.wraper {
+  width: 100%;
+  @include flex;
+}

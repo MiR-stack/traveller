@@ -2,67 +2,110 @@ import React from "react";
 import SectionLayout from "../sectionLayout";
 import Link from "next/link";
 import Container from "@/components/shared/container";
-import { productsData } from "./products.data";
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Typography from "@/components/shared/typography";
+import { getFormatedImage, getStrapiData } from "@/utils";
+import { MASTER_TAG } from "@/utils/constants";
+import qs from "qs";
 
-function Products() {
+const QUERY = qs.stringify({
+  populate: ["image", "price", "affiliates"],
+  fields: ["name"],
+  pagination: {
+    start: 0,
+    limit: 5,
+  },
+});
+
+interface ProductPrice {
+  discount: number;
+  regular: number;
+}
+
+interface Product {
+  name: string;
+  image: {
+    srcs: {
+      small: string;
+    };
+    alt: string;
+  };
+  price: ProductPrice;
+  url: string;
+}
+
+async function Products() {
+  const products = await getStrapiData("products", QUERY, {
+    tags: [MASTER_TAG, "travelEssentials"],
+  });
+
+  const essentialsProducts: Product[] = products.data.map((product: any) => {
+    const { name, image, price, affiliates } = product.attributes;
+    return {
+      name,
+      image: getFormatedImage(image),
+      price,
+      url: affiliates[0]?.url || "#",
+    };
+  });
+
   return (
     <SectionLayout
-      title="travel essentials"
-      description="Lorem   dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+      title="Travel Essentials"
+      description="Discover must-have items for your next adventure"
       background="bg2"
     >
       <Container maxWidth="lg">
         <div className="products">
-          {productsData.map((product) => (
-            <Link
-              className="product link"
-              key={product.slug}
-              href={product.slug}
-            >
-              <CustomImage
-                className="product-image"
-                src={product.image.url}
-                alt={product.image.alt}
-                sizes={`(max-width:600px) 30vw,(max-widht:900px) 25vw,(max-width:1200px)20vw ,18vw`}
-              />
-              <div className="product-content">
-                {product.price.discounted !== 0 &&
-                product.price.discounted < product.price.base ? (
-                  <div className="product-price">
-                    <Typography
-                      className="product-price--active"
-                      variant="body2"
-                    >
-                      ${product.price.discounted}
-                    </Typography>
-                    <Typography
-                      className="product-price--disabled"
-                      variant="body2"
-                    >
-                      ${product.price.base}
-                    </Typography>
-                  </div>
-                ) : (
-                  <Typography className="product-price--active" variant="body2">
-                    ${product.price.base}
-                  </Typography>
-                )}
-
-                <Typography
-                  className="product-name"
-                  variant="h4"
-                  component="h2"
-                >
-                  {product.name}
-                </Typography>
-              </div>
-            </Link>
+          {essentialsProducts.map((product) => (
+            <ProductCard key={product.url} product={product} />
           ))}
         </div>
       </Container>
     </SectionLayout>
+  );
+}
+
+function ProductCard({ product }: { product: Product }) {
+  return (
+    <Link className="product link" href={product.url}>
+      <CustomImage
+        className="product-image"
+        src={product.image.srcs.small}
+        alt={product.image.alt}
+        sizes="(max-width: 600px) 30vw, (max-width: 900px) 25vw, (max-width: 1200px) 20vw, 18vw"
+      />
+      <div className="product-content">
+        <ProductPrice price={product.price} />
+        <Typography className="product-name" variant="h4" component="h2">
+          {product.name}
+        </Typography>
+      </div>
+    </Link>
+  );
+}
+
+function ProductPrice({ price }: { price: ProductPrice }) {
+  const hasDiscount =
+    price.discount && price.discount !== 0 && price.discount < price.regular;
+
+  if (!hasDiscount) {
+    return (
+      <Typography className="product-price--active" variant="body2">
+        ${price.regular}
+      </Typography>
+    );
+  }
+
+  return (
+    <div className="product-price">
+      <Typography className="product-price--active" variant="body2">
+        ${price.discount}
+      </Typography>
+      <Typography className="product-price--disabled" variant="body2">
+        ${price.regular}
+      </Typography>
+    </div>
   );
 }
 

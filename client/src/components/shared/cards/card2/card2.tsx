@@ -26,7 +26,7 @@ function Card2({ slug, image, title, createdAt, country }: basicBlogTypes) {
           >
             {title}
           </Typography>
-          <Date className="card2-content-date" date={createdAt} />
+          <Date className="card2-content-date" date={createdAt || ""} />
         </div>
       </CustomImage>
     </Link>

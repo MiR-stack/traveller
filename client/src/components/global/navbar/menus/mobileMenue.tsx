@@ -4,12 +4,14 @@ import { IoMenu } from "react-icons/io5";
 import Menus from "./menus";
 import { useState } from "react";
 import Backdrop from "@/components/utils/backdrop";
+import { destinationsType } from "@/types/navbar.types";
 
 interface mobileMenusPropsType {
+  destinations: destinationsType;
   extended: boolean;
 }
 
-function MobileMenus({ extended }: mobileMenusPropsType) {
+function MobileMenus({ extended, destinations }: mobileMenusPropsType) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
@@ -28,6 +30,7 @@ function MobileMenus({ extended }: mobileMenusPropsType) {
       {isOpen ? <Backdrop onClick={handleClose} /> : ""}
       <Menus
         navExtended={extended}
+        navDestinations={destinations}
         type="mobile"
         onClose={handleClose}
         isOpen={isOpen}

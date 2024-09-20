@@ -1,6 +1,6 @@
 import { queryTypes } from "@/types";
 import qs from "qs";
-import { getStrapiData, optionsTypes } from "./utils";
+import { optionsTypes } from "./utils";
 import { MASTER_TAG } from "./constants";
 
 interface blogFnTypes {

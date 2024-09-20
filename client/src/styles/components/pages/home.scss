@@ -9,6 +9,25 @@
     background-color: t(background);
   }
 
+  &__backdrop {
+    height: 100%;
+  }
+
+  &-skeleton {
+    height: 50vh;
+    max-height: 400px;
+    max-width: 1535px;
+    margin: 0 auto;
+
+    @include sm {
+      height: 40vh;
+      max-height: unset;
+    }
+    @include md {
+      height: unset;
+      aspect-ratio: 14/6;
+    }
+  }
   &-container {
     @include flex(0, center);
   }
@@ -104,6 +123,31 @@
 
   @include gthemed {
     background-color: t(background);
+  }
+
+  &-skeleton {
+    aspect-ratio: 1/0.8;
+    max-height: 250px;
+
+    &:nth-child(n + 4) {
+      display: none;
+    }
+    @include md {
+      &:nth-child(4) {
+        display: block;
+      }
+    }
+
+    @include lg {
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+
+    &-wraper {
+      padding: 30px 0;
+      @include flex(30px);
+    }
   }
   &-slide {
     @include flex(10px);

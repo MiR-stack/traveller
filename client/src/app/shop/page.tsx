@@ -3,6 +3,7 @@ import Banner from "@/components/shared/banner";
 import Container from "@/components/shared/container";
 import Pagination from "@/components/shared/pagination";
 import "@/styles/components/pages/shop.scss";
+import { Suspense } from "react";
 
 function page() {
   return (
@@ -15,7 +16,9 @@ function page() {
           path="shop"
         />
         <Products />
-        <Pagination pageCount={5} totalPage={2} currentPage={1} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Pagination pageCount={5} totalPage={2} currentPage={1} />
+        </Suspense>
       </Container>
     </div>
   );

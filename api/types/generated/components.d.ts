@@ -34,6 +34,68 @@ export interface ProductPrice extends Schema.Component {
   };
 }
 
+export interface SharedImages extends Schema.Component {
+  collectionName: 'components_shared_images';
+  info: {
+    displayName: 'images';
+  };
+  attributes: {
+    portrait: Attribute.Media<'images', true> & Attribute.Required;
+    landscape: Attribute.Media<'images', true> & Attribute.Required;
+  };
+}
+
+export interface SharedMetaSocial extends Schema.Component {
+  collectionName: 'components_shared_meta_socials';
+  info: {
+    displayName: 'metaSocial';
+    icon: 'project-diagram';
+  };
+  attributes: {
+    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
+      Attribute.Required;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 65;
+      }>;
+    image: Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos';
+  info: {
+    displayName: 'seo';
+    icon: 'search';
+  };
+  attributes: {
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+    metaDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 160;
+      }>;
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'>;
+    metaSocial: Attribute.Component<'shared.meta-social', true>;
+    keywords: Attribute.Text;
+    metaRobots: Attribute.String;
+    structuredData: Attribute.JSON;
+    metaViewport: Attribute.String;
+    canonicalURL: Attribute.String;
+  };
+}
+
 export interface SharedSocialMedias extends Schema.Component {
   collectionName: 'components_shared_social_medias';
   info: {
@@ -56,6 +118,9 @@ declare module '@strapi/types' {
     export interface Components {
       'product.affiliates': ProductAffiliates;
       'product.price': ProductPrice;
+      'shared.images': SharedImages;
+      'shared.meta-social': SharedMetaSocial;
+      'shared.seo': SharedSeo;
       'shared.social-medias': SharedSocialMedias;
     }
   }

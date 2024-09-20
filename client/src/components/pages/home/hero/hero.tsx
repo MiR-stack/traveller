@@ -4,8 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-
-import { heroData } from "./heroData";
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Backdrop from "@/components/utils/backdrop";
 import Typography from "@/components/shared/typography/typography";
@@ -13,9 +11,45 @@ import { GoArrowUpRight } from "react-icons/go";
 import Navigation from "../../../utils/navigation";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { useRouter } from "next/navigation";
+import { useGetDataQuery } from "@/store/api/strapiApi";
+import Skeleton from "@/components/utils/skeleton";
+import qs from "qs";
+import { getFormatedImage } from "@/utils";
+
+const query = qs.stringify({
+  populate: ["images.landscape"],
+  fields: ["title", "description", "slug"],
+  filters: {
+    isFeatured: {
+      $eq: true,
+    },
+  },
+});
 
 const Hero = () => {
   const router = useRouter();
+  const { data, isLoading } = useGetDataQuery({
+    path: "blogs",
+    query,
+  });
+
+  if (isLoading)
+    return (
+      <div className="bg--1">
+        <Skeleton className="hero-skeleton" variant="rectangle" />
+      </div>
+    );
+
+  const heroData = data?.data.map((item: any) => {
+    return {
+      title: item.attributes.title,
+      description: item.attributes.description,
+      slug: item.attributes.slug,
+      image: getFormatedImage({
+        data: item.attributes.images.landscape.data[0],
+      }),
+    };
+  });
 
   return (
     <section className="hero">
@@ -33,11 +67,11 @@ const Hero = () => {
         effect="fade"
       >
         <Navigation />
-        {heroData.map((blog) => (
+        {heroData.map((blog: any) => (
           <SwiperSlide key={blog.slug}>
             <CustomImage
               className="hero-image"
-              src={blog.image.url}
+              src={blog.image.srcs.main}
               alt={blog.image.alt}
               priority
               sizes={`(min-width:1550px) 1550px, 100vw`}
@@ -59,7 +93,7 @@ const Hero = () => {
                   read more <GoArrowUpRight />
                 </button>
               </div>
-              <Backdrop opacity={0.2} />
+              <Backdrop opacity={0.2} className="hero__backdrop" />
             </CustomImage>
           </SwiperSlide>
         ))}

@@ -1,4 +1,8 @@
+import { destinationAdapter } from "@/adapters/destination.adapter";
 import { formatedImageTypes, imageTypes, strapiDataResTypes } from "@/types";
+import { MASTER_TAG } from "./constants";
+import qs from "qs";
+import { parseISO, format } from "date-fns";
 
 async function getData(url: string) {
   const res = await fetch(url);
@@ -11,8 +15,7 @@ async function getData(url: string) {
 }
 
 const getStrapiURL = (query: string) => {
-  const baseURL = process.env.BASE_URL;
-
+  const baseURL = process.env.NEXT_PUBLIC_STRAPI_URL;
   return `${baseURL}/api/${query}`;
 };
 
@@ -38,44 +41,66 @@ interface fetchOptionsTypes {
 
 const getStrapiData = async (
   path: string,
-  query: string,
-  options: optionsTypes
+  query?: string,
+  options?: optionsTypes
 ) => {
-  if (!options.authorization) {
-    options.authorization = options.public
-      ? process.env.NEXT_PUBLIC_API_TOKEN
-      : process.env.API_TOKEN;
+  if (!path) {
+    throw new Error("Path is required for Strapi data fetching");
   }
 
-  if (!path) return;
+  const url = getStrapiURL(`${path}${query ? `?${query}` : ""}`);
+  options = options || {};
 
-  let url = getStrapiURL(`${path}?${query}`);
+  const authorization = options.public
+    ? process.env.NEXT_PUBLIC_API_TOKEN
+    : process.env.API_TOKEN;
 
-  // create options for fetch
+  if (!authorization) {
+    throw new Error("API token is missing");
+  }
 
   let fetchOptions: fetchOptionsTypes = {
     headers: {
-      Authorization: `Bearer ${options.authorization}`,
-    },
-    next: {
-      revalidate: options.revalidate,
+      Authorization: `Bearer ${authorization}`,
     },
   };
 
-  if (options.cache) fetchOptions.cache = options.cache;
-
-  if (options.tags)
-    fetchOptions.next = {
-      tags: options.tags,
-    };
-
-  const res = await fetch(url, fetchOptions);
-
-  if (!res.ok) {
-    throw new Error("something went wrong");
+  if (options.cache) {
+    fetchOptions.cache = options.cache;
   }
 
-  return res.json();
+  if (options.revalidate) {
+    if (fetchOptions.next) {
+      fetchOptions.next.revalidate = options.revalidate;
+    } else {
+      fetchOptions.next = {
+        revalidate: options.revalidate,
+      };
+    }
+  }
+
+  if (options.tags) {
+    if (fetchOptions.next) {
+      fetchOptions.next.tags = options.tags;
+    } else {
+      fetchOptions.next = {
+        tags: options.tags,
+      };
+    }
+  }
+
+  try {
+    const res = await fetch(url, fetchOptions);
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching data from Strapi:", error);
+    throw error;
+  }
 };
 
 /*=====  End of getStrapiData function  ======*/
@@ -130,6 +155,40 @@ const getFormatedImage = (image: imageTypes): formatedImageTypes | null => {
   return { srcs, alt: alternativeText };
 };
 
+const strapiFieldsModifier = (data: strapiDataResTypes, fields: string[]) => {
+  let newData: { [key: string]: any } = { id: data.id };
+
+  const fieldsLenght = fields.length;
+  for (let i = 0; i < fieldsLenght; i++) {
+    newData[fields[i]] = data.attributes[fields[i]];
+  }
+
+  return newData;
+};
+
+/**
+ *
+ * get destinations data
+ *
+ */
+
+const destinationQuery = qs.stringify({
+  populate: ["flag"],
+});
+
+const getDestinations = async (variant: "nav" | "footer") => {
+  const { data } = await getStrapiData("destinations", destinationQuery, {
+    tags: [MASTER_TAG, "destinations"],
+  });
+
+  return destinationAdapter(data, variant);
+};
+
+const getDate = (dateString: string) => {
+  const date = parseISO(dateString);
+  return format(date, "dd MMMM, yyyy");
+};
+
 export {
   getData,
   getStrapiURL,
@@ -137,4 +196,7 @@ export {
   objDeepClone,
   getStrapiMedia,
   getFormatedImage,
+  strapiFieldsModifier,
+  getDestinations,
+  getDate,
 };

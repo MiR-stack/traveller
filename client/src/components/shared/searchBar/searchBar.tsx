@@ -2,7 +2,7 @@
 
 import variables from "@/styles/base/_constant.module.scss";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import "@/styles/components/shared/searchBar.scss";
 import useQuery from "@/hooks/useQuery";
 

@@ -49,3 +49,10 @@ export interface formatedImageTypes {
   srcs: formatedImageSrcsTypes;
   alt: string;
 }
+
+export interface socialMediaTypes {
+  id: number;
+  name: string;
+  url: string;
+  icon: string;
+}

@@ -1,25 +1,33 @@
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Typography from "@/components/shared/typography/typography";
 import "@/styles/components/shared/brand.scss";
+import { getStrapiData } from "@/utils";
 import Link from "next/link";
-
-const brandData = {
-  logo: "",
-  name: "traveller",
-  moto: "Collect moments, not things. Travel with us!",
-};
+import qs from "qs";
+import { MASTER_TAG } from "@/utils/constants";
 
 interface brandPropsType {
-  moto?: boolean;
+  isMoto?: boolean;
   variant?: "extended" | "nav" | "footer";
 }
 
-function Brand({ moto = false, variant = "extended" }: brandPropsType) {
+const query = qs.stringify({
+  populate: ["logo"],
+  fields: ["name", "moto"],
+});
+
+async function Brand({ isMoto = false, variant = "extended" }: brandPropsType) {
+  const brandRes = await getStrapiData("brand", query, {
+    tags: [MASTER_TAG, "brand"],
+  });
+
+  const { logo, name, moto } = brandRes?.data?.attributes;
+
   return (
     <section className={`brand  ${variant ? `${variant}-brand` : ""}`}>
-      {brandData.logo ? (
+      {logo.data ? (
         <CustomImage
-          src={brandData.logo}
+          src={""}
           className={`brand-logo ${variant ? `${variant}-brand-logo` : ""}`}
           alt="brand logo"
           sizes="30vw"
@@ -33,12 +41,12 @@ function Brand({ moto = false, variant = "extended" }: brandPropsType) {
                 variant ? `${variant}-brand-name` : ""
               }`}
             >
-              {brandData.name}
+              {name}
             </Link>
           </Typography>
-          {brandData.moto && moto && (
+          {moto && isMoto && (
             <Typography className="brand-moto" variant="body2">
-              {brandData.moto}
+              {moto}
             </Typography>
           )}
         </div>

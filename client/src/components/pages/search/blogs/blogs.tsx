@@ -1,6 +1,7 @@
 import Card3 from "@/components/shared/cards/card3";
 import { blogsData } from "../../home/blogsData";
 import Pagination from "@/components/shared/pagination";
+import { Suspense } from "react";
 
 function Blogs() {
   return (
@@ -18,12 +19,14 @@ function Blogs() {
           />
         ))}
       </div>
-      <Pagination
-        className="search-blogs-pagination"
-        pageCount={5}
-        currentPage={1}
-        totalPage={9}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Pagination
+          className="search-blogs-pagination"
+          pageCount={5}
+          currentPage={1}
+          totalPage={9}
+        />
+      </Suspense>
     </div>
   );
 }

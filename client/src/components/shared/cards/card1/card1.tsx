@@ -59,7 +59,7 @@ function Card1({
         </Link>
         {!variant && (
           <Typography className="card1-category" variant="body2">
-            {category.name}
+            {category?.name}
           </Typography>
         )}
         {variant === "related" && (

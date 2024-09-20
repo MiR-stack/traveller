@@ -1,0 +1,60 @@
+@import "../../foundations/all";
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background-color: $black-10;
+
+  &--text {
+    height: 1rem;
+  }
+
+  &--rectangle {
+    width: 100%;
+    aspect-ratio: 1/0.5;
+  }
+
+  &--circle {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+  }
+
+  &--effect {
+    &-pulse {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    &-wave {
+      background: linear-gradient(
+        90deg,
+        $black-10 25%,
+        $black-20 50%,
+        $black-10 75%
+      );
+      background-size: 200% 100%;
+      animation: wave 1.5s infinite;
+    }
+
+    &-none {
+      animation: none;
+    }
+  }
+}

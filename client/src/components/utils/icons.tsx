@@ -7,6 +7,9 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { MdMailOutline } from "react-icons/md";
+import { GiBackpack, GiCampfire, GiCompass } from "react-icons/gi";
+import { SiGooglemaps } from "react-icons/si";
+import { TbBeach, TbBus } from "react-icons/tb";
 
 export const icons = {
   facebook: <FaFacebook />,
@@ -16,4 +19,10 @@ export const icons = {
   mail: <MdMailOutline />,
   whatsapp: <FaWhatsapp />,
   pinterest: <FaPinterest />,
+  "camp-fire": <GiCampfire />,
+  beach: <TbBeach />,
+  compass: <GiCompass />,
+  backpack: <GiBackpack />,
+  bus: <TbBus />,
+  location: <SiGooglemaps />,
 };

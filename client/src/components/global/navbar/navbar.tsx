@@ -1,8 +1,7 @@
 import Theme from "./theme";
 import Destinations from "./destinations/destinations";
-import { getData, getStrapiData } from "@/utils";
-import { countryType, destinationsType } from "@/types/navbar.types";
-import { navData } from "./nav.data";
+import { getStrapiData } from "@/utils";
+import { destinationsType } from "@/types/navbar.types";
 import "@/styles/components/global/navbar.scss";
 import Container from "@/components/shared/container";
 import { headers } from "next/headers";
@@ -14,9 +13,13 @@ import SocialMedias from "./socialMedias";
 import Brand from "@/components/shared/brand";
 import qs from "qs";
 import { destinationAdapter } from "@/adapters/destination.adapter";
+import { Suspense } from "react";
+import { MASTER_TAG } from "@/utils/constants";
+import { getDestinations } from "@/utils/utils";
 
 interface navPropsType {
   extented?: boolean;
+  destination?: string;
 }
 
 function IP() {
@@ -30,18 +33,9 @@ function IP() {
   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
 }
 
-const destinationQuery = qs.stringify({
-  populate: ["flag"],
-});
-
-async function Navbar({ extented = true }: navPropsType) {
+async function Navbar({ extented = true, destination }: navPropsType) {
   // destinations data
-
-  const { data } = await getStrapiData("destinations", destinationQuery, {
-    tags: ["destinations"],
-  });
-
-  const destinations = destinationAdapter(data, "nav");
+  const destinations = await getDestinations("nav");
 
   const navDestinations: destinationsType = {
     world: {
@@ -49,7 +43,7 @@ async function Navbar({ extented = true }: navPropsType) {
       flag: "",
       alt: "world",
     },
-    ...destinations,
+    ...(destinations as destinationsType),
   };
 
   return (
@@ -57,16 +51,21 @@ async function Navbar({ extented = true }: navPropsType) {
       <Container maxWidth="xlg">
         <div className="nav-wraper">
           <div className="nav-left">
-            <MobileMenus extended={extented} />
+            <MobileMenus destinations={navDestinations} extended={extented} />
             {extented ? (
               <Brand variant="nav" />
             ) : (
-              <Destinations destinations={navDestinations} />
+              <Destinations
+                destinations={navDestinations}
+                destination={destination}
+              />
             )}
           </div>
           <Menus navExtended={extented} navDestinations={navDestinations} />
           <div className="nav-right">
-            <SearchBar />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SearchBar />
+            </Suspense>
             <Divider size={12} direction="verticale" />
             <Theme />
             <Divider

@@ -2,6 +2,7 @@ import SearchBar from "@/components/shared/searchBar";
 import Typography from "@/components/shared/typography";
 import variables from "@/styles/base/_constant.module.scss";
 import "@/styles/components/shared/banner.scss";
+import { Suspense } from "react";
 
 interface bannerPropsType {
   resultCount: number;
@@ -37,7 +38,9 @@ function Banner({
           className ? `${className}-banner-searchInfo` : ""
         }`}
       >
-        <SearchBar query={query} path={path} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SearchBar query={query} path={path} />
+        </Suspense>
         <Typography
           className={`${variables.brandName}-banner-result  ${
             className ? `${className}-banner-result` : ""

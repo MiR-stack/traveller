@@ -1,33 +1,25 @@
 import variables from "@/styles/base/_constant.module.scss";
 import Link from "next/link";
-import {
-  IoLogoFacebook,
-  IoLogoInstagram,
-  IoLogoTwitter,
-} from "react-icons/io5";
+import { socialMediaTypes } from "@/types";
+import { icons } from "@/components/utils/icons";
+import { MASTER_TAG } from "@/utils/constants";
+import { getStrapiData } from "@/utils";
+import qs from "qs";
 
-export const socialMedias = [
-  {
-    name: "facebook",
-    icon: <IoLogoFacebook />,
-    url: "https://www.facebook.com",
-  },
-  {
-    name: "instagram",
-    icon: <IoLogoInstagram />,
-    url: "https://www.instagram.com",
-  },
-  {
-    name: "twitter",
-    icon: <IoLogoTwitter />,
-    url: "https://www.x.com",
-  },
-];
+const query = qs.stringify({
+  populate: ["social_medias"],
+  fields: ["name"],
+});
 
-function SocialMedias() {
+async function SocialMedias() {
+  const mediaRes = await getStrapiData("brand", query, {
+    tags: [MASTER_TAG, "social_medias"],
+  });
+  const medias = mediaRes?.data?.attributes?.social_medias;
+
   return (
     <div className={`${variables.brandName}-social_medias`}>
-      {socialMedias.map((media) => (
+      {medias.slice(0, 3).map((media: socialMediaTypes) => (
         <Link
           href={media.url}
           className={`${variables.brandName}-link link`}
@@ -36,7 +28,7 @@ function SocialMedias() {
           aria-label={media.name}
           key={media.name}
         >
-          {media.icon}
+          {icons[media.icon as keyof typeof icons]}
         </Link>
       ))}
     </div>

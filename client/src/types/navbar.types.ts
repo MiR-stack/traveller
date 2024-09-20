@@ -4,12 +4,16 @@ export interface countryType {
 }
 export interface destinationType {
   name: string;
+  slug?: string;
+}
+
+export interface navDestinationType extends destinationType {
   flag: string;
   alt: string;
 }
 
 export interface destinationsType {
-  [key: string]: destinationType;
+  [key: string]: navDestinationType;
 }
 
 export interface menuTypes {

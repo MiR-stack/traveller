@@ -2,32 +2,26 @@
 
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Typography from "@/components/shared/typography/typography";
-import { destinationsType, destinationType } from "@/types/navbar.types";
+import { destinationsType, navDestinationType } from "@/types/navbar.types";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TbWorld } from "react-icons/tb";
 
 interface destinationsPropTypes {
   destinations: destinationsType;
+  destination?: string;
 }
 
-function Destinations({ destinations }: destinationsPropTypes) {
+function Destinations({
+  destinations,
+  destination = "world",
+}: destinationsPropTypes) {
   const [currentDestination, setCurrentDestination] =
-    useState<destinationType>();
-
-  // set initial destination
-  const params = useSearchParams();
-  useEffect(() => {
-    const destination = params.get("destination");
-    if (destination) {
-      setCurrentDestination(destinations[destination]);
-    }
-  }, [destinations, params]);
+    useState<navDestinationType>(destinations[destination]);
 
   const [menu, setMenue] = useState<boolean>(false);
 
-  const handleDestination = (destination: destinationType) => {
+  const handleDestination = (destination: navDestinationType) => {
     setCurrentDestination(destination);
   };
 

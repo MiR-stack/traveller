@@ -1,5 +1,4 @@
 import Brand from "@/components/shared/brand";
-import { blogsData } from "@/components/pages/home/blogsData";
 import Categories from "@/components/pages/home/categories";
 import Hero from "@/components/pages/home/hero";
 import LatestPosts from "@/components/pages/home/latestPosts";
@@ -15,11 +14,11 @@ function page() {
   return (
     <div className="home">
       <Navbar extented={false} />
-      <Brand moto variant="extended" />
+      <Brand isMoto variant="extended" />
       <Hero />
       <Categories />
       <LatestPosts />
-      <SpecialPost {...blogsData[2]} />
+      <SpecialPost />
       <Products />
       <SuggestedPlace />
       <Newsletter />

@@ -10,18 +10,6 @@ import Sidebar from "@/components/pages/blog/sidebar";
 import { blogsData } from "@/components/pages/home/blogsData";
 import Container from "@/components/shared/container";
 import "@/styles/components/pages/blog.scss";
-import { queryTypes } from "@/types";
-import { getBlog } from "@/utils";
-
-const queryObj: queryTypes = {
-  fields: ["title", "content", "url"],
-  populate: {
-    country: {
-      fields: ["name"],
-    },
-    image: true,
-  },
-};
 
 const breadcrumbs = [
   {

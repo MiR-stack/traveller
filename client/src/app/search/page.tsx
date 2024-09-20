@@ -5,11 +5,7 @@ import Blogs from "@/components/pages/search/blogs";
 import Container from "@/components/shared/container";
 import "@/styles/components/pages/search.scss";
 
-function page({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+function page() {
   return (
     <div className="search">
       <Navbar />

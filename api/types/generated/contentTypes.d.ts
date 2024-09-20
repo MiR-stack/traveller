@@ -362,6 +362,397 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiBlogBlog extends Schema.CollectionType {
+  collectionName: 'blogs';
+  info: {
+    singularName: 'blog';
+    pluralName: 'blogs';
+    displayName: 'blog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
+    slug: Attribute.String;
+    url: Attribute.String;
+    images: Attribute.Component<'shared.images'> & Attribute.Required;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 20;
+      }>;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isSuggested: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isSpecial: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isPopular: Attribute.Boolean & Attribute.DefaultTo<false>;
+    readTime: Attribute.Integer;
+    categories: Attribute.Relation<
+      'api::blog.blog',
+      'manyToMany',
+      'api::category.category'
+    >;
+    continent: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::continent.continent'
+    >;
+    destination: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::destination.destination'
+    >;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    product: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::product.product'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBrandBrand extends Schema.SingleType {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'brand';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+        maxLength: 12;
+      }>;
+    moto: Attribute.String;
+    short_description: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        minLength: 20;
+        maxLength: 250;
+      }>;
+    logo: Attribute.Media<'images'>;
+    social_medias: Attribute.Component<'shared.social-medias', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    slug: Attribute.String & Attribute.Unique;
+    icon: Attribute.Enumeration<
+      ['camp-fire', 'compass', 'backpack', 'bus', 'beach', 'location']
+    >;
+    blogs: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::blog.blog'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContinentContinent extends Schema.CollectionType {
+  collectionName: 'continents';
+  info: {
+    singularName: 'continent';
+    pluralName: 'continents';
+    displayName: 'continent';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    image: Attribute.Media<'images'>;
+    blogs: Attribute.Relation<
+      'api::continent.continent',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    destinations: Attribute.Relation<
+      'api::continent.continent',
+      'oneToMany',
+      'api::destination.destination'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::continent.continent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::continent.continent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDestinationDestination extends Schema.CollectionType {
+  collectionName: 'destinations';
+  info: {
+    singularName: 'destination';
+    pluralName: 'destinations';
+    displayName: 'destination';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    slug: Attribute.String & Attribute.Required;
+    flag: Attribute.Media<'images'> & Attribute.Required;
+    visitor: Attribute.Integer & Attribute.DefaultTo<0>;
+    image: Attribute.Media<'images'>;
+    continent: Attribute.Relation<
+      'api::destination.destination',
+      'manyToOne',
+      'api::continent.continent'
+    >;
+    blogs: Attribute.Relation<
+      'api::destination.destination',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::destination.destination',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::destination.destination',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNewsletterNewsletter extends Schema.SingleType {
+  collectionName: 'newsletters';
+  info: {
+    singularName: 'newsletter';
+    pluralName: 'newsletters';
+    displayName: 'newsletter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.DefaultTo<'newsletter'>;
+    short_description: Attribute.Text;
+    image: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPhotoPhoto extends Schema.CollectionType {
+  collectionName: 'photos';
+  info: {
+    singularName: 'photo';
+    pluralName: 'photos';
+    displayName: 'photo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    location: Attribute.String & Attribute.Required;
+    shortDesc: Attribute.Text;
+    slug: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    price: Attribute.Component<'product.price'> & Attribute.Required;
+    affiliates: Attribute.Component<'product.affiliates', true> &
+      Attribute.Required;
+    blogs: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShareOptionShareOption extends Schema.CollectionType {
+  collectionName: 'share_options';
+  info: {
+    singularName: 'share-option';
+    pluralName: 'share-options';
+    displayName: 'shareOption';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    icon: Attribute.Enumeration<['facebook', 'whatsapp', 'twitter', 'mail']>;
+    url: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::share-option.share-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::share-option.share-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -909,384 +1300,6 @@ export interface PluginCommentsCommentReport extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlogBlog extends Schema.CollectionType {
-  collectionName: 'blogs';
-  info: {
-    singularName: 'blog';
-    pluralName: 'blogs';
-    displayName: 'blog';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 5;
-      }>;
-    slug: Attribute.String;
-    url: Attribute.String;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 20;
-      }>;
-    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
-    isSuggested: Attribute.Boolean & Attribute.DefaultTo<false>;
-    isSpecial: Attribute.Boolean & Attribute.DefaultTo<false>;
-    isPopular: Attribute.Boolean & Attribute.DefaultTo<false>;
-    readTime: Attribute.Integer;
-    categories: Attribute.Relation<
-      'api::blog.blog',
-      'manyToMany',
-      'api::category.category'
-    >;
-    continent: Attribute.Relation<
-      'api::blog.blog',
-      'manyToOne',
-      'api::continent.continent'
-    >;
-    destination: Attribute.Relation<
-      'api::blog.blog',
-      'manyToOne',
-      'api::destination.destination'
-    >;
-    content: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      >;
-    product: Attribute.Relation<
-      'api::blog.blog',
-      'manyToOne',
-      'api::shop.shop'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiBrandBrand extends Schema.SingleType {
-  collectionName: 'brands';
-  info: {
-    singularName: 'brand';
-    pluralName: 'brands';
-    displayName: 'brand';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-        maxLength: 12;
-      }>;
-    moto: Attribute.String;
-    short_description: Attribute.Text &
-      Attribute.SetMinMaxLength<{
-        minLength: 20;
-        maxLength: 250;
-      }>;
-    logo: Attribute.Media<'images'>;
-    social_medias: Attribute.Component<'shared.social-medias', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::brand.brand',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::brand.brand',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    slug: Attribute.String & Attribute.Unique;
-    icon: Attribute.Enumeration<
-      ['camp-fire', 'compass', 'backpack', 'bus', 'beach', 'location']
-    >;
-    blogs: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::blog.blog'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiContinentContinent extends Schema.CollectionType {
-  collectionName: 'continents';
-  info: {
-    singularName: 'continent';
-    pluralName: 'continents';
-    displayName: 'continent';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    image: Attribute.Media<'images'>;
-    blogs: Attribute.Relation<
-      'api::continent.continent',
-      'oneToMany',
-      'api::blog.blog'
-    >;
-    destinations: Attribute.Relation<
-      'api::continent.continent',
-      'oneToMany',
-      'api::destination.destination'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::continent.continent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::continent.continent',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDestinationDestination extends Schema.CollectionType {
-  collectionName: 'destinations';
-  info: {
-    singularName: 'destination';
-    pluralName: 'destinations';
-    displayName: 'destination';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    slug: Attribute.String & Attribute.Required;
-    flag: Attribute.Media<'images'> & Attribute.Required;
-    visitor: Attribute.Integer & Attribute.DefaultTo<0>;
-    image: Attribute.Media<'images'>;
-    continent: Attribute.Relation<
-      'api::destination.destination',
-      'manyToOne',
-      'api::continent.continent'
-    >;
-    blogs: Attribute.Relation<
-      'api::destination.destination',
-      'oneToMany',
-      'api::blog.blog'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::destination.destination',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::destination.destination',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNewsletterNewsletter extends Schema.SingleType {
-  collectionName: 'newsletters';
-  info: {
-    singularName: 'newsletter';
-    pluralName: 'newsletters';
-    displayName: 'newsletter';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.DefaultTo<'newsletter'>;
-    short_description: Attribute.Text;
-    image: Attribute.Media<'images'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::newsletter.newsletter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::newsletter.newsletter',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPhotoPhoto extends Schema.CollectionType {
-  collectionName: 'photos';
-  info: {
-    singularName: 'photo';
-    pluralName: 'photos';
-    displayName: 'photo';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    location: Attribute.String & Attribute.Required;
-    shortDesc: Attribute.Text;
-    slug: Attribute.String & Attribute.Required;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::photo.photo',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::photo.photo',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiShareOptionShareOption extends Schema.CollectionType {
-  collectionName: 'share_options';
-  info: {
-    singularName: 'share-option';
-    pluralName: 'share-options';
-    displayName: 'shareOption';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    icon: Attribute.Enumeration<['facebook', 'whatsapp', 'twitter', 'mail']>;
-    url: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::share-option.share-option',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::share-option.share-option',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiShopShop extends Schema.CollectionType {
-  collectionName: 'shops';
-  info: {
-    singularName: 'shop';
-    pluralName: 'shops';
-    displayName: 'product';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    price: Attribute.Component<'product.price'> & Attribute.Required;
-    affiliates: Attribute.Component<'product.affiliates', true> &
-      Attribute.Required;
-    blogs: Attribute.Relation<'api::shop.shop', 'oneToMany', 'api::blog.blog'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::shop.shop', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::shop.shop', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1297,6 +1310,15 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::blog.blog': ApiBlogBlog;
+      'api::brand.brand': ApiBrandBrand;
+      'api::category.category': ApiCategoryCategory;
+      'api::continent.continent': ApiContinentContinent;
+      'api::destination.destination': ApiDestinationDestination;
+      'api::newsletter.newsletter': ApiNewsletterNewsletter;
+      'api::photo.photo': ApiPhotoPhoto;
+      'api::product.product': ApiProductProduct;
+      'api::share-option.share-option': ApiShareOptionShareOption;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1307,15 +1329,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::comments.comment': PluginCommentsComment;
       'plugin::comments.comment-report': PluginCommentsCommentReport;
-      'api::blog.blog': ApiBlogBlog;
-      'api::brand.brand': ApiBrandBrand;
-      'api::category.category': ApiCategoryCategory;
-      'api::continent.continent': ApiContinentContinent;
-      'api::destination.destination': ApiDestinationDestination;
-      'api::newsletter.newsletter': ApiNewsletterNewsletter;
-      'api::photo.photo': ApiPhotoPhoto;
-      'api::share-option.share-option': ApiShareOptionShareOption;
-      'api::shop.shop': ApiShopShop;
     }
   }
 }

@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "shops",
+  "collectionName": "products",
   "info": {
-    "singularName": "shop",
-    "pluralName": "shops",
+    "singularName": "product",
+    "pluralName": "products",
     "displayName": "product",
     "description": ""
   },
@@ -21,9 +21,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "price": {
       "displayName": "price",

@@ -3,6 +3,46 @@
 .card2 {
   width: 100%;
 
+  &__skeleton {
+    aspect-ratio: 3/4.9;
+
+    &:nth-child(n + 3) {
+      display: none;
+    }
+
+    @include sm {
+      &:nth-child(3) {
+        display: block;
+      }
+    }
+    @include md {
+      &:nth-child(4) {
+        display: block;
+      }
+    }
+    @include lg {
+      &:nth-child(5) {
+        display: block;
+      }
+    }
+
+    &-wrapper {
+      gap: 15px;
+
+      @include sm {
+        gap: 20px;
+      }
+
+      @include md {
+        gap: 30px;
+      }
+
+      @include lg {
+        gap: 40px;
+      }
+    }
+  }
+
   &-image {
     width: 100%;
     aspect-ratio: 3/4.9;

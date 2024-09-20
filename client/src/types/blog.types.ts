@@ -1,14 +1,14 @@
 export interface categoryTypes {
   name: string;
   count?: number;
-  slug: string;
+  slug?: string;
 }
 
 export interface countryTypes {
   name: string;
   count?: number;
   flag?: string;
-  slug: string;
+  slug?: string;
 }
 
 export interface imageTypes {
@@ -21,8 +21,8 @@ export interface basicBlogTypes {
   title: string;
   slug: string;
   country: countryTypes;
-  createdAt: string;
-  category: categoryTypes;
+  createdAt?: string;
+  category?: categoryTypes;
 }
 
 export interface commentTypes {

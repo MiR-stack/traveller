@@ -2,7 +2,7 @@
 
 import useQuery from "@/hooks/useQuery";
 import { useSearchParams, useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
 function SearchBar() {

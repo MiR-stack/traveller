@@ -22,11 +22,12 @@
     "url": {
       "type": "string"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": ["images"]
+    "images": {
+      "displayName": "images",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.images",
+      "required": true
     },
     "description": {
       "type": "text",
@@ -81,8 +82,13 @@
     "product": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::shop.shop",
+      "target": "api::product.product",
       "inversedBy": "blogs"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

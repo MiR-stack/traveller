@@ -29,7 +29,7 @@ async function RootLayout({
         className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${oswald.variable} ${wellfleet.variable}`}
       >
         <ReduxProvider>
-          <ThemeContextProvider>{children}</ThemeContextProvider>
+          <ThemeContextProvider>{children} </ThemeContextProvider>
         </ReduxProvider>
       </body>
     </html>

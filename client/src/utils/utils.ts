@@ -155,12 +155,28 @@ const getFormatedImage = (image: imageTypes): formatedImageTypes | null => {
   return { srcs, alt: alternativeText };
 };
 
+/**
+ * The function `strapiFieldsModifier` extracts specific fields from a Strapi data response object and
+ * returns a new object with only those fields.
+ * @param {strapiDataResTypes} data - The `data` parameter in the `strapiFieldsModifier` function is of
+ * type `strapiDataResTypes`. It is an object that contains an `id` property and an `attributes`
+ * property. The `attributes` property is an object that contains various fields with their
+ * corresponding values.
+ * @param {string[]} fields - It looks like the `fields` parameter in the `strapiFieldsModifier`
+ * function is an array of strings. This parameter is used to specify which fields from the
+ * `data.attributes` object should be included in the new data object that the function creates.
+ * @returns The `strapiFieldsModifier` function returns a new object with the `id` property from the
+ * `data` object and additional properties specified by the `fields` array, where each property is
+ * taken from the `attributes` object within the `data` object.
+ */
 const strapiFieldsModifier = (data: strapiDataResTypes, fields: string[]) => {
   let newData: { [key: string]: any } = { id: data.id };
 
   const fieldsLenght = fields.length;
   for (let i = 0; i < fieldsLenght; i++) {
-    newData[fields[i]] = data.attributes[fields[i]];
+    if (data.attributes[fields[i]]) {
+      newData[fields[i]] = data.attributes[fields[i]];
+    }
   }
 
   return newData;
@@ -189,6 +205,25 @@ const getDate = (dateString: string) => {
   return format(date, "dd MMMM, yyyy");
 };
 
+/**
+ *
+ * get social medias
+ *@returns social medias
+ */
+
+const query = qs.stringify({
+  populate: ["social_medias"],
+  fields: ["name"],
+});
+
+const getSocialMedias = async () => {
+  const mediaRes = await getStrapiData("brand", query, {
+    tags: [MASTER_TAG, "social_medias"],
+  });
+
+  return mediaRes?.data?.attributes?.social_medias;
+};
+
 export {
   getData,
   getStrapiURL,
@@ -199,4 +234,5 @@ export {
   strapiFieldsModifier,
   getDestinations,
   getDate,
+  getSocialMedias,
 };

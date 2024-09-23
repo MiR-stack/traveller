@@ -1,48 +1,22 @@
-import React from "react";
 import SectionLayout from "../../sectionLayout";
 import Link from "next/link";
-import Typography from "@/components/shared/typography";
 import { icons } from "@/components/utils/icons";
+import { getSocialMedias } from "@/utils";
+import { socialMediaTypes } from "@/types";
 
-const socialMedias = [
-  {
-    name: "facebook",
-    logo: "facebook",
-    url: "",
-  },
-  {
-    name: "youtube",
-    logo: "youtube",
-    url: "",
-  },
-  {
-    name: "twitter",
-    logo: "twitter",
-    url: "",
-  },
-  {
-    name: "instagram",
-    logo: "instagram",
-    url: "",
-  },
-  {
-    name: "pinterest",
-    logo: "pinterest",
-    url: "",
-  },
-];
+async function Follow() {
+  const medias = await getSocialMedias();
 
-function Follow() {
   return (
     <SectionLayout title="connect & follow">
       <div className="blog-sidebar-follow">
-        {socialMedias.map((media) => (
+        {medias.map((media: socialMediaTypes) => (
           <Link
             className="blog-sidebar-follow-card link"
             key={media.name}
             href={media.url}
           >
-            {icons[media.logo as keyof typeof icons]}
+            {icons[media.icon as keyof typeof icons]}
             <p className="blog-sidebar-follow--name">{media.name}</p>
           </Link>
         ))}

@@ -13,7 +13,7 @@
     overflow: hidden;
 
     @include sm {
-      aspect-ratio: 7/3;
+      aspect-ratio: 7/3.5;
     }
 
     @include lg {
@@ -71,9 +71,10 @@
       @include gthemed {
         color: t(text-muted);
       }
+      line-height: 1.5;
 
       p {
-        line-height: 1.4;
+        margin-bottom: 20px;
       }
       h1 {
         font-size: calc(1.4rem + 0.8vw);
@@ -86,6 +87,18 @@
         font-size: calc(1rem + 0.3vw);
       }
 
+      ul {
+        margin-bottom: 20px;
+        padding-left: 20px;
+        li {
+          margin-bottom: 15px;
+        }
+      }
+      img {
+        width: 100%;
+        aspect-ratio: 1/0.8;
+      }
+
       h1,
       h2,
       h3 {
@@ -93,18 +106,18 @@
           color: t(text);
         }
       }
-      .image {
-        width: 100% !important;
-        padding-top: 20px;
+      // .image {
+      //   width: 100% !important;
+      //   padding-top: 20px;
 
-        img {
-          width: 100%;
-          aspect-ratio: 1.7/1 !important;
-          height: unset;
-          object-fit: cover;
-          border-radius: 10px;
-        }
-      }
+      //   img {
+      //     width: 100%;
+      //     aspect-ratio: 1.7/1 !important;
+      //     height: unset;
+      //     object-fit: cover;
+      //     border-radius: 10px;
+      //   }
+      // }
 
       blockquote {
         padding: 20px 30px;

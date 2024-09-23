@@ -20,17 +20,23 @@ const sizes = {
   },
 };
 
-interface avatarPropTypes {
+interface AvatarProps {
   avatar?: imageAttrTypes;
   size?: keyof typeof sizes;
   name: string;
   avatarUrl?: string;
 }
 
-function Avatar({ avatar, size = "md", name, avatarUrl }: avatarPropTypes) {
-  const avatarMedia = avatarUrl
-    ? avatarUrl
-    : getStrapiMedia(avatar?.formats.thumbnail.url!);
+function Avatar({ avatar, size = "md", name, avatarUrl }: AvatarProps) {
+  const avatarMedia =
+    avatarUrl || (avatar && getStrapiMedia(avatar.formats?.thumbnail?.url));
+
+  const initials = name
+    .split(" ")
+    .map((word) => word[0])
+    .slice(0, size === "sm" ? 1 : 2)
+    .join("")
+    .toUpperCase();
 
   function stringToColor(string: string) {
     let hash = 0;
@@ -51,14 +57,12 @@ function Avatar({ avatar, size = "md", name, avatarUrl }: avatarPropTypes) {
 
     return color;
   }
-  name = name.replace(/\s+/g, " ").trim();
 
   return (
     <div
       className={`${variables.brandName}-avatar`}
       style={{
         backgroundColor: stringToColor(name),
-        textTransform: "uppercase",
         ...sizes[size],
       }}
     >
@@ -66,18 +70,12 @@ function Avatar({ avatar, size = "md", name, avatarUrl }: avatarPropTypes) {
         <CustomImage
           className={`${variables.brandName}-avatar-image`}
           src={avatarMedia}
-          alt={"author image"}
-          sizes="70px"
+          alt={`${name}'s avatar`}
+          sizes={`${sizes[size].width}px`}
         />
       ) : (
-        <div>
-          {`${name.split(" ")[0][0]}${
-            size === "sm"
-              ? ""
-              : name.split(" ").length > 1
-              ? name.split(" ")[1][0]
-              : ""
-          }`}
+        <div className={`${variables.brandName}-avatar-initials`}>
+          {initials}
         </div>
       )}
     </div>

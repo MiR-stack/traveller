@@ -1,108 +1,88 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const api_token = process.env.NEXT_PUBLIC_API_TOKEN;
-const relation = "api::blog.blog:";
+const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
+const RELATION = "api::blog.blog:";
+const BASE_URL = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/comments`;
 
-interface getCommentsTypes {
+interface CommentAuthor {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface CommentBase {
   id: number;
+  token: string;
+}
+
+interface GetCommentsParams extends Partial<CommentBase> {
   query?: string;
 }
 
-interface addCommentTypes {
-  id: number;
-  token: string;
+interface AddCommentParams extends CommentBase {
   threadOf?: number | null;
   content: string;
   query?: string;
-  author?: {
-    id: string;
-    name: string;
-    email: string;
-  };
+  author?: CommentAuthor;
 }
 
-interface editCommentTypes {
-  id: number;
-  token: string;
+interface EditCommentParams extends CommentBase {
   content: string;
   comment_id: number;
 }
 
-interface removeCommentTypes {
-  id: number;
-  token: string;
+interface RemoveCommentParams extends CommentBase {
   comment_id: number;
   author_id?: number;
 }
 
 export const commentsApi = createApi({
   reducerPath: "commentsApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_STRAPI_URL}/comments`,
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  tagTypes: ["Comment"],
   endpoints: (builder) => ({
-    getComments: builder.query({
-      query: ({ id, query }: getCommentsTypes) => ({
-        url: `${relation}${id}?${query ? query : ""}`,
-        headers: {
-          Authorization: `Bearer ${api_token}`,
-        },
+    getComments: builder.query<any, GetCommentsParams>({
+      query: ({ id, query }) => ({
+        url: `${RELATION}${id}${query ? `?${query}` : ""}`,
+        headers: { Authorization: `Bearer ${API_TOKEN}` },
       }),
-    }),
-    addComment: builder.mutation({
-      query: ({
-        id,
-        content,
-        token,
-        threadOf = null,
-        query,
-        author,
-      }: addCommentTypes) => ({
-        url: `${relation}${id}?${query ? query : ""}`,
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: {
-          content,
-          threadOf,
-          author,
-        },
-      }),
-    }),
-    editComment: builder.mutation({
-      query: ({ id, content, comment_id, token }: editCommentTypes) => ({
-        url: `${relation}${id}/comment/${comment_id}`,
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: {
-          content,
-        },
-      }),
+      providesTags: ["Comment"],
     }),
 
-    removeComment: builder.mutation({
-      query: ({
-        id,
-        comment_id,
-        token,
-        author_id = 1,
-      }: removeCommentTypes) => ({
-        url: `${relation}${id}/comment/${comment_id}?authorId=${author_id}`,
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    addComment: builder.mutation<any, AddCommentParams>({
+      query: ({ id, content, token, threadOf = null, query, author }) => ({
+        url: `${RELATION}${id}${query ? `?${query}` : ""}`,
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: { content, threadOf, author },
       }),
+      invalidatesTags: ["Comment"],
+    }),
+
+    editComment: builder.mutation<any, EditCommentParams>({
+      query: ({ id, content, comment_id, token }) => ({
+        url: `${RELATION}${id}/comment/${comment_id}`,
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: { content },
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+
+    removeComment: builder.mutation<any, RemoveCommentParams>({
+      query: ({ id, comment_id, token, author_id = 1 }) => ({
+        url: `${RELATION}${id}/comment/${comment_id}?authorId=${author_id}`,
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      invalidatesTags: ["Comment"],
     }),
   }),
 });
 
 export const {
+  useGetCommentsQuery,
   useAddCommentMutation,
   useEditCommentMutation,
-  useGetCommentsQuery,
   useRemoveCommentMutation,
 } = commentsApi;

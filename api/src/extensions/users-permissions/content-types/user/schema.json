@@ -64,23 +64,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "name": {
-      "type": "string",
-      "required": true,
-      "minLength": 3
-    },
-    "avatar": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "media": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.social-medias"
     }
   }
 }

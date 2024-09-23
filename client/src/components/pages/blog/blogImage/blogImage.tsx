@@ -1,12 +1,11 @@
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
-import React from "react";
-import { blogData } from "../blog.data";
+import { formatedImageTypes } from "@/types";
 
-function BlogImage({ src, alt }: typeof blogData.image) {
+function BlogImage({ srcs: { main }, alt }: formatedImageTypes) {
   return (
     <CustomImage
       className="blog-image"
-      src={src}
+      src={main}
       alt={alt}
       priority
       sizes={`(max-width:1550px) 100vw, 1550px`}

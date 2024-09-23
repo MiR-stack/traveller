@@ -1,18 +1,13 @@
-import React from "react";
 import Product from "./product";
-import { productPropsType } from "./product/product";
+import { ProductComponentProps } from "./product/product";
 import Follow from "./follow";
 import LatestPosts from "./latestPosts";
 import Categories from "./categories";
 
-interface sidebarPropsType {
-  product: productPropsType;
-}
-
-function Sidebar({ product }: sidebarPropsType) {
+function Sidebar({ product }: ProductComponentProps) {
   return (
     <div className="blog-sidebar">
-      <Product {...product} />
+      <Product product={product} />
       <Follow />
       <LatestPosts />
       <Categories />

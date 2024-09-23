@@ -17,6 +17,14 @@ module.exports = createCoreService("api::blog.blog", () => ({
     return readTime;
   },
 
+  slugify(text) {
+    return text
+      .trim()
+      .replace(/[^a-zA-Z ]/g, "")
+      .split(" ")
+      .join("-");
+  },
+
   beforeAction(event) {
     const { title, slug, url, content } = event.params.data;
 
@@ -25,11 +33,7 @@ module.exports = createCoreService("api::blog.blog", () => ({
     let newSlug = slug;
 
     if (!slug) {
-      newSlug = title
-        .trim()
-        .replace(/[^a-zA-Z ]/g, "")
-        .split(" ")
-        .join("-");
+      newSlug = this.slugify(title);
 
       event.params.data.slug = newSlug;
     }

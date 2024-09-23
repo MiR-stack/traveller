@@ -92,7 +92,7 @@ const Comment = forwardRef<HTMLDivElement, commentPropsType>(function MyComment(
 
           {reply &&
             children.map((reply, index) => (
-              <div className="blog-comment-reply" key={reply.id}>
+              <div className="blog-comment-reply" key={index}>
                 <div
                   className={`blog-comment-line`}
                   style={childStyles[index]}

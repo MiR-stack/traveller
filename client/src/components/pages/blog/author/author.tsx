@@ -1,7 +1,7 @@
 import Avatar from "@/components/shared/avatar";
 import Typography from "@/components/shared/typography";
 import { icons } from "@/components/utils/icons";
-import { imageAttrTypes } from "@/types";
+import { imageAttrTypes, imageTypes } from "@/types";
 import Link from "next/link";
 
 export interface authorPropsType {
@@ -9,13 +9,13 @@ export interface authorPropsType {
   role: string;
   bio: string;
   social_medias: { name: string; url: string; icon: string }[];
-  avatar?: imageAttrTypes;
+  avatar?: imageTypes;
 }
 
 function Author({ name, role, bio, social_medias, avatar }: authorPropsType) {
   return (
     <section className="blog-author">
-      <Avatar name={name} avatar={avatar} size="lg" />
+      <Avatar name={name} avatar={avatar?.data.attributes} size="lg" />
       <div className="blog-author-content">
         <Typography className="blog-author--name" variant="h4">
           {name} . <span className="blog-author--role">{role}</span>
@@ -25,8 +25,14 @@ function Author({ name, role, bio, social_medias, avatar }: authorPropsType) {
         </Typography>
         <div className="blog-author--social_medias">
           {social_medias.map((media) => (
-            <Link className="link" key={media.name} href={media.url}>
-              {icons[media.icon as keyof typeof icons]}{" "}
+            <Link
+              className="link"
+              key={media.name}
+              href={media.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {icons[media.icon as keyof typeof icons]}
             </Link>
           ))}
         </div>

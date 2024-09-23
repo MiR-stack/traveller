@@ -372,6 +372,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   attributes: {
     title: Attribute.String &
@@ -421,13 +422,22 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'api::product.product'
     >;
     seo: Attribute.Component<'shared.seo'>;
+    related_blogs: Attribute.Relation<
+      'api::blog.blog',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    blog: Attribute.Relation<'api::blog.blog', 'manyToOne', 'api::blog.blog'>;
+    profile: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::profile.profile'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'>;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'>;
   };
 }
 
@@ -532,7 +542,8 @@ export interface ApiContinentContinent extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.String & Attribute.Unique;
     image: Attribute.Media<'images'>;
     blogs: Attribute.Relation<
       'api::continent.continent',
@@ -714,6 +725,52 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProfileProfile extends Schema.CollectionType {
+  collectionName: 'profiles';
+  info: {
+    singularName: 'profile';
+    pluralName: 'profiles';
+    displayName: 'profile';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    bio: Attribute.Text;
+    role: Attribute.Enumeration<['author', 'editor']> &
+      Attribute.DefaultTo<'author'>;
+    social_medias: Attribute.Component<'shared.social-medias', true>;
+    avatar: Attribute.Media<'images'>;
+    blogs: Attribute.Relation<
+      'api::profile.profile',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    admin_user: Attribute.Relation<
+      'api::profile.profile',
+      'oneToOne',
+      'admin::user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::profile.profile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::profile.profile',
       'oneToOne',
       'admin::user'
     > &
@@ -1161,13 +1218,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    avatar: Attribute.Media<'images'>;
-    media: Attribute.Component<'shared.social-medias', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1318,6 +1368,7 @@ declare module '@strapi/types' {
       'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::photo.photo': ApiPhotoPhoto;
       'api::product.product': ApiProductProduct;
+      'api::profile.profile': ApiProfileProfile;
       'api::share-option.share-option': ApiShareOptionShareOption;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

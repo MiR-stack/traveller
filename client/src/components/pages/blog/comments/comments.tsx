@@ -13,7 +13,7 @@ interface commentPropsType {
 }
 
 function Comments({ blogId }: commentPropsType) {
-  const { data, refetch } = useGetCommentsQuery({ id: 1 });
+  const { data, refetch } = useGetCommentsQuery({ id: blogId });
 
   const [commentbar, setCommentbar] = useState<number>(0);
   const commentbarOpen = (id: number) => {

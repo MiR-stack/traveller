@@ -1,5 +1,4 @@
 import SectionLayout from "@/components/pages/home/sectionLayout/sectionLayout";
-import { blogsData } from "../blogsData";
 import Card1 from "@/components/shared/cards/card1/card1";
 import { getFormatedImage, getStrapiData } from "@/utils";
 import qs from "qs";

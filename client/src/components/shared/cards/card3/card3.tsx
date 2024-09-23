@@ -47,12 +47,6 @@ function Card3({
   createdAt,
   options,
 }: card3PropsType) {
-  // let time = "0";
-
-  // if (createdAt) {
-  //   time = formatDistanceToNowStrict(createdAt);
-  // }
-
   if (options) {
     options = {
       ...initOptions,

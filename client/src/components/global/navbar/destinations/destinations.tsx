@@ -62,7 +62,7 @@ function Destinations({
       >
         {Object.keys(destinations).map((slug: string) => (
           <Link
-            href={`/search?destination=${slug}`}
+            href={`/search?des=${slug}`}
             className="nav-destination"
             key={slug}
             onClick={() => {

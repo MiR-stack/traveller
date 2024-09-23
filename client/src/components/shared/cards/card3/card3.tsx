@@ -13,7 +13,7 @@ interface card3PropsType {
   imageSizes?: string;
   title: string;
   slug: string;
-  country: { name: string };
+  country?: { name: string };
   readTime: string;
   className?: string;
   variant?: "search";
@@ -83,7 +83,7 @@ function Card3({
             className ? `${className}-header` : ""
           }`}
         >
-          {options.country && (
+          {options.country && country && (
             <Typography
               className={`${variables.brandName}-card3--country ${
                 variant ? `${className}--country` : ""

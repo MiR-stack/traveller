@@ -17,7 +17,7 @@ function page() {
         />
         <Products />
         <Suspense fallback={<div>Loading...</div>}>
-          <Pagination pageCount={5} totalPage={2} currentPage={1} />
+          <Pagination pageCount={5} currentPage={2} />
         </Suspense>
       </Container>
     </div>

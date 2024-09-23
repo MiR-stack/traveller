@@ -27,7 +27,7 @@ function SearchBar() {
 
     if (!searchTerms) return;
 
-    router.push(`/search?${updateQuery("term", searchTerms)}`);
+    router.push(`/search?${updateQuery("q", searchTerms)}`);
   };
 
   return (

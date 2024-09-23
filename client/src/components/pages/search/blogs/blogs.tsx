@@ -1,11 +1,52 @@
 import Card3 from "@/components/shared/cards/card3";
-import { blogsData } from "../../home/blogsData";
 import Pagination from "@/components/shared/pagination";
 import { Suspense } from "react";
+import { getDate, getFormatedImage } from "@/utils";
+import { paginationTypes } from "@/types";
+import EmptyBlogs from "./emptyBlogs";
+interface blogTypes {
+  attributes: {
+    title: string;
+    slug: string;
+    description: string;
+    createdAt: string;
+    readTime: string;
+    images: {
+      landscape: { data: any };
+    };
+  };
+}
 
-function Blogs() {
+function Blogs({
+  blogs,
+  pagination,
+}: {
+  blogs: blogTypes[];
+  pagination: paginationTypes;
+}) {
+  if (blogs.length < 1) return <EmptyBlogs />;
+
+  const blogsData = blogs.map((blog) => {
+    const { title, slug, description, createdAt, readTime, images } =
+      blog.attributes;
+
+    const image = getFormatedImage({ data: images.landscape.data[0] });
+    const date = getDate(createdAt);
+    return {
+      title,
+      slug,
+      shortDescription: description,
+      createdAt: date,
+      readTime,
+      image: {
+        url: image?.srcs.thumbnail || "",
+        alt: image?.alt || "",
+      },
+    };
+  });
+
   return (
-    <div className="search-blogs-conatainer">
+    <div className="search-blogs-container">
       <div className="search-blogs">
         {blogsData.map((blog) => (
           <Card3
@@ -19,14 +60,15 @@ function Blogs() {
           />
         ))}
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Pagination
-          className="search-blogs-pagination"
-          pageCount={5}
-          currentPage={1}
-          totalPage={9}
-        />
-      </Suspense>
+      {pagination.pageCount > 1 && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Pagination
+            className="search-blogs-pagination"
+            pageCount={pagination.pageCount}
+            currentPage={pagination.page}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

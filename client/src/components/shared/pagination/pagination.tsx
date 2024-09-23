@@ -1,65 +1,80 @@
 "use client";
 
 import variables from "@/styles/base/_constant.module.scss";
-import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import "@/styles/components/shared/pagination.scss";
 import useQuery from "@/hooks/useQuery";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-interface paginationPropsType {
+interface PaginationPropsType {
   pageCount: number;
   currentPage: number;
-  totalPage: number;
   className?: string;
 }
 
-function Pagination({
+const Pagination: React.FC<PaginationPropsType> = ({
   pageCount = 1,
-  totalPage,
+  currentPage,
   className,
-}: paginationPropsType) {
-  const searchParams = useSearchParams();
+}) => {
   const { updateQuery } = useQuery();
+  const router = useRouter();
 
-  const currentPage = Number(searchParams.get("page")) || 1;
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      router.push(`?${updateQuery("page", String(currentPage - 1))}`);
+    }
+  };
 
-  const prev = currentPage > 1 ? currentPage - 1 : currentPage;
-  const next = currentPage < totalPage ? currentPage + 1 : currentPage;
+  const handleNextPage = () => {
+    if (currentPage < pageCount) {
+      router.push(`?${updateQuery("page", String(currentPage + 1))}`);
+    }
+  };
+
+  const handleRandomPage = (page: number) => {
+    router.push(`?${updateQuery("page", String(page))}`);
+  };
+
+  const renderPageButtons = () => {
+    const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+
+    return pages.map((page) => (
+      <button
+        key={page}
+        className={`btn ${variables.brandName}-pagination-item ${
+          currentPage === page
+            ? `${variables.brandName}-pagination-item--active`
+            : ""
+        }`}
+        onClick={() => handleRandomPage(page)}
+      >
+        {page}
+      </button>
+    ));
+  };
 
   return (
     <div className={`${className ?? ""} ${variables.brandName}-pagination`}>
-      <Link
-        className="link"
-        href={`?${updateQuery("page", String(prev))}`}
+      <button
+        className="btn"
         aria-label="previous page"
+        onClick={handlePrevPage}
+        disabled={currentPage === 1}
       >
         <FaChevronLeft />
-      </Link>
-      {Array(pageCount > totalPage ? totalPage : pageCount)
-        .fill(0)
-        .map((_, index) => (
-          <Link
-            className={` link ${variables.brandName}-pagination-item ${
-              currentPage === index + 1
-                ? `${variables.brandName}-pagination-item--active`
-                : ""
-            }`}
-            href={`?${updateQuery("page", String(index + 1))}`}
-            key={index + 1}
-          >
-            {index + 1}
-          </Link>
-        ))}
-      <Link
-        className="link"
-        href={`?${updateQuery("page", `${next}`)}`}
+      </button>
+      {renderPageButtons()}
+      <button
+        className="btn"
+        onClick={handleNextPage}
         aria-label="next page"
+        disabled={currentPage === pageCount}
       >
         <FaChevronRight />
-      </Link>
+      </button>
     </div>
   );
-}
+};
 
 export default Pagination;

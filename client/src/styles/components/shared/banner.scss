@@ -12,12 +12,8 @@
     @include flex(15px, flex-start, flex-start);
     margin-top: 20px;
     flex-direction: column;
-
-    @include md {
-      flex-direction: row;
-      align-items: center;
-    }
   }
+
   &-result {
     text-transform: capitalize;
     font-weight: 500;

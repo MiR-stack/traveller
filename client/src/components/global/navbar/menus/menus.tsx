@@ -25,7 +25,7 @@ function Menus({
   const destinations = Object.keys(navDestinations || {}).map(
     (slug: string) => ({
       name: navDestinations[slug].name,
-      slug: `search?destination=${slug}`,
+      slug: `search?des=${slug}`,
     })
   );
 

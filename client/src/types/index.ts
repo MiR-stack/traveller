@@ -1,8 +1,8 @@
 export interface paginationTypes {
-  page?: number;
-  pageSize?: number;
-  start?: number;
-  limit?: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }
 
 export interface strapiDataResTypes {
@@ -56,3 +56,4 @@ export interface socialMediaTypes {
   url: string;
   icon: string;
 }
+

@@ -27,14 +27,10 @@ function SearchBar({ query, path }: searchBarPropsType) {
     }
   }, [searchParams, query]);
 
-  const { updateQuery } = useQuery();
-
   const handleSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!search) return alert("Please write someting");
-
-    router.push(`/${path}?${updateQuery(query, search)}`);
+    router.push(`/${path}?${search ? `${query}=${search}` : ""}`);
   };
   return (
     <form

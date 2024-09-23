@@ -1,6 +1,5 @@
 import Theme from "./theme";
 import Destinations from "./destinations/destinations";
-import { getStrapiData } from "@/utils";
 import { destinationsType } from "@/types/navbar.types";
 import "@/styles/components/global/navbar.scss";
 import Container from "@/components/shared/container";
@@ -11,10 +10,7 @@ import SearchBar from "./searchBar/searchBar";
 import Divider from "@/components/shared/divider";
 import SocialMedias from "./socialMedias";
 import Brand from "@/components/shared/brand";
-import qs from "qs";
-import { destinationAdapter } from "@/adapters/destination.adapter";
 import { Suspense } from "react";
-import { MASTER_TAG } from "@/utils/constants";
 import { getDestinations } from "@/utils/utils";
 
 interface navPropsType {

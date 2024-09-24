@@ -57,3 +57,11 @@ export interface socialMediaTypes {
   icon: string;
 }
 
+export interface priceResponse {
+  regular: number;
+  discount: number;
+}
+export interface affiliateResponse {
+  name: string;
+  url: string;
+}

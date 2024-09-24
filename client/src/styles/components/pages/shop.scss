@@ -44,7 +44,6 @@
 
     &--price {
       @include flex;
-      margin-top: 10px;
 
       .price-active {
         font-size: calc(1rem + 0.3vw);
@@ -56,10 +55,11 @@
     }
 
     &--name {
+      margin-top: 10px;
       text-transform: capitalize;
       font-size: calc(1rem + 0.4vw);
     }
-    &--afiliates {
+    &--affiliates {
       @include flex;
       flex-direction: column;
       text-transform: capitalize;
@@ -94,5 +94,8 @@
         }
       }
     }
+  }
+  &__main {
+    margin-bottom: 50px;
   }
 }

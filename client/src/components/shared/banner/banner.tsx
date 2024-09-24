@@ -10,6 +10,7 @@ interface bannerPropsType {
   title: string;
   path: string;
   query?: string;
+  resultText?: string;
 }
 
 function Banner({
@@ -18,6 +19,7 @@ function Banner({
   className,
   path,
   query = "q",
+  resultText,
 }: bannerPropsType) {
   return (
     <div
@@ -47,7 +49,7 @@ function Banner({
           }`}
           variant="body2"
         >
-          {resultCount} results found
+          {resultText || `${resultCount} results found`}
         </Typography>
       </div>
     </div>

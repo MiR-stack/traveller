@@ -133,17 +133,24 @@ function getStrapiMedia(url: string) {
 /**
  *
  * @param image raw image object from strapi response
+ * @param options image options
  * @returns image sizes
  */
 
-const getFormatedImage = (image: imageTypes): formatedImageTypes | null => {
+const getFormatedImage = (
+  image: imageTypes,
+  options?: { aspectRatio?: boolean }
+): formatedImageTypes | null => {
   if (!image.data) return null;
 
   const {
     formats: { large, small, medium, thumbnail },
     url,
     alternativeText,
+    height,
+    width,
   } = image.data.attributes;
+
   const srcs = {
     large: getStrapiMedia(large.url)!,
     small: getStrapiMedia(small.url)!,
@@ -152,7 +159,13 @@ const getFormatedImage = (image: imageTypes): formatedImageTypes | null => {
     main: getStrapiMedia(url)!,
   };
 
-  return { srcs, alt: alternativeText };
+  let data: formatedImageTypes = { srcs, alt: alternativeText };
+
+  if (options?.aspectRatio) {
+    data.aspectRatio = width / height;
+  }
+
+  return data;
 };
 
 /**

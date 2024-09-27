@@ -4,19 +4,19 @@ import Typography from "@/components/shared/typography";
 import Link from "next/link";
 import qs from "qs";
 import { getFormatedImage, getStrapiData } from "@/utils";
-import { formatedImageTypes } from "@/types";
+// import { formatedImageTypes } from "@/types";
 
 const query = qs.stringify({
   populate: ["image"],
   fields: ["location", "shortDesc"],
 });
 
-interface photo {
-  image: formatedImageTypes;
-  location: string;
-  shortDesc: string;
-  aspectRatio: number;
-}
+// interface photo {
+//   image: formatedImageTypes;
+//   location: string;
+//   shortDesc: string;
+//   aspectRatio: number;
+// }
 
 async function Gallery() {
   const photosRes = await getStrapiData("photos", query);

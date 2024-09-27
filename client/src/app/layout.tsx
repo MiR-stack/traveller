@@ -12,10 +12,32 @@ import {
   wellfleet,
 } from "./fonts";
 import ReduxProvider from "@/store/provider";
+import { getStrapiData } from "@/utils";
+import qs from "qs";
 
-export const metadata: Metadata = {
-  title: "traveller",
-  description: "this is an travell blog website",
+const query = qs.stringify({
+  fields: ["name", "short_description"],
+});
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const { data } = await getStrapiData("brand", query);
+
+  const { name, short_description } = data.attributes;
+  return {
+    title: `Discover Top Travel Destinations & Tips | ${name}`,
+    description:
+      short_description ||
+      "Explore the best travel destinations, tips, and guides to make your adventures unforgettable. Find inspiration, advice, and travel resources for your next trip",
+    keywords: [
+      "travel destinations",
+      "travel tips",
+      "travel guides",
+      "adventure travel",
+      "travel inspiration",
+      "travel advice",
+      "travel resources",
+    ],
+  };
 };
 
 async function RootLayout({

@@ -3,11 +3,6 @@
 .brand {
   @include flex(0, center, center);
 
-  &-logo {
-    width: 100%;
-    aspect-ratio: 28/7;
-  }
-
   &-container {
     @include flex(0, center);
     flex-direction: column;
@@ -26,10 +21,37 @@
       color: t(text-2);
     }
   }
+
+  &__logo {
+    width: 100%;
+    max-width: 230px;
+
+    @include sm {
+      max-width: 280px;
+    }
+
+    &--horizontal {
+      width: calc(4vw + 100px);
+      min-width: 120px;
+      display: none;
+      @include sm {
+        display: block;
+      }
+    }
+
+    &--mobile {
+      width: calc(1vw + 30px);
+      min-width: 20px;
+      @include sm {
+        display: none;
+      }
+    }
+  }
 }
 
 .extended-brand {
   padding: 35px 0;
+  min-height: 150px;
   @include gthemed {
     background-color: t(background);
   }

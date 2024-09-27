@@ -18,16 +18,16 @@ interface navPropsType {
   destination?: string;
 }
 
-function IP() {
-  const FALLBACK_IP_ADDRESS = "0.0.0.0";
-  const forwardedFor = headers().get("x-forwarded-for");
+// function IP() {
+//   const FALLBACK_IP_ADDRESS = "0.0.0.0";
+//   const forwardedFor = headers().get("x-forwarded-for");
 
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
-  }
+//   if (forwardedFor) {
+//     return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
+//   }
 
-  return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
-}
+//   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+// }
 
 async function Navbar({ extented = true, destination }: navPropsType) {
   // destinations data
@@ -49,7 +49,7 @@ async function Navbar({ extented = true, destination }: navPropsType) {
           <div className="nav-left">
             <MobileMenus destinations={navDestinations} extended={extented} />
             {extented ? (
-              <Brand variant="nav" />
+              <Brand variant="nav" logo="nav" />
             ) : (
               <Destinations
                 destinations={navDestinations}

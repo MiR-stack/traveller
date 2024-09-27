@@ -10,6 +10,7 @@
   &-wraper {
     @include flex(10px, space-between);
     width: 100%;
+    padding: 5px 0;
   }
 
   &-left {

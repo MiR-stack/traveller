@@ -5,7 +5,7 @@ import Brand from "@/components/shared/brand";
 function layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <Navbar extented />
+      <Navbar extented={false} />
       <Brand />
       {children}
       <Footer bg="bg2" />

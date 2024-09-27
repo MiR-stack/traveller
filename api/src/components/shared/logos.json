@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_logos",
+  "info": {
+    "displayName": "logos",
+    "icon": "cube"
+  },
+  "options": {},
+  "attributes": {
+    "mobile": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "wordmark": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "horizontal": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "vertical": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -45,6 +45,20 @@ export interface SharedImages extends Schema.Component {
   };
 }
 
+export interface SharedLogos extends Schema.Component {
+  collectionName: 'components_shared_logos';
+  info: {
+    displayName: 'logos';
+    icon: 'cube';
+  };
+  attributes: {
+    mobile: Attribute.Media<'images'>;
+    wordmark: Attribute.Media<'images'>;
+    horizontal: Attribute.Media<'images'>;
+    vertical: Attribute.Media<'images'>;
+  };
+}
+
 export interface SharedMetaSocial extends Schema.Component {
   collectionName: 'components_shared_meta_socials';
   info: {
@@ -119,6 +133,7 @@ declare module '@strapi/types' {
       'product.affiliates': ProductAffiliates;
       'product.price': ProductPrice;
       'shared.images': SharedImages;
+      'shared.logos': SharedLogos;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
       'shared.social-medias': SharedSocialMedias;

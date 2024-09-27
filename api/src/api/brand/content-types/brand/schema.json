@@ -26,18 +26,15 @@
       "maxLength": 250,
       "minLength": 20
     },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "social_medias": {
       "type": "component",
       "repeatable": true,
       "component": "shared.social-medias"
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.logos"
     }
   }
 }

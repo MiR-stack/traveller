@@ -7,6 +7,7 @@ import "@/styles/components/pages/search.scss";
 import qs from "qs";
 import { getStrapiData } from "@/utils";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 interface SearchParams {
   con?: string;
@@ -15,6 +16,32 @@ interface SearchParams {
   cat?: string;
   page?: string;
 }
+
+export const generateMetadata = async ({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}): Promise<Metadata> => {
+  const { con, des, q, cat } = searchParams;
+
+  const currentSearch = q || con || des || cat || "travel tips";
+
+  const description = `Uncover top articles on ${currentSearch}. Find expert tips, detailed guides, and in-depth insights to help you explore and master ${currentSearch}.`;
+  return {
+    title: `Discover the Best of ${currentSearch} | Expert Tips & Guides | traveller`,
+    description,
+    keywords: [
+      `Best ${currentSearch} tips`,
+      `${currentSearch} articles`,
+      `${currentSearch} guides`,
+      `${currentSearch} how-to`,
+      `explore ${currentSearch} `,
+      `top ${currentSearch} resources`,
+      `${currentSearch} insights`,
+      `in-depth ${currentSearch} analysis`,
+    ],
+  };
+};
 
 const PAGE_SIZE = 5;
 

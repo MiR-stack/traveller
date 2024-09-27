@@ -29,6 +29,8 @@ export interface imageAttrTypes {
   };
   url: string;
   alternativeText: string;
+  height: number;
+  width: number;
 }
 
 export interface imageTypes {
@@ -48,6 +50,7 @@ export interface formatedImageSrcsTypes {
 export interface formatedImageTypes {
   srcs: formatedImageSrcsTypes;
   alt: string;
+  aspectRatio?: number;
 }
 
 export interface socialMediaTypes {

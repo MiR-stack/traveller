@@ -68,7 +68,12 @@ async function Products() {
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <Link className="product link" href={product.url}>
+    <Link
+      className="product link"
+      href={product.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <CustomImage
         className="product-image"
         src={product.image.srcs.small}

@@ -66,7 +66,7 @@ const Hero = () => {
         modules={[Pagination, EffectFade, Autoplay]}
         effect="fade"
       >
-        <Navigation />
+        <Navigation className="hero__navigation" />
         {heroData.map((blog: any) => (
           <SwiperSlide key={blog.slug}>
             <CustomImage

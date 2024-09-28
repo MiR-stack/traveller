@@ -1,9 +1,21 @@
+import { use } from "react";
 import SectionLayout from "@/components/pages/home/sectionLayout/sectionLayout";
 import Card1 from "@/components/shared/cards/card1/card1";
 import { getFormatedImage, getStrapiData } from "@/utils";
 import qs from "qs";
 
-const query = qs.stringify({
+interface BlogData {
+  title: string;
+  slug: string;
+  destination: string;
+  category: string;
+  image: {
+    url: string;
+    alt: string;
+  };
+}
+
+const QUERY = qs.stringify({
   populate: {
     destination: {
       fields: ["name"],
@@ -23,29 +35,33 @@ const query = qs.stringify({
   sort: "createdAt:desc",
 });
 
-async function LatestPosts() {
-  const blogs = await getStrapiData("blogs", query, { cache: "no-store" });
+const fetchLatestBlogs = async (): Promise<BlogData[]> => {
+  const blogs = await getStrapiData("blogs", QUERY, { revalidate: 3600 });
 
-  const latestBlogs = blogs.data.map((blog: any) => {
+  return blogs.data.map((blog: any) => {
     const { title, slug, destination, categories, images } = blog.attributes;
-
     const image = getFormatedImage({ data: images.landscape.data[0] });
     return {
       title,
       slug,
       destination: destination.data?.attributes.name || "world",
-      category: categories.data[0].attributes.name,
-      image: { url: image?.srcs.medium, alt: image?.alt },
+      category: categories.data[0]?.attributes.name || "Uncategorized",
+      image: { url: image?.srcs.medium || "", alt: image?.alt || "" },
     };
   });
+};
+
+export default function LatestPosts() {
+  const latestBlogs = use(fetchLatestBlogs());
+
   return (
     <SectionLayout
-      title="latest posts"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut sed do eiusmod tempor"
+      title="Latest Posts"
+      description="Explore our most recent travel stories and adventures from around the world."
       background="bg2"
     >
       <div className="latest_posts-container">
-        {latestBlogs.slice(0, 6).map((blog: any) => (
+        {latestBlogs.map((blog: BlogData) => (
           <Card1
             className="latest_posts-blog"
             key={blog.slug}
@@ -60,5 +76,3 @@ async function LatestPosts() {
     </SectionLayout>
   );
 }
-
-export default LatestPosts;

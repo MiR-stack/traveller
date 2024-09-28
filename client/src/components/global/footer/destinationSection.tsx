@@ -16,7 +16,7 @@ const DestinationsSection = async () => {
         {destinations.slice(0, 4).map((destination) => (
           <Link
             className="link footer-destination"
-            href={destination.slug!}
+            href={`/search?des=${destination.slug}`}
             key={destination.slug}
           >
             {destination.name}

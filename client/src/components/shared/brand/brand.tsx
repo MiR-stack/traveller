@@ -87,15 +87,12 @@ async function Brand({
     } else {
       return (
         <div className="brand-container">
-          <Typography variant="h3" component="h1">
-            <Link
-              href={"/"}
-              className={`brand-name link ${
-                variant ? `${variant}-brand-name` : ""
-              }`}
-            >
-              {name}
-            </Link>
+          <Typography
+            variant="h3"
+            className={`brand-name ${variant ? `${variant}-brand-name` : ""}`}
+            component="h1"
+          >
+            {name}
           </Typography>
           {moto && isMoto && (
             <Typography className="brand-moto" variant="body2">
@@ -108,7 +105,9 @@ async function Brand({
   }
   return (
     <section className={`brand  ${variant ? `${variant}-brand` : ""}`}>
-      {Logo()}
+      <Link href={"/"} className="link">
+        {Logo()}
+      </Link>
     </section>
   );
 }

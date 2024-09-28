@@ -1,0 +1,32 @@
+@import "../../foundations/all";
+
+.goToTop {
+  position: fixed;
+  bottom: 20%;
+  right: 20px;
+  @include gthemed {
+    background-color: t(primary);
+    color: $white;
+  }
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s, visibility 0.3s;
+  opacity: 0.7;
+  z-index: 1000;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
+  }
+}

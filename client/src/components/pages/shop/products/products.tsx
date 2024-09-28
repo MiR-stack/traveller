@@ -1,6 +1,5 @@
 import { affiliateResponse, imageTypes, priceResponse } from "@/types";
 import ProductCard from "../productCard/productCard";
-import { products } from "../products.data";
 import { getFormatedImage } from "@/utils";
 
 interface productResponse {

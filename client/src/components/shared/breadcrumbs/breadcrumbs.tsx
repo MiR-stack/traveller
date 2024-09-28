@@ -8,14 +8,18 @@ import { breadcrumbTypes } from "@/types/shared.types";
 interface breadcrumbsPropsType {
   breadcrumbs: breadcrumbTypes[];
   separator?: React.ReactNode | string;
+  className?: string;
 }
 
 function Breadcrumbs({
   breadcrumbs,
   separator = <FaChevronRight />,
+  className,
 }: breadcrumbsPropsType) {
   return (
-    <div className={`${variables.brandName}-breadcrumbs`}>
+    <div
+      className={`${variables.brandName}-breadcrumbs ${className ?? className}`}
+    >
       {breadcrumbs.map((breadcrumb) => {
         return breadcrumb.slug ? (
           <>

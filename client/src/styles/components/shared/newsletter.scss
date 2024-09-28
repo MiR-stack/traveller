@@ -4,12 +4,12 @@
   @include gthemed {
     background-color: t(background-2);
   }
-  &-container {
+  &__container {
     @include flex(50px, center);
     padding: 50px 0;
   }
 
-  &-image {
+  &__image {
     width: 100%;
     max-width: 300px;
     aspect-ratio: 5/3;
@@ -23,7 +23,7 @@
       max-width: 490px;
     }
   }
-  &-wraper {
+  &__wraper {
     @include flex(5px, center, center);
     flex-direction: column;
     width: 100%;
@@ -35,11 +35,11 @@
       width: unset;
     }
   }
-  &-title {
+  &__title {
     text-transform: uppercase;
     font-size: calc(1.7rem + 0.5vw);
   }
-  &-description {
+  &__description {
     max-width: 600px;
 
     @include gthemed {
@@ -47,7 +47,7 @@
       margin-bottom: 20px;
     }
   }
-  &-form {
+  &__form {
     @include flex(5px, space-between, flex-start);
     flex-wrap: wrap;
     width: 100%;
@@ -56,14 +56,20 @@
       width: unset;
     }
   }
-  &-input {
-    width: 49%;
-    margin-bottom: 10px;
-    @include lg {
-      width: 204px;
+  &__input {
+    &-wraper {
+      width: 49%;
+      margin-bottom: 10px;
+      @include lg {
+        width: 204px;
+      }
+    }
+
+    &-field {
+      width: 100%;
     }
   }
-  &-btn {
+  &__btn {
     padding: 6px 20px;
     background-color: $primary;
     color: $white;

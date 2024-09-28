@@ -1,0 +1,43 @@
+@import "../../foundations/all";
+
+.modal {
+  &-alert {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+
+    &__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      svg {
+        width: 32px;
+        height: 32px;
+        color: $white;
+      }
+
+      &--success {
+        background-color: $primary;
+      }
+
+      &--error {
+        background-color: $warning;
+      }
+    }
+
+    &__message {
+      font-size: 1.1rem;
+      text-transform: capitalize;
+      @include gthemed {
+        color: t(text);
+      }
+    }
+  }
+}

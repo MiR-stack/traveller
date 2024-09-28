@@ -33,6 +33,8 @@ const BrandSection = async () => {
               href={media.url}
               key={media.name}
               aria-label={media.name}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {icons[media.name as keyof typeof icons]}
             </Link>

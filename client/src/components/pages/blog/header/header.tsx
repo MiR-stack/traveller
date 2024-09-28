@@ -57,7 +57,10 @@ function Header({ destination, title, createdAt, readTime }: headerPropsType) {
 
   return (
     <div className="blog-header">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <Breadcrumbs
+        breadcrumbs={breadcrumbs}
+        className="blog-header-breadcrumbs"
+      />
       <Typography className="blog-header-title" variant="h1">
         {title}
       </Typography>

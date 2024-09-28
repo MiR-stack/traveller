@@ -20,7 +20,7 @@ const query = qs.stringify({
   sort: "createdAt:desc",
 });
 async function LatestPosts() {
-  const blogs = await getStrapiData("blogs", query, { cache: "no-store" });
+  const blogs = await getStrapiData("blogs", query, { revalidate: 3600 });
 
   const latestBlogs = blogs.data.map((blog: any) => {
     const { title, slug, destination, images, readTime } = blog.attributes;

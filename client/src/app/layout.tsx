@@ -14,6 +14,7 @@ import {
 import ReduxProvider from "@/store/provider";
 import { getStrapiData } from "@/utils";
 import qs from "qs";
+import GoToTopButton from "@/components/utils/goTop";
 
 const query = qs.stringify({
   fields: ["name", "short_description"],
@@ -51,7 +52,10 @@ async function RootLayout({
         className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${oswald.variable} ${wellfleet.variable}`}
       >
         <ReduxProvider>
-          <ThemeContextProvider>{children} </ThemeContextProvider>
+          <ThemeContextProvider>
+            {children}
+            <GoToTopButton />
+          </ThemeContextProvider>
         </ReduxProvider>
       </body>
     </html>

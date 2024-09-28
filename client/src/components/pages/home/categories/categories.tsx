@@ -86,7 +86,10 @@ function Categories() {
         >
           {categories.map((category: any) => (
             <SwiperSlide key={category.name}>
-              <Link href={category.slug} className="category-slide link">
+              <Link
+                href={`/search?cat=${category.slug}`}
+                className="category-slide link"
+              >
                 {icons[category.icon as keyof typeof icons]}
                 <div className="category-details">
                   <Typography className="category-blogsCount" variant="body2">

@@ -22,6 +22,10 @@
   }
 
   &-header {
+    &-breadcrumbs {
+      padding-top: 20px;
+      padding-bottom: 0px;
+    }
     &-title {
       font-size: calc(1.3rem + 1.2vw) !important;
       text-transform: capitalize;

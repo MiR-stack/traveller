@@ -1,85 +1,104 @@
 "use client";
 
-import React, { useState, FormEvent, ChangeEvent } from "react";
-import Input from "../input";
-import { newsletterData } from "./newsletter.data";
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useSubscribeMutation } from "@/store/api/strapiApi";
+import Alert from "../alert";
 
-interface FormData {
-  name: string;
-  email: string;
-}
+const validationSchema = Yup.object({
+  name: Yup.string().required("Please enter your name"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+});
 
-interface ErrorData {
+interface FormValues {
   name: string;
   email: string;
 }
 
 const NewsletterForm: React.FC = () => {
-  const initData: FormData = {
-    name: "",
-    email: "",
+  const [subscribe, { error: subscribeError, isSuccess }] =
+    useSubscribeMutation();
+
+  const [modal, setModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalStatus, setModalStatus] = useState<"success" | "error">(
+    "success"
+  );
+
+  const initialValues: FormValues = { name: "", email: "" };
+
+  const onSubmit = (
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    subscribe(values);
+    resetForm();
   };
 
-  const [data, setData] = useState<FormData>(initData);
-  const [error, setError] = useState<ErrorData>(initData);
-
-  const errorText = {
-    name: "Please enter your name",
-    email: "Please enter your email",
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
-    handleError(name, value);
-  };
-
-  const handleError = (name: string, value: string) => {
-    setError((prev) => ({
-      ...prev,
-      [name]: value ? "" : errorText[name as keyof typeof errorText],
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!data.name || !data.email) {
-      Object.keys(data).forEach((key) => {
-        if (!data[key as keyof FormData]) {
-          handleError(key, "");
-        }
-      });
-      return;
+  useEffect(() => {
+    if (subscribeError) {
+      setModalMessage(
+        "status" in subscribeError && subscribeError.status === 400
+          ? "Already subscribed"
+          : "Something went wrong"
+      );
+      setModalStatus("error");
+      setModal(true);
+    } else if (isSuccess) {
+      setModalMessage("Newsletter subscribed successfully");
+      setModalStatus("success");
+      setModal(true);
     }
-
-    console.log(data);
-    setData(initData);
-  };
+  }, [subscribeError, isSuccess]);
 
   return (
-    <form className="newsletter-form" onSubmit={handleSubmit}>
-      <Input
-        className="newsletter-input"
-        placeholder="Name"
-        name="name"
-        value={data.name}
-        error={error.name}
-        onChange={handleChange}
-      />
-      <Input
-        className="newsletter-input"
-        placeholder="Email"
-        type="email"
-        name="email"
-        value={data.email}
-        error={error.email}
-        onChange={handleChange}
-      />
-      <button className="newsletter-btn btn" type="submit">
-        {newsletterData.btn}
-      </button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ errors, touched }) => (
+        <Form className="newsletter__form">
+          <div
+            className={`input__wraper newsletter__input-wraper ${
+              errors.name && touched.name ? "input__wraper--error" : ""
+            }`}
+          >
+            <Field
+              className="input newsletter__input-field"
+              name="name"
+              placeholder="Name"
+            />
+            <ErrorMessage name="name" component="span" />
+          </div>
+          <div
+            className={`input__wraper newsletter__input-wraper ${
+              errors.email && touched.email ? "input__wraper--error" : ""
+            }`}
+          >
+            <Field
+              className="input newsletter__input-field"
+              name="email"
+              placeholder="Email"
+            />
+            <ErrorMessage name="email" component="span" />
+          </div>
+          <button className="newsletter__btn btn" type="submit">
+            Subscribe
+          </button>
+          {modal && (
+            <Alert
+              message={modalMessage}
+              status={modalStatus}
+              handleClose={() => setModal(false)}
+            />
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 };
 

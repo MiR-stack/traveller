@@ -1,6 +1,5 @@
 import CustomImage from "../bgImageContainer/bgImageContainer";
 import Typography from "../typography";
-import { newsletterData } from "./newsletter.data";
 import "@/styles/components/shared/newsletter.scss";
 import Container from "../container";
 import NewsletterForm from "./newsletterForm";
@@ -25,18 +24,18 @@ async function Newsletter() {
   return (
     <section className="newsletter">
       <Container maxWidth="xlg">
-        <div className="newsletter-container">
+        <div className="newsletter__container">
           <CustomImage
-            className="newsletter-image"
+            className="newsletter__image"
             src={image?.srcs.medium || ""}
             alt={""}
             sizes={`(max-width:768px) 0vw,(max-width:1200px) 30vw,35vw`}
           />
-          <div className="newsletter-wraper">
-            <Typography variant="h2" className="newsletter-title">
+          <div className="newsletter__wraper">
+            <Typography variant="h2" className="newsletter__title">
               {name}
             </Typography>
-            <Typography className="newsletter-description" variant="body1">
+            <Typography className="newsletter__description" variant="body1">
               {short_description}
             </Typography>
             <NewsletterForm />

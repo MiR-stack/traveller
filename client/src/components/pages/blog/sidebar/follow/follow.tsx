@@ -15,6 +15,8 @@ async function Follow() {
             className="blog-sidebar-follow-card link"
             key={media.name}
             href={media.url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {icons[media.icon as keyof typeof icons]}
             <p className="blog-sidebar-follow--name">{media.name}</p>

@@ -31,17 +31,13 @@ function SearchBar() {
   };
 
   return (
-    <form className="nav-search" onSubmit={handleSearch}>
-      <button
-        type="submit"
-        className="nav-search--btn btn"
-        aria-label="searchButton"
-      >
-        <IoSearchSharp className="nav-search--icon" />
+    <form className="navbar-search" onSubmit={handleSearch}>
+      <button type="submit" className="btn" aria-label="searchButton">
+        <IoSearchSharp className="navbar-search__icon" />
       </button>
       <input
         type="search"
-        className="nav-search--input"
+        className="navbar-search__input"
         placeholder="search"
         aria-label="search"
         value={searchTerms}

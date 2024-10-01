@@ -25,10 +25,10 @@ function Comments({ blogId }: commentPropsType) {
   };
 
   return (
-    <div className="blog-comments-container">
+    <div className="blog-comments">
       <SectionLayout title={`comments ${data?.length || 0}`}>
         {data?.length > 0 ? (
-          <div className="blog-comments">
+          <div className="blog-comments__container">
             {data.map((comment: commentTypes) => (
               <Comment
                 key={comment.id}

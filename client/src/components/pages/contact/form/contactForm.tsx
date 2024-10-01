@@ -61,11 +61,11 @@ function ContactForm() {
   }, [error]);
 
   return (
-    <div className="contactForm">
-      <Typography className="contactForm__title" variant="h2">
+    <div className="contact-form">
+      <Typography className="contact-form__title" variant="h2">
         Contact Us
       </Typography>
-      <Typography className="contactForm__subTitle" variant="body1">
+      <Typography className="contact-form__subTitle" variant="body1">
         Your satisfaction is our top priority. Contact us for personalized
         travel support.
       </Typography>
@@ -75,10 +75,10 @@ function ContactForm() {
         onSubmit={handleSubmit}
       >
         {({ errors, touched }) => (
-          <Form className="contactForm__form">
-            <div className="contactForm__input--wrapper">
+          <Form className="contact-form__form">
+            <div className="contact-form__input-wrapper">
               <Field
-                className={`contactForm__input input ${
+                className={`contact-form__input input ${
                   errors.name && touched.name ? "input--error" : ""
                 }`}
                 name="name"
@@ -86,9 +86,9 @@ function ContactForm() {
               />
               <ErrorMessage className="text--error" name="name" component="p" />
             </div>
-            <div className="contactForm__input--wrapper">
+            <div className="contact-form__input-wrapper">
               <Field
-                className={`contactForm__input input ${
+                className={`contact-form__input input ${
                   errors.email && touched.email ? "input--error" : ""
                 }`}
                 name="email"
@@ -101,9 +101,9 @@ function ContactForm() {
                 component="p"
               />
             </div>
-            <div className="contactForm__textarea--wrapper">
+            <div className="contact-form__textarea-wrapper">
               <Field
-                className={`contactForm__textarea input ${
+                className={`contact-form__textarea input ${
                   errors.message && touched.message ? "input--error" : ""
                 }`}
                 name="message"
@@ -116,7 +116,7 @@ function ContactForm() {
                 component="p"
               />
             </div>
-            <button className="btn contactForm__button" type="submit">
+            <button className="btn contact-form__button" type="submit">
               Send Message
             </button>
           </Form>

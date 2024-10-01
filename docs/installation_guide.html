@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traveller - Next.js & Strapi Website Documentation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Optional: Link to a CSS file for styling -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      header {
+        background: #35424a;
+        color: #ffffff;
+        padding: 10px 0;
+        text-align: center;
+      }
+      nav {
+        margin: 20px 0;
+        background: #e2e2e2;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      nav h2 {
+        margin: 0;
+      }
+      nav ol,
+      nav ul {
+        padding-left: 20px;
+      }
+      main {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2,
+      h3,
+      h4 {
+        color: #35424a;
+      }
+      pre {
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 10px;
+        overflow-x: auto;
+      }
+      footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Traveller - Next.js & Strapi Website Documentation</h1>
+    </header>
+    <nav>
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#folder-structure">Folder Structure</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li>
+          <a href="#installation-guide">Installation Guide</a>
+          <ol>
+            <li>
+              <a href="#downloading-source-code">Downloading the Source Code</a>
+            </li>
+            <li>
+              <a href="#setting-up-strapi-backend"
+                >Setting up the Strapi Backend</a
+              >
+            </li>
+            <li>
+              <a href="#setting-up-nextjs-frontend"
+                >Setting up the Next.js Frontend</a
+              >
+            </li>
+          </ol>
+        </li>
+        <li><a href="#running-application">Running the Application</a></li>
+        <li>
+          <a href="#deployment">Deployment</a>
+          <ol>
+            <li>
+              <a href="#deploying-frontend-github"
+                >Deploying the Frontend (Next.js) with GitHub</a
+              >
+            </li>
+            <li>
+              <a href="#deploying-backend-github"
+                >Deploying the Backend (Strapi) with GitHub</a
+              >
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
+    <main>
+      <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>
+          Welcome to Traveller, a modern, responsive website template built with
+          Next.js for the frontend and Strapi CMS for the backend. This
+          documentation will guide you through setting up, running, customizing,
+          and deploying your website.
+        </p>
+        <ul>
+          <li>
+            <strong>Frontend:</strong> Powered by Next.js, providing
+            lightning-fast performance and SEO optimization.
+          </li>
+          <li>
+            <strong>Backend:</strong> Managed through Strapi, offering a
+            flexible headless CMS to manage your content.
+          </li>
+        </ul>
+      </section>
+      <section id="folder-structure">
+        <h2>2. Folder Structure</h2>
+        <pre>
+/traveller
+├── /frontend # Next.js project folder (frontend code)
+├── /backend # Strapi project folder (backend code)
+├── /docs # Documentation files
+            </pre
+        >
+        <ul>
+          <li>
+            <strong>frontend/:</strong> Contains the Next.js code for rendering
+            the website's UI.
+          </li>
+          <li>
+            <strong>backend/:</strong> Contains the Strapi CMS code for managing
+            content.
+          </li>
+          <li>
+            <strong>docs/:</strong> Any related documentation, including this
+            guide.
+          </li>
+        </ul>
+      </section>
+      <section id="prerequisites">
+        <h2>3. Prerequisites</h2>
+        <p>
+          Before starting, ensure you have the following installed on your
+          system:
+        </p>
+        <ul>
+          <li><strong>Node.js</strong> (v14.x or higher)</li>
+          <li><strong>Yarn</strong> or <strong>npm</strong></li>
+          <li><strong>Git</strong> (for deployment purposes)</li>
+          <li><strong>A Database</strong> (PostgreSQL)</li>
+        </ul>
+      </section>
+      <section id="installation-guide">
+        <h2>4. Installation Guide</h2>
+        <h3 id="downloading-source-code">1. Downloading the Source Code</h3>
+        <ol>
+          <li>
+            <strong>Unzip the source code:</strong> Extract the provided .zip
+            file to a folder on your machine.
+          </li>
+          <li>
+            <strong>Navigate to the project folder:</strong>
+            <pre>cd traveller</pre>
+          </li>
+        </ol>
+        <h3 id="setting-up-strapi-backend">2. Setting up the Strapi Backend</h3>
+        <ol>
+          <li>
+            <strong>Navigate to the backend directory:</strong>
+            <pre>cd backend</pre>
+          </li>
+          <li>
+            <strong>Install the backend dependencies:</strong>
+            <pre>yarn install</pre>
+            <p>or</p>
+            <pre>npm install</pre>
+          </li>
+          <li>
+            <strong>Configure the environment:</strong>
+            <ul>
+              <li>
+                Copy the <code>.env.example</code> file to <code>.env</code>:
+                <pre>cp .env.example .env</pre>
+              </li>
+              <li>
+                Open the <code>.env</code> file and set up your database
+                connection and other environment variables. Example for
+                PostgreSQL:
+              </li>
+            </ul>
+            <pre>
+DATABASE_CLIENT=postgres
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=traveller
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=AGGDEQAGv
+DATABASE_SSL=false
+                    </pre
+            >
+          </li>
+          <li>
+            <strong>Run Strapi in development mode:</strong>
+            <pre>yarn dev</pre>
+            <p>or</p>
+            <pre>npm run dev</pre>
+          </li>
+          <li>
+            You can now access the Strapi admin panel at
+            <a href="http://localhost:1337/admin">http://localhost:1337/admin</a
+            >.
+          </li>
+          <li><strong>Register on admin panel</strong></li>
+          <li>
+            <strong>Add settings and data:</strong>
+            <p>
+              Open another terminal in the backend file location, then run this
+              command:
+            </p>
+            <pre>
+yarn strapi import -f /your-file-path/strapi-export.tar.gz</pre
+            >
+            <p>
+              Wait for complete data transfer. It will add all default settings
+              and data.
+            </p>
+          </li>
+        </ol>
+        <h3 id="setting-up-nextjs-frontend">
+          3. Setting up the Next.js Frontend
+        </h3>
+        <ol>
+          <li>
+            <strong>Navigate to the frontend directory:</strong>
+            <pre>cd ../frontend</pre>
+          </li>
+          <li>
+            <strong>Install the frontend dependencies:</strong>
+            <pre>yarn install</pre>
+            <p>or</p>
+            <pre>npm install</pre>
+          </li>
+          <li>
+            <strong>Configure environment variables:</strong>
+            <ul>
+              <li>
+                Copy the <code>.env.example</code> file to <code>.env</code>:
+                <pre>cp .env.example .env</pre>
+              </li>
+              <li>
+                Open the <code>.env</code> file and set up all environment
+                variables:
+              </li>
+              <ol>
+                <li>
+                  <code>API_TOKEN:</code> Navigate to the backend admin panel >
+                  settings > API Token > Create API Token. Set the token
+                  duration to unlimited and the token type to read-only.
+                </li>
+                <li>
+                  <code>NEXT_PUBLIC_API_TOKEN:</code> Create another API token
+                  with a custom token type. Grant the following permissions:
+                  <code>blog(find)</code>, <code>category(find)</code>,
+                  <code>contact(create)</code>, <code>destination(find)</code>,
+                  <code>subscriber(create)</code>,
+                  <code
+                    >comments(findAllFlat, findAllHierarchy, post, put,
+                    removeComment)</code
+                  >.
+                </li>
+              </ol>
+              <pre>NEXT_PUBLIC_API_URL=http://localhost:1337</pre>
+            </ul>
+          </li>
+          <li>
+            <strong>Run Next.js in development mode:</strong>
+            <pre>yarn dev</pre>
+            <p>or</p>
+            <pre>npm run dev</pre>
+          </li>
+          <li>
+            Your frontend will be available at
+            <a href="http://localhost:3000">http://localhost:3000</a>.
+          </li>
+        </ol>
+      </section>
+      <section id="running-application">
+        <h2>6. Running the Application</h2>
+        <p>To run the application locally, follow these steps:</p>
+        <h3>1. Start the Strapi Backend:</h3>
+        <pre>cd backend && yarn develop</pre>
+        <p>
+          This will start the backend server at
+          <a href="http://localhost:1337">http://localhost:1337</a>.
+        </p>
+        <h3>2. Start the Next.js Frontend:</h3>
+        <pre>cd frontend && yarn dev</pre>
+        <p>
+          This will start the frontend server at
+          <a href="http://localhost:3000">http://localhost:3000</a>.
+        </p>
+      </section>
+      <section id="deployment">
+        <h2>7. Deployment</h2>
+        <h3 id="deploying-backend-github">
+          1. Deploying the Backend (Strapi) with GitHub
+        </h3>
+        <p>
+          Since you are working with source code instead of a Git repository,
+          you'll need to push the frontend code to a new repository.
+        </p>
+        <h4>Step 1: Create a GitHub Repository for the Strapi Backend</h4>
+        <ol>
+          <li>Sign in to <strong>GitHub</strong> or create an account.</li>
+          <li>Create a new repository (e.g., my-strapi-backend).</li>
+          <li>
+            Push the backend code:
+            <pre>
+cd backend
+git init
+git branch -M main
+git remote add origin https://github.com/your-username/my-strapi-backend.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+                    </pre
+            >
+          </li>
+        </ol>
+        <h4>Step 2: Deploy on Heroku</h4>
+        <ol>
+          <li>
+            Sign in to <a href="https://heroku.com">Heroku</a> and create a new
+            app.
+          </li>
+          <li>Link the GitHub repository you just created.</li>
+          <li>
+            Set the environment variables in Heroku (e.g., DATABASE_URL for
+            PostgreSQL).
+          </li>
+          <li>
+            Deploy the Strapi backend. After deployment, access the Strapi admin
+            panel at the Heroku-provided URL.
+          </li>
+        </ol>
+        <h4>Step 3: Deploy on Railway (Alternative)</h4>
+        <ol>
+          <li>
+            Sign in to <a href="https://railway.com">Railway</a> and create a
+            new project.
+          </li>
+          <li>Link the GitHub repository and deploy the Strapi backend.</li>
+          <li>
+            Configure the environment variables in Railway (e.g., database
+            credentials, API keys).
+          </li>
+        </ol>
+        <h3 id="deploying-frontend-github">
+          2. Deploying the Frontend (Next.js) with GitHub
+        </h3>
+        <h4>Step 1: Create a GitHub Repository</h4>
+        <ol>
+          <li>
+            Sign in to GitHub and create a new repository for your frontend
+            (e.g., my-nextjs-frontend).
+          </li>
+          <li>
+            Push the frontend code to the new repository:
+            <pre>
+cd frontend
+git init
+git branch -M main
+git remote add origin https://github.com/your-username/my-nextjs-frontend.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+                    </pre
+            >
+          </li>
+        </ol>
+        <h4>Step 2: Deploy on Vercel</h4>
+        <ol>
+          <li>
+            Go to <a href="https://vercel.com">Vercel</a> and connect your
+            GitHub account.
+          </li>
+          <li>
+            Create a new project by selecting the GitHub repository you just
+            created.
+          </li>
+          <li>
+            Set the <strong>NEXT_PUBLIC_API_URL</strong> environment variable in
+            the Vercel dashboard to point to your deployed Strapi backend.
+          </li>
+          <li>
+            Deploy your project and access it via the Vercel-provided URL.
+          </li>
+        </ol>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Traveller Documentation</p>
+    </footer>
+  </body>
+</html>

@@ -43,11 +43,11 @@ async function RelatedBlogs({
   }
 
   return (
-    <SectionLayout className="blog-related-container" title="related blogs">
-      <div className="blog-related">
+    <SectionLayout className="related-blog" title="related blogs">
+      <div className="related-blog__wrapper">
         {blogsData.slice(0, expectedBlogsLength).map((blog) => (
           <Card1
-            className="blog-related-card"
+            className="related-blog__card"
             key={blog.slug}
             {...blog}
             variant="related"

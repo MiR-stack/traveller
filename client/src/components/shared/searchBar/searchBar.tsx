@@ -34,18 +34,21 @@ function SearchBar({ query, path }: searchBarPropsType) {
   };
   return (
     <form
-      className={`${variables.brandName}-searchBar`}
+      className={`${variables.brandName}-search-bar`}
       onSubmit={handleSearch}
     >
       <input
-        className={`${variables.brandName}-searchBar-field`}
+        className={`${variables.brandName}-search-bar__field`}
         type="search"
         name="search"
         value={search}
         placeholder="search"
         onChange={handleChange}
       />
-      <button className={`${variables.brandName}-searchBar-btn`} type="submit">
+      <button
+        className={`${variables.brandName}-search-bar__button`}
+        type="submit"
+      >
         search
       </button>
     </form>

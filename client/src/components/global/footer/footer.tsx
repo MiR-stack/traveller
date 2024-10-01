@@ -12,9 +12,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ bg = "bg1" }) => {
   return (
-    <footer className={`footer footer-${bg}`}>
+    <footer className={`footer footer--${bg}`}>
       <Container maxWidth="xlg">
-        <div className="footer-container">
+        <div className="footer__container">
           <BrandSection />
           <DestinationsSection />
           <PopularPostsSection />
@@ -26,8 +26,8 @@ const Footer: React.FC<FooterProps> = ({ bg = "bg1" }) => {
 };
 
 const CopyrightSection = () => (
-  <div className="footer-bottom">
-    <p className="footer-bottom-text">
+  <div className="copyright">
+    <p className="copyright__text">
       <FaRegCopyright /> 2024 Traveller blog. All right Reserved.
     </p>
   </div>

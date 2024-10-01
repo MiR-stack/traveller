@@ -8,7 +8,7 @@ function Theme() {
   const { isDark, toggleDark } = useContext(ThemeContext);
 
   return (
-    <div className="nav-theme" onClick={toggleDark}>
+    <div className="navbar__theme" onClick={toggleDark}>
       {isDark ? <IoSunnyOutline /> : <IoMoonOutline />}
     </div>
   );

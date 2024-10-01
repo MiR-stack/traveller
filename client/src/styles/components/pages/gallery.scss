@@ -21,40 +21,40 @@
       column-gap: 30px;
     }
   }
-}
 
-.galleryImage {
-  width: 100%;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-
-  &:hover &__wraper {
-    display: flex;
-  }
-
-  &__wraper {
-    position: absolute;
-    height: 100%;
+  &-image {
     width: 100%;
-    @include flex(10px, center);
-    flex-direction: column;
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-  }
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
 
-  &__shortDesc {
-    text-transform: capitalize;
-    color: $white;
-  }
+    &:hover &__wrapper {
+      display: flex;
+    }
 
-  &__location {
-    text-transform: capitalize;
-    color: $white !important;
-    padding: 10px 20px !important;
-    border: 2px solid $white;
+    &__wrapper {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      @include flex(10px, center);
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+    }
+
+    &__description {
+      text-transform: capitalize;
+      color: $white;
+    }
+
+    &__location {
+      text-transform: capitalize;
+      color: $white !important;
+      padding: 10px 20px !important;
+      border: 2px solid $white;
+    }
   }
 }

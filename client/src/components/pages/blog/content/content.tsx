@@ -19,7 +19,7 @@ function Content({ content, author, url, title, blogs, id }: contentPropsType) {
   return (
     <div className="blog-content">
       <article
-        className="blog-content-main ck-content"
+        className="blog-content__main ck-content"
         dangerouslySetInnerHTML={{ __html: content }}
       />
       <ContentFooter url={url} title={title} />

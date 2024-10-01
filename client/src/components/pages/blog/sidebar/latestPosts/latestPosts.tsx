@@ -37,10 +37,10 @@ async function LatestPosts() {
 
   return (
     <SectionLayout title="latest posts">
-      <div className="blog-sidebar-latest">
+      <div className="sidebar-latest-post">
         {latestBlogs.slice(0, 4).map((blog: any) => (
           <Card3
-            className={"blog-sidebar-latest-card"}
+            className={"sidebar-latest-post__card"}
             {...blog}
             key={blog.slug}
             readTime={blog.readTime + " minutes read"}

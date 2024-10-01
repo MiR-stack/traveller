@@ -3,7 +3,6 @@ import Destinations from "./destinations/destinations";
 import { destinationsType } from "@/types/navbar.types";
 import "@/styles/components/global/navbar.scss";
 import Container from "@/components/shared/container";
-import { headers } from "next/headers";
 import Menus from "./menus";
 import MobileMenus from "./menus/mobileMenue";
 import SearchBar from "./searchBar/searchBar";
@@ -17,17 +16,6 @@ interface navPropsType {
   extented?: boolean;
   destination?: string;
 }
-
-// function IP() {
-//   const FALLBACK_IP_ADDRESS = "0.0.0.0";
-//   const forwardedFor = headers().get("x-forwarded-for");
-
-//   if (forwardedFor) {
-//     return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
-//   }
-
-//   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
-// }
 
 async function Navbar({ extented = true, destination }: navPropsType) {
   // destinations data
@@ -43,10 +31,10 @@ async function Navbar({ extented = true, destination }: navPropsType) {
   };
 
   return (
-    <nav className="nav">
+    <nav className="navbar">
       <Container maxWidth="xlg">
-        <div className="nav-wraper">
-          <div className="nav-left">
+        <div className="navbar__wrapper">
+          <div className="navbar__left">
             <MobileMenus destinations={navDestinations} extended={extented} />
             {extented ? (
               <Brand variant="nav" logo="nav" />
@@ -57,15 +45,15 @@ async function Navbar({ extented = true, destination }: navPropsType) {
               />
             )}
           </div>
-          <Menus navExtended={extented} navDestinations={navDestinations} />
-          <div className="nav-right">
+          <Menus extended={extented} navDestinations={navDestinations} />
+          <div className="navbar__right">
             <Suspense fallback={<div>Loading...</div>}>
               <SearchBar />
             </Suspense>
             <Divider size={12} direction="verticale" />
             <Theme />
             <Divider
-              className="nav-theme-divider"
+              className="navbar__theme-divider"
               size={12}
               direction="verticale"
             />

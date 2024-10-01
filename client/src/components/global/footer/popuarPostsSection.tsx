@@ -37,17 +37,17 @@ const PopularPostsSection = async () => {
   });
 
   return (
-    <div className="footer-posts">
-      <Typography className="footer-title" variant="h3" component="h2">
+    <div className="footer-blogs">
+      <Typography className="footer__title" variant="h3" component="h2">
         popular posts
       </Typography>
-      <div className="footer-wraper">
+      <div className="footer__wraper">
         {popularBlogs.slice(0, 3).map((blog: any) => (
           <div className="footer-blog" key={blog.slug}>
-            <Link className="footer-blog-title link" href={blog.slug}>
+            <Link className="footer-blog__title link" href={blog.slug}>
               {blog.title}
             </Link>
-            <Typography className="footer-blog-country" variant="body2">
+            <Typography className="footer-blog__country" variant="body2">
               {blog.destination}
             </Typography>
           </div>

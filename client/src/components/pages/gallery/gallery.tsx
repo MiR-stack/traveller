@@ -40,16 +40,16 @@ async function Gallery() {
   return (
     <div className="gallery__container">
       {photos.map((photo: any, index: number) => (
-        <Link href={"/slug"} key={index}>
+        <Link href={"/search"} key={index}>
           <CustomImage
-            className="galleryImage"
+            className="gallery-image"
             src={photo.image.srcs.medium}
             alt={photo.image.alt}
             style={{ aspectRatio: photo.aspectRatio }}
           >
-            <div className="galleryImage__wraper">
-              <p className="galleryImage__shortDesc">{photo.shortDesc}</p>
-              <Typography className="galleryImage__location" variant="h4">
+            <div className="gallery-image__wrapper">
+              <p className="gallery-image__description">{photo.shortDesc}</p>
+              <Typography className="gallery-image__location" variant="h4">
                 {photo.location}
               </Typography>
             </div>

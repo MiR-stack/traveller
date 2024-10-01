@@ -1,11 +1,10 @@
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Typography from "@/components/shared/typography/typography";
 import "@/styles/components/shared/brand.scss";
-import { getFormatedImage, getStrapiData, getStrapiMedia } from "@/utils";
+import { getStrapiData, getStrapiMedia } from "@/utils";
 import Link from "next/link";
 import qs from "qs";
 import { MASTER_TAG } from "@/utils/constants";
-import { formatedImageTypes, imageAttrTypes } from "@/types";
 
 interface brandPropsType {
   isMoto?: boolean;
@@ -78,7 +77,7 @@ async function Brand({
       return (
         <CustomImage
           src={logos[logo].src}
-          className={`brand__logo ${variant ? `${variant}-brand-logo` : ""}`}
+          className={`brand__logo`}
           style={{ aspectRatio: logos[logo].aspectRatio }}
           alt="brand logo"
           sizes="30vw"
@@ -86,16 +85,12 @@ async function Brand({
       );
     } else {
       return (
-        <div className="brand-container">
-          <Typography
-            variant="h3"
-            className={`brand-name ${variant ? `${variant}-brand-name` : ""}`}
-            component="h1"
-          >
+        <div className="brand__container">
+          <Typography variant="h3" className={`brand__name `} component="h1">
             {name}
           </Typography>
           {moto && isMoto && (
-            <Typography className="brand-moto" variant="body2">
+            <Typography className="brand__moto" variant="body2">
               {moto}
             </Typography>
           )}
@@ -104,7 +99,7 @@ async function Brand({
     }
   }
   return (
-    <section className={`brand  ${variant ? `${variant}-brand` : ""}`}>
+    <section className={`brand  ${variant ? `brand--${variant}` : ""}`}>
       <Link href={"/"} className="link">
         {Logo()}
       </Link>

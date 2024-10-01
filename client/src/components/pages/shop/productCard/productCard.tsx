@@ -30,20 +30,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const hasDiscount = price.discount && price.discount < price.regular;
 
   const renderPrice = () => (
-    <div className="shop-productCard--price">
+    <div className="product-card__price">
       {hasDiscount && (
-        <Typography
-          variant="body1"
-          className="shop-productCard--price-discount price-active"
-        >
+        <Typography variant="body1" className="product-card__price--active">
           ${price.discount}
         </Typography>
       )}
       <Typography
         variant="body1"
-        className={`shop-productCard--price-regular ${
-          hasDiscount ? "price-discount" : "price-active"
-        }`}
+        className={
+          hasDiscount
+            ? "product-card__price--discount"
+            : "product-card__price--active"
+        }
       >
         ${price.regular}
       </Typography>
@@ -51,17 +50,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   );
 
   const renderAffiliates = () => (
-    <div className="shop-productCard--affiliates">
-      <Typography
-        variant="body2"
-        className="shop-productCard--affiliates-title"
-      >
+    <div className="product-affiliates">
+      <Typography variant="body2" className="product-affiliates__title">
         Check latest price on:
       </Typography>
       {affiliates.map((affiliate) => (
         <Link
           key={affiliate.name}
-          className="shop-productCard--affiliates-btn link"
+          className="product-affiliates__button link"
           href={affiliate.url}
           target="_blank"
           rel="noopener noreferrer"
@@ -73,19 +69,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
   );
 
   return (
-    <div className="shop-productCard">
+    <div className="product-card">
       <CustomImage
-        className="shop-productCard--image"
+        className="product-card__image"
         src={image?.srcs.small || "/placeholder-image.jpg"}
         alt={image?.alt || name}
         sizes="(min-width: 1200px) 20vw, (min-width: 600px) 30vw, 45vw"
       />
 
-      <Typography
-        className="shop-productCard--name"
-        variant="h4"
-        component="h2"
-      >
+      <Typography className="product-card__name" variant="h4" component="h2">
         {name}
       </Typography>
       {renderPrice()}

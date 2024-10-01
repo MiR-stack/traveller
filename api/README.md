@@ -1,61 +1,120 @@
-# 🚀 Getting started with Strapi
+# Traveller - Strapi Backend
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This is the backend of the **Traveller** website, powered by **Strapi**. Strapi is a headless CMS used to manage content and serve the data to the frontend via a REST or GraphQL API.
 
-### `develop`
+## **Table of Contents**
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
-
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+1. [Introduction](#introduction)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Running the Development Server](#running-the-development-server)
+5. [Environment Variables](#environment-variables)
+6. [Database Setup](#database-setup)
+7. [Deployment](#deployment)
+8. [Folder Structure](#folder-structure)
+9. [Customization](#customization)
+10. [Support](#support)
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+## **Introduction**
+
+This is the **Strapi** backend for the **Traveller** website. It provides a headless CMS to manage content and deliver data to the **Next.js** frontend.
+
+---
+
+## **Prerequisites**
+
+- **Node.js** (v14.x or higher)
+- **Yarn** or **npm**
+- A database (PostgreSQL)
+
+---
+
+## **Installation**
+
+To get started, navigate to the backend directory and install the dependencies:
+
+```bash
+# Navigate to the backend folder
+cd backend
+
+# Install dependencies
+yarn install
+# or
+npm install
+```
+
+# Environment Variables
+
+Strapi requires several environment variables for database connection and server configuration.
+
+1. Copy the example `.env.example` file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+2. Open the .env file and configure your database and other environment variables.
+   Example for postgress:
+
+```bash
+DATABASE_CLIENT=postgres
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=traveller
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=AGGDEQAGv
+DATABASE_SSL=false
+```
+
+# Database Setup
+
+Strapi supports several databases. By default, we are using PostgreSQL, ensure to update the `DATABASE_CLIENT to` 'postgres' and provide the necessary connection details in the `.env` file..
+
+# Running the Development Server
+
+To start Strapi in development mode, use the following command:
+
+```bash
+yarn dev
+# or
+npm run dev
+```
+
+The Strapi admin panel will be accessible at[ http://localhost:1337/admin](http://localhost:1337/admin).
+
+# Deployment
+
+You can deploy the Strapi backend to platforms like Heroku, Railway, or any server that supports Node.js.
+
+## Steps for Heroku Deployment:
+
+1.  **Create a new Heroku app.** 2.**Link your GitHub repository.**
+2.  **Set up environment variables** in the Heroku dashboard (such as DATABASE_NAME for PostgreSQL).
+3.  **Deploy the app** and access the admin panel via the Heroku-provided URL.
+
+# Folder Structure
+
+```bash
+backend/
+├── api # API endpoints and content types
+├── config # Server and database configuration
+├── extensions # Custom Strapi extensions
+├── public # Public assets
+├── .env.example # Example environment variables file
+├── package.json # Project dependencies and scripts
+└── README.md # Documentation
+```
+
+# Customization
+
+You can extend or customize the Strapi backend by:
+
+- **Adding new content types:** Use the Strapi Admin Panel's **Content-Type Builder**.
+- **Modifying API endpoints:** Edit or add new API routes in the `api/` folder.
+- **Customizing the admin panel:** Modify the **extensions** folder for admin panel customizations.
+
+# Support
+
+If you encounter any issues or need help, please contact us at habibmir811@gmail.com.

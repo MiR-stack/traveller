@@ -1,23 +1,23 @@
 @import "../../foundations/all";
 
 .footer {
-  &-bg1 {
+  &--bg1 {
     @include gthemed {
       background-color: t(background);
     }
   }
-  &-bg2 {
+  &--bg2 {
     @include gthemed {
       background-color: t(background-2);
     }
   }
-  &-container {
+  &__container {
     @include flex(30px, center, flex-start);
     flex-wrap: wrap;
     padding: 50px 0;
   }
 
-  &-title {
+  &__title {
     text-transform: uppercase;
     font-size: 18px !important;
 
@@ -26,7 +26,7 @@
     }
   }
 
-  &-wraper {
+  &__wraper {
     @include flex(5px, flex-start, flex-start);
     flex-direction: column;
     margin-top: 10px;
@@ -35,35 +35,28 @@
   &-brand {
     justify-content: flex-start !important;
 
-    &-container {
-      width: 100%;
+    width: 100%;
 
-      @include sm {
-        width: 50%;
-      }
-
-      @include md {
-        width: 30%;
-      }
+    @include sm {
+      width: 50%;
     }
 
-    &-name {
-      font-size: calc(1.5rem + 0.5vw);
-      margin-bottom: 15px;
+    @include md {
+      width: 30%;
     }
 
-    &-description {
+    &__description {
       margin-top: 5px !important;
     }
 
-    &-medias {
+    &__social-medias {
       @include flex(10px);
       font-size: 30px;
       @include baseColor;
       margin-top: 20px;
     }
   }
-  &-destinations {
+  &__destinations {
     width: 100%;
 
     @include sm {
@@ -74,11 +67,11 @@
       width: 20%;
     }
   }
-  &-destination {
+  &__destination {
     text-transform: capitalize;
     @include baseColor;
   }
-  &-posts {
+  &__blogs {
     width: 100%;
 
     @include sm {
@@ -89,7 +82,7 @@
     }
   }
   &-blog {
-    &-title {
+    &__title {
       text-transform: capitalize;
       font-weight: 600;
       font-size: 16px;
@@ -98,7 +91,7 @@
         font-size: calc(0.7rem + 0.3vw);
       }
     }
-    &-country {
+    &__country {
       font-family: var(--rock-salt, $rock-salt) !important;
       font-size: 12px !important;
       @include gthemed {
@@ -107,7 +100,7 @@
     }
   }
 
-  &-bottom {
+  .copyright {
     width: 100%;
     padding: 20px 10px;
 
@@ -115,7 +108,7 @@
       border-top: 1px solid t(divider);
     }
 
-    &-text {
+    &__text {
       @include flex(5px, center);
       @include gthemed {
         color: t(text);

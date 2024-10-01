@@ -23,13 +23,13 @@ function MobileMenus({ extended, destinations }: mobileMenusPropsType) {
   };
 
   return (
-    <div className="nav-mobile_menus">
-      <IoMenu className="nav-mobile_menus--icon" onClick={toggleMenu} />
+    <div className="mobile-menus">
+      <IoMenu className="mobile-menus__icon" onClick={toggleMenu} />
       {isOpen ? <Backdrop onClick={handleClose} /> : ""}
       <Menus
-        navExtended={extended}
+        extended={extended}
         navDestinations={destinations}
-        type="mobile"
+        variant="mobile"
         onClose={handleClose}
         isOpen={isOpen}
       />

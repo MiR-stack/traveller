@@ -4,7 +4,6 @@ import {
   Roboto_Slab,
   Rock_Salt,
   Wellfleet,
-  GFS_Didot,
   Oswald,
 } from "next/font/google";
 

@@ -20,19 +20,19 @@ function DropdownMenu({ menu }: dropdownMenuPropsType) {
     setDropdown(false);
   };
   return (
-    <div className="nav-menus-dropdown">
-      <div className="nav-menus-dropdown--title" onClick={handleDropdownToggle}>
-        <p className="nav-menus-name  nav-menus-dropdown--name">{menu.name}</p>
-        <FaChevronDown className="nav-menus-dropdown--icon" />
+    <div className="menus-dropdown">
+      <div className="menus-dropdown__title" onClick={handleDropdownToggle}>
+        <p className="menu__name">{menu.name}</p>
+        <FaChevronDown className="menus-dropdown__icon" />
       </div>
       <div
-        className={`nav-menus-dropdown--wraper ${
-          dropdown ? "nav-menus-dropdown--open" : ""
+        className={`menus-dropdown__wraper ${
+          dropdown ? "menus-dropdown--open" : ""
         }`}
       >
         {menu.childrens?.map((item) => (
           <Link
-            className="nav-menus-dropdown--item link"
+            className="menus-dropdown__item link"
             key={item.slug}
             href={`/${item.slug}`}
             aria-labelledby={item.name}

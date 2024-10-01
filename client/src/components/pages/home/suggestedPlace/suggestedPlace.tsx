@@ -97,7 +97,7 @@ function SuggestedPlace() {
 
 function SkeletonLoader() {
   return (
-    <div className="wraper card2__skeleton-wrapper">
+    <div className="wraper card2__skeltons">
       {Array.from({ length: 5 }, (_, index) => (
         <Skeleton key={index} className="card2__skeleton" variant="rectangle" />
       ))}

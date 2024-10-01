@@ -3,6 +3,21 @@
 .card2 {
   width: 100%;
 
+  &__skeltons {
+    gap: 15px;
+
+    @include sm {
+      gap: 20px;
+    }
+
+    @include md {
+      gap: 30px;
+    }
+
+    @include lg {
+      gap: 40px;
+    }
+  }
   &__skeleton {
     aspect-ratio: 3/4.9;
 
@@ -25,25 +40,9 @@
         display: block;
       }
     }
-
-    &-wrapper {
-      gap: 15px;
-
-      @include sm {
-        gap: 20px;
-      }
-
-      @include md {
-        gap: 30px;
-      }
-
-      @include lg {
-        gap: 40px;
-      }
-    }
   }
 
-  &-image {
+  &__image {
     width: 100%;
     aspect-ratio: 3/4.9;
 
@@ -52,7 +51,7 @@
     }
   }
 
-  &-content {
+  &__content {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -66,21 +65,20 @@
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.9)
     );
-
-    &-country {
-      font-family: var(--rock-salt, $rock-salt);
-    }
-    &-title {
-      font-size: calc(0.9rem + 0.2vw);
-      font-family: var(--roboto-slab, $roboto-slab);
-      text-transform: capitalize;
-      color: $white !important;
-      margin-bottom: 5px;
-    }
-    &-date,
-    &-country {
-      font-size: 12px;
-      color: $white-10 !important;
-    }
+  }
+  &__country {
+    font-family: var(--rock-salt, $rock-salt);
+  }
+  &__title {
+    font-size: calc(0.9rem + 0.2vw);
+    font-family: var(--roboto-slab, $roboto-slab);
+    text-transform: capitalize;
+    color: $white !important;
+    margin-bottom: 5px;
+  }
+  &__date,
+  &__country {
+    font-size: calc(0.6rem + 0.15vw);
+    color: $white-10 !important;
   }
 }

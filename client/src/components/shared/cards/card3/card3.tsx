@@ -5,7 +5,6 @@ import ShortInfo from "../../shortInfo";
 import { FiClock } from "react-icons/fi";
 import "@/styles/components/shared/cards/card3.scss";
 import Link from "next/link";
-import { formatDistanceToNowStrict } from "date-fns";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
 interface card3PropsType {
@@ -57,37 +56,24 @@ function Card3({
   }
 
   return (
-    <div className={`${variables.brandName}-card3 ${className ?? ""}`}>
-      <Link
-        className={`${variables.brandName}-card3--image-link link ${
-          className ? `${className}--image-link` : ""
-        }`}
-        href={slug}
-      >
+    <div
+      className={`${variables.brandName}-card3 ${className ?? ""} ${
+        variables.brandName
+      }-card3--${variant}`}
+    >
+      <Link className={`${variables.brandName}-card3__link link `} href={slug}>
         <CustomImage
-          className={`${variables.brandName}-card3--image ${
-            className ? `${className}--image` : ""
-          }`}
+          className={`${variables.brandName}-card3__image `}
           src={image.url}
           alt={image.alt}
           sizes={imageSizes}
         />
       </Link>
-      <div
-        className={`${variables.brandName}-card3-content ${
-          className ? `${className}-content` : ""
-        }`}
-      >
-        <div
-          className={`${variables.brandName}-card3-header ${
-            className ? `${className}-header` : ""
-          }`}
-        >
+      <div className={`${variables.brandName}-card3__content`}>
+        <div className={`${variables.brandName}-card3__header`}>
           {options.country && country && (
             <Typography
-              className={`${variables.brandName}-card3--country ${
-                variant ? `${className}--country` : ""
-              }`}
+              className={`${variables.brandName}-card3__country`}
               variant="body2"
             >
               {country.name}
@@ -95,18 +81,14 @@ function Card3({
           )}
           {options.date && (
             <ShortInfo
-              className={`${variables.brandName}-card3--readTime ${
-                className ? `${className}--date` : ""
-              }`}
+              className={`${variables.brandName}-card3__date`}
               icon={<FaRegCalendarAlt />}
               text={createdAt!}
             />
           )}
           {options.readTime && (
             <ShortInfo
-              className={`${variables.brandName}-card3--readTime ${
-                variant ? `${className}--readTime` : ""
-              }`}
+              className={`${variables.brandName}-card3__read-time`}
               icon={<FiClock />}
               text={readTime}
             />
@@ -114,9 +96,7 @@ function Card3({
         </div>
         <Link href={slug} className="link">
           <Typography
-            className={`${variables.brandName}-card3--title ${
-              className ? `${className}--title` : ""
-            }`}
+            className={`${variables.brandName}-card3__title `}
             variant="h4"
             component="h1"
           >
@@ -125,9 +105,7 @@ function Card3({
         </Link>
         {options.shortDescription && (
           <Typography
-            className={`${variables.brandName}-card3--shortDesc ${
-              className ? `${className}--shortDesc` : ""
-            }`}
+            className={`${variables.brandName}-card3__description`}
             variant="body1"
           >
             {shortDescription}

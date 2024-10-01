@@ -9,7 +9,7 @@ interface shortInfoPropsType {
 
 function ShortInfo({ icon, text, className }: shortInfoPropsType) {
   return (
-    <div className={`${variables.brandName}-shortInfo ${className ?? ""}`}>
+    <div className={`${variables.brandName}-short-info ${className ?? ""}`}>
       {icon}
       <p>{text}</p>
     </div>

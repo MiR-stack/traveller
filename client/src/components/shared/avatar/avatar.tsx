@@ -68,15 +68,13 @@ function Avatar({ avatar, size = "md", name, avatarUrl }: AvatarProps) {
     >
       {avatarMedia ? (
         <CustomImage
-          className={`${variables.brandName}-avatar-image`}
+          className={`${variables.brandName}-avatar__image`}
           src={avatarMedia}
           alt={`${name}'s avatar`}
           sizes={`${sizes[size].width}px`}
         />
       ) : (
-        <div className={`${variables.brandName}-avatar-initials`}>
-          {initials}
-        </div>
+        <div>{initials}</div>
       )}
     </div>
   );

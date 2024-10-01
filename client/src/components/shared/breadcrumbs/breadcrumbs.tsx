@@ -24,19 +24,19 @@ function Breadcrumbs({
         return breadcrumb.slug ? (
           <>
             <Link
-              className={`${variables.brandName}-breadcrumbs-item link`}
+              className={`${variables.brandName}-breadcrumbs__item link`}
               href={breadcrumb.slug}
               key={breadcrumb.name}
             >
               {breadcrumb.name}
             </Link>
-            <p className={`${variables.brandName}-breadcrumbs-separator`}>
+            <p className={`${variables.brandName}-breadcrumbs__separator`}>
               {separator}
             </p>
           </>
         ) : (
           <p
-            className={`${variables.brandName}-breadcrumbs-item--active`}
+            className={`${variables.brandName}-breadcrumbs__item--active`}
             key={breadcrumb.name}
           >
             {breadcrumb.name}

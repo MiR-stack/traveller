@@ -36,7 +36,7 @@ const Hero = () => {
   if (isLoading)
     return (
       <div className="bg--1">
-        <Skeleton className="hero-skeleton" variant="rectangle" />
+        <Skeleton className="hero__skeleton" variant="rectangle" />
       </div>
     );
 
@@ -54,7 +54,7 @@ const Hero = () => {
   return (
     <section className="hero">
       <Swiper
-        className="hero-slider"
+        className="hero__slider"
         loop={true}
         pagination={{
           clickable: true,
@@ -70,30 +70,27 @@ const Hero = () => {
         {heroData.map((blog: any) => (
           <SwiperSlide key={blog.slug}>
             <CustomImage
-              className="hero-image"
+              className="hero__image"
               src={blog.image.srcs.main}
               alt={blog.image.alt}
               priority
               sizes={`(min-width:1550px) 1550px, 100vw`}
             >
-              <div className="hero-content">
-                <Typography className="hero-content--title" variant="h1">
+              <div className="hero__content">
+                <Typography className="hero__title" variant="h1">
                   {blog.title}{" "}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  className="hero-content--short_description"
-                >
+                <Typography variant="body2" className="hero__description">
                   {blog.shortDescription}{" "}
                 </Typography>
                 <button
-                  className="hero-btn btn"
+                  className="hero__btn btn"
                   onClick={() => router.push(blog.slug)}
                 >
                   read more <GoArrowUpRight />
                 </button>
               </div>
-              <Backdrop opacity={0.2} className="hero__backdrop" />
+              <Backdrop opacity={0.2} />
             </CustomImage>
           </SwiperSlide>
         ))}

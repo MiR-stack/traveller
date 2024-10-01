@@ -30,11 +30,8 @@ function Destinations({
   };
 
   return (
-    <div className={"nav-destinations"}>
-      <div
-        className="nav-destination--active nav-destination"
-        onClick={toggleMenu}
-      >
+    <div className={"destinations"}>
+      <div className="destination destination--active " onClick={toggleMenu}>
         {currentDestination && currentDestination.name !== "world" ? (
           <>
             <CustomImage
@@ -48,7 +45,7 @@ function Destinations({
           </>
         ) : (
           <>
-            <TbWorld className="nav-destination--icon" />
+            <TbWorld className="destination__icon" />
             <Typography variant="h4" component="h1">
               destinations
             </Typography>
@@ -56,14 +53,12 @@ function Destinations({
         )}
       </div>
       <div
-        className={`nav-destinations--wraper ${
-          menu ? `nav-destinations--active` : ""
-        }`}
+        className={`destinations__wraper ${menu ? `destinations--active` : ""}`}
       >
         {Object.keys(destinations).map((slug: string) => (
           <Link
             href={`/search?des=${slug}`}
-            className="nav-destination"
+            className="destination"
             key={slug}
             onClick={() => {
               handleDestination(destinations[slug]);

@@ -20,12 +20,12 @@ const BrandSection = async () => {
   const { short_description, social_medias } = brandRes.data.attributes;
 
   return (
-    <div className="footer-brand-container">
+    <div className="footer-brand">
       <Brand variant="footer" />
-      <Typography className="footer-brand-description" variant="body1">
+      <Typography className="footer-brand__description" variant="body1">
         {short_description}
       </Typography>
-      <div className="footer-brand-medias">
+      <div className="footer-brand__social-medias">
         {social_medias &&
           social_medias.map((media: socialMediaTypes) => (
             <Link

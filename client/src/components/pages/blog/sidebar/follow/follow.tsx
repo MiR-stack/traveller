@@ -9,17 +9,17 @@ async function Follow() {
 
   return (
     <SectionLayout title="connect & follow">
-      <div className="blog-sidebar-follow">
+      <div className="sidebar-follow-us">
         {medias.map((media: socialMediaTypes) => (
           <Link
-            className="blog-sidebar-follow-card link"
+            className="sidebar-follow-us__card link"
             key={media.name}
             href={media.url}
             target="_blank"
             rel="noopener noreferrer"
           >
             {icons[media.icon as keyof typeof icons]}
-            <p className="blog-sidebar-follow--name">{media.name}</p>
+            <p className="sidebar-follow-us__name">{media.name}</p>
           </Link>
         ))}
       </div>

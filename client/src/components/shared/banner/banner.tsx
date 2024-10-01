@@ -11,6 +11,7 @@ interface bannerPropsType {
   path: string;
   query?: string;
   resultText?: string;
+  variant?: "shop";
 }
 
 function Banner({
@@ -20,33 +21,26 @@ function Banner({
   path,
   query = "q",
   resultText,
+  variant,
 }: bannerPropsType) {
   return (
     <div
-      className={`${variables.brandName}-banner ${
-        className ? `${className}-banner` : ""
-      }`}
+      className={`${variables.brandName}-banner ${className ?? ""} ${
+        variables.brandName
+      }-banner--${variant}`}
     >
       <Typography
-        className={`${variables.brandName}-banner-title  ${
-          className ? `${className}-banner-title` : ""
-        }`}
+        className={`${variables.brandName}-banner__title `}
         variant="h1"
       >
         {title}
       </Typography>
-      <div
-        className={`${variables.brandName}-banner-searchInfo  ${
-          className ? `${className}-banner-searchInfo` : ""
-        }`}
-      >
+      <div className={`${variables.brandName}-banner__search-info `}>
         <Suspense fallback={<div>Loading...</div>}>
           <SearchBar query={query} path={path} />
         </Suspense>
         <Typography
-          className={`${variables.brandName}-banner-result  ${
-            className ? `${className}-banner-result` : ""
-          }`}
+          className={`${variables.brandName}-banner__result`}
           variant="body2"
         >
           {resultText || `${resultCount} results found`}

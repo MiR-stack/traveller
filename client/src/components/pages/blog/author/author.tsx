@@ -16,14 +16,14 @@ function Author({ name, role, bio, social_medias, avatar }: authorPropsType) {
   return (
     <section className="blog-author">
       <Avatar name={name} avatar={avatar?.data.attributes} size="lg" />
-      <div className="blog-author-content">
-        <Typography className="blog-author--name" variant="h4">
-          {name} . <span className="blog-author--role">{role}</span>
+      <div>
+        <Typography className="blog-author__name" variant="h4">
+          {name} . <span className="blog-author__role">{role}</span>
         </Typography>
-        <Typography className="blog-author--bio" variant="body2">
+        <Typography className="blog-author__bio" variant="body2">
           {bio}
         </Typography>
-        <div className="blog-author--social_medias">
+        <div className="blog-author__social-medias">
           {social_medias.map((media) => (
             <Link
               className="link"

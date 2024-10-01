@@ -6,7 +6,7 @@ import Categories from "./categories";
 
 function Sidebar({ product }: ProductComponentProps) {
   return (
-    <div className="blog-sidebar">
+    <div className="blog__sidebar">
       <Product product={product} />
       <Follow />
       <LatestPosts />

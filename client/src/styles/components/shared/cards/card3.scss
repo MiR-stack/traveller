@@ -4,35 +4,87 @@
 .#{$brand-name}-card3 {
   @include flex(10px);
 
-  &--image {
+  &__image {
     width: 100%;
     aspect-ratio: 1/0.7;
 
     &:hover {
       opacity: 0.6;
     }
-
-    &-link {
-      width: 100%;
-      max-width: 100px;
-    }
   }
 
-  &-header {
+  &__link {
+    width: 100%;
+    max-width: 100px;
+  }
+
+  &__header {
     @include flex(10px);
   }
 
-  &--country {
+  &__country {
     text-transform: capitalize;
     font-size: 12px;
   }
-  &--readTime {
+  &__read-time,
+  &__date {
     font-size: 12px;
   }
 
-  &--title {
+  &__title {
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  &--search {
+    width: 100%;
+
+    .#{$brand-name}-card3 {
+      &__content {
+        @include flex(5px, flex-start, flex-start);
+        flex-direction: column;
+      }
+      &__link {
+        min-width: 100px;
+
+        max-width: 30%;
+        flex-shrink: 0;
+
+        @include sm {
+          max-width: 200px;
+        }
+      }
+      &__image {
+        aspect-ratio: 1/0.9;
+
+        @include sm {
+          aspect-ratio: 1/0.7;
+        }
+      }
+
+      &__title {
+        max-height: 48px;
+        overflow: hidden;
+        @include sm {
+          font-size: calc(1rem + 0.5vw);
+        }
+      }
+      &__read-time,
+      &__date {
+        @include sm {
+          font-size: 15px;
+        }
+      }
+
+      &__description {
+        height: 40px;
+        overflow: hidden;
+
+        @include md {
+          height: 60px;
+        }
+      }
     }
   }
 }

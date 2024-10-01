@@ -12,11 +12,11 @@ const Navigation = ({ className }: slideNavigationPropTypes) => {
   return (
     <div className={`slider-navigation ${className ?? ""}`}>
       <FaLongArrowAltLeft
-        className="slider-navigation--item"
+        className="slider-navigation__button"
         onClick={() => swiper.slidePrev()}
       />
       <FaLongArrowAltRight
-        className="slider-navigation--item"
+        className="slider-navigation__button"
         onClick={() => swiper.slideNext()}
       />
     </div>

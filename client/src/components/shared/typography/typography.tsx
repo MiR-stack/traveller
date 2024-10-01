@@ -31,7 +31,7 @@ function Typography({
 
   return (
     <Tag
-      className={`${constants.brandName}-${variant} ${
+      className={`${constants.brandName}-text--${variant} ${
         className ? className : ""
       }`}
     >

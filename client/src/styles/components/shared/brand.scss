@@ -3,12 +3,12 @@
 .brand {
   @include flex(0, center, center);
 
-  &-container {
+  &__container {
     @include flex(0, center);
     flex-direction: column;
   }
 
-  &-name {
+  &__name {
     font-family: var(--wellfleet, sans-serif) !important;
     text-transform: uppercase;
     @include gthemed {
@@ -16,7 +16,7 @@
     }
   }
 
-  &-moto {
+  &__moto {
     @include gthemed {
       color: t(text-2);
     }
@@ -47,19 +47,38 @@
       }
     }
   }
-}
 
-.extended-brand {
-  padding: 35px 0;
-  min-height: 150px;
-  @include gthemed {
-    background-color: t(background);
-  }
-  @include sm {
-    padding: 50px;
+  &--extended {
+    padding: 35px 0;
+    min-height: 150px;
+    @include gthemed {
+      background-color: t(background);
+    }
+    @include sm {
+      padding: 50px;
+    }
+
+    .brand__name {
+      font-size: calc(1.5vw + 1.5rem) !important;
+    }
   }
 
-  &-name {
-    font-size: calc(1.5vw + 1.5rem) !important;
+  &--nav {
+    line-height: 60px;
+
+    .brand__name {
+      font-size: calc(1rem + 0.8vw) !important;
+
+      @include lg {
+        font-size: 25px !important;
+      }
+    }
+  }
+  &--footer {
+    justify-content: flex-start;
+    .brand__name {
+      font-size: calc(1.5rem + 0.5vw);
+      margin-bottom: 15px;
+    }
   }
 }

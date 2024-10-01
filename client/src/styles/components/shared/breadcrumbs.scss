@@ -5,7 +5,7 @@
   @include flex;
   padding: 10px 0;
 
-  &-item {
+  &__item {
     text-transform: uppercase;
     color: $primary !important;
     font-weight: 600;
@@ -26,7 +26,7 @@
     }
   }
 
-  &-separator {
+  &__separator {
     font-size: 8px;
     @include gthemed {
       color: t(text-muted);

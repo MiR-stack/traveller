@@ -5,7 +5,38 @@
     background-color: t(background);
   }
 
-  &-image {
+  &-header {
+    &__breadcrumbs {
+      padding-top: 20px;
+      padding-bottom: 0px;
+    }
+    &__title {
+      font-size: calc(1.3rem + 1.2vw) !important;
+      text-transform: capitalize;
+      font-family: var(--oswald, sans-sarif);
+
+      @include xlg {
+        font-size: 45px !important;
+      }
+    }
+
+    &__blog-info {
+      @include flex(10px);
+      flex-wrap: wrap;
+    }
+
+    &__country {
+      font-family: var(--rock-salt, $rock-salt);
+      font-size: 14px;
+      text-transform: capitalize;
+
+      @include gthemed {
+        color: t(text-muted);
+      }
+    }
+  }
+
+  &__image {
     width: 100%;
     aspect-ratio: 7/4;
     margin: 10px 0;
@@ -21,40 +52,9 @@
     }
   }
 
-  &-header {
-    &-breadcrumbs {
-      padding-top: 20px;
-      padding-bottom: 0px;
-    }
-    &-title {
-      font-size: calc(1.3rem + 1.2vw) !important;
-      text-transform: capitalize;
-      font-family: var(--oswald, sans-sarif);
-
-      @include xlg {
-        font-size: 45px !important;
-      }
-    }
-
-    &-blog_info {
-      @include flex(10px);
-      flex-wrap: wrap;
-    }
-
-    &-country {
-      font-family: var(--rock-salt, $rock-salt);
-      font-size: 14px;
-      text-transform: capitalize;
-
-      @include gthemed {
-        color: t(text-muted);
-      }
-    }
-  }
-
   /*----------  blog main  ----------*/
 
-  &-main {
+  &__main {
     @include flex(20px, space-between, flex-start);
     flex-wrap: wrap;
     @include lg {
@@ -71,7 +71,7 @@
       width: 65%;
     }
 
-    &-main {
+    &__main {
       @include gthemed {
         color: t(text-muted);
       }
@@ -136,12 +136,12 @@
         }
       }
     }
-    &-footer {
+    &__footer {
       @include flex(0, flex-end);
       font-size: 20px;
       padding: 30px 0 20px 0;
     }
-    &-share {
+    &__share {
       @include flex(15px);
     }
   }
@@ -164,18 +164,18 @@
       flex-direction: row;
     }
 
-    &--name {
+    &__name {
       text-transform: capitalize;
     }
-    &--role {
+    &__role {
       color: $primary;
     }
 
-    &--bio {
+    &__bio {
       max-width: 600px;
     }
 
-    &--social_medias {
+    &__social-medias {
       margin-top: 16px;
       @include flex(20px, center);
 
@@ -192,7 +192,7 @@
     flex-direction: column;
     width: 100%;
 
-    &--title {
+    &__title {
       text-transform: uppercase;
       font-family: var(--oswald, $roboto-slab) !important;
       text-align: left;
@@ -203,174 +203,18 @@
 
   /*----------  related blogs  ----------*/
 
-  &-related {
-    @include flex(10px, center, flex-start);
-
-    @include lg {
-      gap: 30px;
-    }
-
-    &-container {
-      width: 100%;
-      margin: 30px 0;
-
-      @include sm {
-        margin: 50px 0;
-      }
-    }
-
-    &-card {
-      &:nth-last-child(1) {
-        display: none;
-
-        @include sm {
-          display: flex;
-        }
-      }
-    }
-  }
-
-  /*----------  product  ----------*/
-
-  &-product {
+  .related-blog {
     width: 100%;
-    max-width: 400px;
-    aspect-ratio: 3/2;
-    border-radius: 10px;
-    overflow: hidden;
-
-    &-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 20px;
-      padding-top: 40px;
-      background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.9)
-      );
-      width: 100%;
-
-      @include flex(10px, flex-end, flex-start);
-      flex-direction: column;
+    margin: 30px 0;
+    @include sm {
+      margin: 50px 0;
     }
 
-    &--name {
-      text-transform: uppercase;
-      color: $white !important;
-    }
-
-    &--link {
-      padding: 10px 20px;
-      background-color: $primary;
-      color: $white-10 !important;
-      border-radius: 10px;
-      text-transform: capitalize;
-
-      &:hover {
-        color: $white !important;
-        background-color: $primary-dark;
-      }
-    }
-  }
-
-  &-sidebar {
-    width: 100%;
-    @include flex(30px, space-between, flex-start);
-    flex-wrap: wrap;
-
-    .blog-section {
-      @include sm {
-        width: 47%;
-      }
+    &__wrapper {
+      @include flex(10px, center, flex-start);
 
       @include lg {
-        width: 100%;
-      }
-    }
-
-    @include lg {
-      width: 30%;
-    }
-    /*----------  connect and follow  ----------*/
-    &-follow {
-      @include flex(10px);
-      flex-wrap: wrap;
-
-      &-card {
-        @include flex(10px, center);
-        flex-direction: column;
-        border-radius: 10px;
-        padding: 10px;
-
-        @include gthemed {
-          border: 2px solid t(text);
-        }
-
-        &:hover {
-          border: 2px solid $primary;
-
-          svg {
-            color: $primary !important;
-          }
-          .blog-sidebar-follow--name {
-            color: $primary;
-          }
-        }
-
-        svg {
-          font-size: 30px;
-          @include gthemed {
-            color: t(text);
-          }
-        }
-      }
-
-      &--name {
-        text-transform: capitalize;
-        font-weight: 600;
-      }
-    }
-
-    /*----------  latest post  ----------*/
-
-    &-latest {
-      &-card {
-        margin-bottom: 20px;
-      }
-    }
-
-    /*----------  categories  ----------*/
-
-    &-categories {
-      width: 100%;
-
-      @include sm {
-        max-width: 300px;
-      }
-    }
-
-    &-category {
-      @include flex(10px, space-between);
-      text-transform: capitalize;
-      padding: 20px 0;
-      width: 100%;
-      font-weight: 500;
-      @include gthemed {
-        border-bottom: 1px solid t(divider);
-
-        &:hover {
-          .blog-sidebar-category {
-            &--name {
-              color: $primary !important;
-            }
-            &--count {
-              color: $primary !important;
-            }
-          }
-        }
+        gap: 30px;
       }
     }
   }
@@ -378,14 +222,14 @@
   /*----------  comment  ----------*/
 
   &-comments {
-    width: 100%;
-    @include flex(20px, flex-start, flex-start);
-    flex-direction: column;
+    margin-bottom: 50px;
 
-    &-container {
-      margin-bottom: 50px;
+    &__container {
+      width: 100%;
+      @include flex(20px, flex-start, flex-start);
+      flex-direction: column;
     }
-    &-empty {
+    .empty-comment {
       @include flex(10px, center, center);
       flex-direction: column;
       padding: 30px 0;
@@ -394,11 +238,11 @@
         color: t(text-muted);
       }
 
-      &-icon {
+      &__icon {
         font-size: calc(8rem + 5vw);
       }
 
-      &-text {
+      &__text {
         font-size: calc(1rem + 0.5vw);
         text-transform: capitalize;
         text-align: center;
@@ -406,31 +250,31 @@
     }
   }
   &-comment {
-    @include flex(10px, flex-start, flex-start);
     width: 100%;
+    max-width: 600px;
+    position: relative;
 
-    &-container {
-      width: 100%;
-      max-width: 600px;
-      position: relative;
-    }
-
-    &-content {
+    &__wrapper {
+      @include flex(10px, flex-start, flex-start);
       width: 100%;
     }
-    &-header {
+
+    &__content {
+      width: 100%;
+    }
+    &__header {
       @include flex(10px, space-between);
       width: 100%;
 
-      &--left {
+      &-left {
         @include flex(5px, flex-end, flex-end);
       }
     }
 
-    &-posting {
+    &__posting {
       @include flex(2px);
 
-      &--text {
+      &-text {
         @include gthemed {
           color: t(text-2);
           font-size: 14px;
@@ -460,11 +304,11 @@
       }
     }
 
-    &-authorName {
+    &__author-name {
       text-transform: capitalize;
     }
 
-    &-replyBtn {
+    &__reply-button {
       @include flex;
       text-transform: capitalize;
       cursor: pointer;
@@ -479,16 +323,38 @@
       }
     }
 
-    &-text {
+    &__text {
       @include gthemed {
         color: t(text-2);
       }
     }
 
-    &-reply {
+    &__reply {
       width: 100%;
+      &-container {
+        padding-left: 40px;
+        padding-top: 20px;
+
+        @include sm {
+          padding-left: 60px;
+        }
+        @include flex(20px, flex-start, flex-start);
+        flex-direction: column;
+      }
+
+      &-view {
+        @include btn;
+        font-size: 14px;
+        text-transform: capitalize;
+        font-weight: 700;
+        text-decoration: underline;
+
+        @include gthemed {
+          color: t(text);
+        }
+      }
     }
-    &-line {
+    &__line {
       position: absolute;
       left: 25px;
       top: 50px;
@@ -503,39 +369,14 @@
 
   /*----------  reply  ----------*/
 
-  &-reply {
-    &-container {
-      padding-left: 40px;
-      padding-top: 20px;
-
-      @include sm {
-        padding-left: 60px;
-      }
-      @include flex(20px, flex-start, flex-start);
-      flex-direction: column;
-    }
-
-    &-view {
-      @include btn;
-      font-size: 14px;
-      text-transform: capitalize;
-      font-weight: 700;
-      text-decoration: underline;
-
-      @include gthemed {
-        color: t(text);
-      }
-    }
-  }
-
   /*=============================================
   =            comment bar section            =
   =============================================*/
 
-  &-commentBar {
+  .comment-bar {
     width: 100%;
 
-    &-title {
+    &__title {
       @include flex(20px);
       svg {
         cursor: pointer;
@@ -546,7 +387,7 @@
       }
     }
 
-    &-comment--text {
+    &__comment-text {
       text-transform: uppercase;
       font-size: calc(1.2rem + 0.4vw);
       font-family: var(--oswald, $roboto);
@@ -554,7 +395,7 @@
         color: t(text);
       }
     }
-    &-reply--text {
+    &__reply-text {
       text-transform: uppercase;
       font-size: calc(0.8rem + 0.4vw);
       font-family: var(--oswald, $roboto);
@@ -562,13 +403,13 @@
         color: t(text) !important;
       }
     }
-    &-wraper {
+    &__wrapper {
       @include flex(25px, flex-start, flex-start);
       flex-direction: column;
       width: 100%;
     }
 
-    &-user_info {
+    &__user-info {
       width: 100%;
       @include flex(15px, space-between, flex-start);
       flex-wrap: wrap;
@@ -578,7 +419,7 @@
       }
     }
 
-    &-input {
+    &__input {
       padding: 10px 16px;
       width: 100%;
       outline: none;
@@ -594,11 +435,11 @@
       }
     }
 
-    &-comment {
+    &__comment {
       aspect-ratio: 77/17;
     }
 
-    &-feature {
+    &__feature {
       @include flex(10px, flex-start, flex-start);
       @include gthemed {
         color: t(text);
@@ -613,7 +454,7 @@
       }
     }
 
-    &-button {
+    &__button {
       padding: 13px 20px;
       text-transform: uppercase;
       border: none;
@@ -649,4 +490,147 @@
   }
 
   /*=====  End of comment bar section  ======*/
+
+  /*----------  product  ----------*/
+
+  &-product {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 3/2;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &__content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      padding-top: 40px;
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.9)
+      );
+      width: 100%;
+
+      @include flex(10px, flex-end, flex-start);
+      flex-direction: column;
+    }
+
+    &__name {
+      text-transform: uppercase;
+      color: $white !important;
+    }
+
+    &__link {
+      padding: 10px 20px;
+      background-color: $primary;
+      color: $white-10 !important;
+      border-radius: 10px;
+      text-transform: capitalize;
+
+      &:hover {
+        color: $white !important;
+        background-color: $primary-dark;
+      }
+    }
+  }
+
+  &__sidebar {
+    width: 100%;
+    @include flex(30px, space-between, flex-start);
+    flex-wrap: wrap;
+
+    .blog-section {
+      @include sm {
+        width: 47%;
+      }
+
+      @include lg {
+        width: 100%;
+      }
+    }
+
+    @include lg {
+      width: 30%;
+    }
+    /*----------  connect and follow  ----------*/
+    .sidebar-follow-us {
+      @include flex(10px);
+      flex-wrap: wrap;
+
+      &__card {
+        @include flex(10px, center);
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 10px;
+
+        @include gthemed {
+          border: 2px solid t(text);
+        }
+
+        &:hover {
+          border: 2px solid $primary;
+
+          svg {
+            color: $primary !important;
+          }
+          .follow-us__name {
+            color: $primary;
+          }
+        }
+
+        svg {
+          font-size: 30px;
+          @include gthemed {
+            color: t(text);
+          }
+        }
+      }
+
+      &__name {
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+    }
+
+    /*----------  latest post  ----------*/
+
+    .sidebar-latest-post {
+      &__card {
+        margin-bottom: 20px;
+      }
+    }
+
+    /*----------  categories  ----------*/
+
+    .sidebar-categories {
+      width: 100%;
+
+      @include sm {
+        max-width: 300px;
+      }
+    }
+
+    .sidebar-category {
+      @include flex(10px, space-between);
+      text-transform: capitalize;
+      padding: 20px 0;
+      width: 100%;
+      font-weight: 500;
+      @include gthemed {
+        border-bottom: 1px solid t(divider);
+
+        &:hover {
+          &__name {
+            color: $primary !important;
+          }
+          &__count {
+            color: $primary !important;
+          }
+        }
+      }
+    }
+  }
 }

@@ -4,67 +4,21 @@
   @include gthemed {
     background-color: t(background);
   }
-  &-banner {
-    text-align: center;
 
-    &-searchInfo {
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-  }
-
-  &-products {
+  &__products {
     @include flex(10px, space-around);
     flex-wrap: wrap;
   }
 
   /*----------  product card  ----------*/
 
-  &-productCard {
-    @include flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 47%;
-
-    @include md {
-      width: 29%;
-      margin: 20px 0;
-    }
-
-    @include lg {
-      width: 22%;
-      margin: 25px 0;
-    }
-
-    &--image {
-      width: 100%;
-      aspect-ratio: 2.5/2;
-    }
-
-    &--price {
-      @include flex;
-
-      .price-active {
-        font-size: calc(1rem + 0.3vw);
-        font-weight: 500;
-      }
-      .price-discount {
-        text-decoration: line-through;
-      }
-    }
-
-    &--name {
-      margin-top: 10px;
-      text-transform: capitalize;
-      font-size: calc(1rem + 0.4vw);
-    }
-    &--affiliates {
+  .product {
+    &-affiliates {
       @include flex;
       flex-direction: column;
       text-transform: capitalize;
       width: 100%;
-      &-title {
+      &__title {
         font-size: 14px;
 
         @include gthemed {
@@ -76,7 +30,7 @@
         }
       }
 
-      &-btn {
+      &__button {
         width: 100%;
         padding: 10px 20px;
         text-align: center;
@@ -92,6 +46,45 @@
             background-color: t(primary);
           }
         }
+      }
+    }
+    &-card {
+      @include flex;
+      flex-direction: column;
+      margin: 10px 0;
+      width: 47%;
+
+      @include md {
+        width: 29%;
+        margin: 20px 0;
+      }
+
+      @include lg {
+        width: 22%;
+        margin: 25px 0;
+      }
+
+      &__image {
+        width: 100%;
+        aspect-ratio: 2.5/2;
+      }
+
+      &__price {
+        @include flex;
+
+        &--active {
+          font-size: calc(1rem + 0.3vw);
+          font-weight: 500;
+        }
+        &--discount {
+          text-decoration: line-through;
+        }
+      }
+
+      &__name {
+        margin-top: 10px;
+        text-transform: capitalize;
+        font-size: calc(1rem + 0.4vw);
       }
     }
   }

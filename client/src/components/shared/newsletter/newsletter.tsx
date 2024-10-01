@@ -31,7 +31,7 @@ async function Newsletter() {
             alt={""}
             sizes={`(max-width:768px) 0vw,(max-width:1200px) 30vw,35vw`}
           />
-          <div className="newsletter__wraper">
+          <div className="newsletter__wrapper">
             <Typography variant="h2" className="newsletter__title">
               {name}
             </Typography>

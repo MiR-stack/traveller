@@ -5,16 +5,16 @@ import { useRouter } from "next/navigation";
 export default function EmptyBlogs() {
   const router = useRouter();
   return (
-    <div className="no-blogs-found">
-      <div className="content">
-        <h1>No Blogs Found</h1>
-        <p className="description">
+    <div className="empty-blogs">
+      <div className="empty-blogs__content">
+        <h1 className="empty-blogs__title">No Blogs Found</h1>
+        <p className="empty-blogs__description">
           We couldn&apos;t find any blogs matching your search. Try a different
           query or browse all blogs.
         </p>
-        <div className="buttons">
+        <div className="empty-blogs__buttons">
           <button
-            className="try-again"
+            className="empty-blogs__button empty-blogs__button--try-again"
             aria-labelledby="try again"
             onClick={() => router.refresh()}
           >
@@ -26,7 +26,7 @@ export default function EmptyBlogs() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="icon"
+              className="empty-blogs__icon"
             >
               <polyline points="1 4 1 10 7 10"></polyline>
               <polyline points="23 20 23 14 17 14"></polyline>
@@ -34,7 +34,10 @@ export default function EmptyBlogs() {
             </svg>
             Try Again
           </button>
-          <Link href="/search" className="all-blogs">
+          <Link
+            href="/search"
+            className="empty-blogs__button empty-blogs__button--all-blogs"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -43,7 +46,7 @@ export default function EmptyBlogs() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="icon"
+              className="empty-blogs__icon"
             >
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
@@ -51,7 +54,7 @@ export default function EmptyBlogs() {
             All Blogs
           </Link>
         </div>
-        <p className="support-note">
+        <p className="empty-blogs__support-note">
           If you believe this is an error, please contact our support team.
         </p>
       </div>

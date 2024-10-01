@@ -1,7 +1,7 @@
 @import "../../base/constant.module";
 @import "../../foundations/all";
 
-.#{$brand-name}-searchBar {
+.#{$brand-name}-search-bar {
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
@@ -12,12 +12,12 @@
     border: 1px solid t(text);
   }
 
-  &-field {
+  &__field {
     @include input;
     border: none;
     flex-grow: 1;
   }
-  &-btn {
+  &__button {
     @include btn;
     padding: 10px 10px;
     @include gthemed {

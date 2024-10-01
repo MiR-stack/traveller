@@ -49,7 +49,7 @@ async function Page({ params }: Props) {
         createdAt={date}
       />
       <BlogImage {...image!} />
-      <main className="blog-main">
+      <main className="blog__main">
         <Content
           content={content}
           author={author}

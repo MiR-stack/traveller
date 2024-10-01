@@ -59,13 +59,13 @@ function Header({ destination, title, createdAt, readTime }: headerPropsType) {
     <div className="blog-header">
       <Breadcrumbs
         breadcrumbs={breadcrumbs}
-        className="blog-header-breadcrumbs"
+        className="blog-header__breadcrumbs"
       />
-      <Typography className="blog-header-title" variant="h1">
+      <Typography className="blog-header__title" variant="h1">
         {title}
       </Typography>
-      <div className="blog-header-blog_info">
-        <p className="blog-header-country">{destinationName}</p>
+      <div className="blog-header__blog-info">
+        <p className="blog-header__country">{destinationName}</p>
         <ShortInfo icon={<FaRegCalendarAlt />} text={createdAt} />
         <ShortInfo icon={<FiClock />} text={`${readTime} minutes read`} />
       </div>

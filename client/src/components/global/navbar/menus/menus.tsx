@@ -6,17 +6,17 @@ import { objDeepClone } from "@/utils/utils";
 import { destinationsType } from "@/types/navbar.types";
 
 interface menusPropTypes {
-  type?: "mobile" | "desktop";
+  variant?: "mobile" | "desktop";
   isOpen?: boolean;
-  navExtended?: boolean;
+  extended?: boolean;
   navDestinations: destinationsType;
   onClose?: () => void;
 }
 
 function Menus({
-  type = "desktop",
+  variant = "desktop",
   isOpen,
-  navExtended,
+  extended,
   navDestinations,
   onClose,
 }: menusPropTypes) {
@@ -29,7 +29,7 @@ function Menus({
     })
   );
 
-  if (navExtended) {
+  if (extended) {
     menus.splice(1, 0, {
       name: "destinations",
       slug: "",
@@ -39,21 +39,21 @@ function Menus({
 
   return (
     <div
-      className={`nav-menus-${type} ${
-        navExtended ? "nav-menus-extended" : ""
-      } nav-menus ${isOpen ? "nav-menus-open" : ""}`}
+      className={` menus menus--${variant} ${
+        extended ? "menus--extended" : ""
+      } ${isOpen ? "menus--open" : ""}`}
     >
-      <div className="nav-menus-icon">
-        <IoClose className="nav-menus-close" onClick={onClose} />
+      <div className="menus__icon">
+        <IoClose className="menus__close" onClick={onClose} />
       </div>
-      <ul className={`nav-menus-${type}--container`}>
+      <ul className={`menus__container--${variant}`}>
         {menus.map((menu) => (
           <li key={menu.name}>
             {menu.childrens ? (
               <DropdownMenu menu={menu} />
             ) : (
               <Link
-                className="nav-menus-name"
+                className="menu__name"
                 href={`/${menu.slug}`}
                 aria-labelledby={menu.name}
               >

@@ -28,13 +28,13 @@ function Categories() {
     return (
       <div className="bg--1">
         <Container maxWidth="xlg">
-          <div className="category-skeleton-wraper">
+          <div className="category-skeleton">
             {Array(5)
               .fill(0)
               .map((_, index) => (
                 <Skeleton
                   key={index}
-                  className="category-skeleton"
+                  className="category-skeleton__item"
                   variant="rectangle"
                   effect="wave"
                 />
@@ -88,15 +88,15 @@ function Categories() {
             <SwiperSlide key={category.name}>
               <Link
                 href={`/search?cat=${category.slug}`}
-                className="category-slide link"
+                className="category__slide link"
               >
                 {icons[category.icon as keyof typeof icons]}
-                <div className="category-details">
-                  <Typography className="category-blogsCount" variant="body2">
+                <div className="category__details">
+                  <Typography className="category__blogs-count" variant="body2">
                     {category.count} destinations
                   </Typography>
                   <Typography
-                    className="category-title"
+                    className="category__title"
                     variant="h4"
                     component="h2"
                   >

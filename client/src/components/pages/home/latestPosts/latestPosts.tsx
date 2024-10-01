@@ -60,10 +60,10 @@ export default function LatestPosts() {
       description="Explore our most recent travel stories and adventures from around the world."
       background="bg2"
     >
-      <div className="latest_posts-container">
+      <div className="latest-posts__container">
         {latestBlogs.map((blog: BlogData) => (
           <Card1
-            className="latest_posts-blog"
+            className="latest-posts__blog"
             key={blog.slug}
             title={blog.title}
             slug={blog.slug}

@@ -32,20 +32,17 @@ async function Categories() {
 
   return (
     <SectionLayout title="categories">
-      <div className="blog-sidebar-categories">
+      <div className="sidebar-categories">
         {categories.slice(0, 5).map((category: any) => (
           <Link
-            className="blog-sidebar-category link"
+            className="sidebar-category link"
             href={`/search?cat=${category.slug}`}
             key={category.slug}
           >
-            <Typography className="blog-sidebar-category--name" variant="body1">
+            <Typography className="sidebar-category__name" variant="body1">
               {category.name}
             </Typography>
-            <Typography
-              className="blog-sidebar-category--count"
-              variant="body2"
-            >
+            <Typography className="sidebar-category__count" variant="body2">
               {category.count}
             </Typography>
           </Link>

@@ -10,14 +10,22 @@
   }
 
   .hero__navigation {
-    padding: 0 50px;
+    padding: 0 20px;
+
+    @include sm {
+      padding: 0 30px;
+    }
+
+    @include md {
+      padding: 0 50px;
+    }
   }
 
   &__backdrop {
     height: 100%;
   }
 
-  &-skeleton {
+  &__skeleton {
     height: 50vh;
     max-height: 400px;
     max-width: 1535px;
@@ -32,10 +40,10 @@
       aspect-ratio: 14/6;
     }
   }
-  &-container {
+  &__container {
     @include flex(0, center);
   }
-  &-slider {
+  &__slider {
     max-width: 1535px;
 
     .swiper-pagination {
@@ -55,7 +63,7 @@
       }
     }
   }
-  &-image {
+  &__image {
     height: 50vh;
     width: 100%;
     max-height: 400px;
@@ -72,7 +80,7 @@
     }
   }
 
-  &-content {
+  &__content {
     width: 90%;
     position: absolute;
     top: 50%;
@@ -85,24 +93,24 @@
     @include sm {
       width: unset;
     }
-    &--title {
-      color: white !important;
-      font-family: $roboto-condensed;
-      font-size: calc(1.3vw + 1.3rem);
-      text-align: center;
-      font-weight: 600;
-    }
-    &--short_description {
-      color: white !important;
-      text-align: center;
-      font-size: 90%;
+  }
+  &__title {
+    color: white !important;
+    font-family: $roboto-condensed;
+    font-size: calc(1.3vw + 1.3rem);
+    text-align: center;
+    font-weight: 600;
+  }
+  &__description {
+    color: white !important;
+    text-align: center;
+    font-size: 90%;
 
-      @include sm {
-        font-size: 100%;
-      }
+    @include sm {
+      font-size: 100%;
     }
   }
-  &-btn {
+  &__btn {
     margin-top: 20px;
     text-transform: capitalize;
     @include flex;
@@ -130,30 +138,30 @@
   }
 
   &-skeleton {
-    aspect-ratio: 1/0.8;
-    max-height: 250px;
+    padding: 30px 0;
+    @include flex(30px);
 
-    &:nth-child(n + 4) {
-      display: none;
-    }
-    @include md {
-      &:nth-child(4) {
-        display: block;
+    &__item {
+      aspect-ratio: 1/0.8;
+      max-height: 250px;
+
+      &:nth-child(n + 4) {
+        display: none;
       }
-    }
-
-    @include lg {
-      &:nth-child(5) {
-        display: block;
+      @include md {
+        &:nth-child(4) {
+          display: block;
+        }
       }
-    }
 
-    &-wraper {
-      padding: 30px 0;
-      @include flex(30px);
+      @include lg {
+        &:nth-child(5) {
+          display: block;
+        }
+      }
     }
   }
-  &-slide {
+  &__slide {
     @include flex(10px);
     flex-direction: column;
     svg {
@@ -169,16 +177,16 @@
     }
   }
 
-  &-details {
+  &__details {
     text-align: center;
   }
-  &-blogsCount {
+  &__blogs-count {
     font-size: 12px;
     @include gthemed {
       color: t(text);
     }
   }
-  &-title {
+  &__title {
     text-transform: uppercase;
     margin-top: 5px;
   }
@@ -190,8 +198,8 @@
 =            latest posts section            =
 =============================================*/
 
-.latest_posts {
-  &-container {
+.latest-posts {
+  &__container {
     @include flex(10px, space-between);
     flex-wrap: wrap;
 
@@ -200,7 +208,7 @@
     }
   }
 
-  &-blog {
+  &__blog {
     width: 100%;
 
     @include xs {
@@ -209,9 +217,6 @@
     @include md {
       width: 28%;
     }
-    // @include xs {
-    //   width: 46%;
-    // }
   }
 }
 
@@ -221,7 +226,7 @@
 =            special post            =
 =============================================*/
 
-.special_post {
+.special-post {
   @include flex(0, center);
   padding: 30px 0;
   @include gthemed {
@@ -231,7 +236,7 @@
   @include sm {
     padding: 50px 0;
   }
-  &-image {
+  &__image {
     width: 100%;
     height: 35vh;
     max-width: $xlg;
@@ -241,7 +246,7 @@
       height: unset;
     }
   }
-  &-content {
+  &__content {
     padding: 20px;
     @include centerEl;
     @include flex(10px, center, center);
@@ -257,33 +262,32 @@
     @include sm {
       padding: 50px 20px;
     }
-
-    &-title {
-      font-family: var(--roboto-slab, $roboto-slab);
-      font-size: calc(1rem + 0.8vw);
-      @include gthemed {
-        color: t(text);
-      }
+  }
+  &__title {
+    font-family: var(--roboto-slab, $roboto-slab);
+    font-size: calc(1rem + 0.8vw);
+    @include gthemed {
+      color: t(text);
     }
+  }
 
-    &-date {
-      font-weight: 500;
-      @include gthemed {
-        color: t(text-muted);
-      }
+  &__date {
+    font-weight: 500;
+    @include gthemed {
+      color: t(text-muted);
     }
+  }
 
-    &-button {
-      padding: 10px 20px;
-      text-transform: capitalize;
-      border: 1px solid $primary;
-      color: $primary !important;
-      font-weight: 500;
+  &__button {
+    padding: 10px 20px;
+    text-transform: capitalize;
+    border: 1px solid $primary;
+    color: $primary !important;
+    font-weight: 500;
 
-      &:hover {
-        background-color: $primary;
-        color: $white !important;
-      }
+    &:hover {
+      background-color: $primary;
+      color: $white !important;
     }
   }
 }
@@ -323,16 +327,16 @@
         display: flex;
       }
     }
-    &-image {
+    &__image {
       width: 100%;
       aspect-ratio: 18/14;
     }
 
-    &-content {
+    &__content {
       text-align: center;
     }
 
-    &-price {
+    &__price {
       @include flex(5px, center);
       @include gthemed {
         color: t(text-muted);
@@ -347,7 +351,7 @@
       }
     }
 
-    &-name {
+    &__name {
       text-transform: uppercase;
       font-size: calc(0.6rem + 0.4vw);
       margin-top: 5px;

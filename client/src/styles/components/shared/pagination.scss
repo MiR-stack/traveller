@@ -7,7 +7,7 @@
 
   justify-content: center;
 
-  &-item {
+  &__item {
     padding: 2px 5px;
     @include gthemed {
       border: 1px solid t(text);

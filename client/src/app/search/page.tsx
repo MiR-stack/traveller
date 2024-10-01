@@ -66,7 +66,6 @@ async function SearchPage({ searchParams }: { searchParams: SearchParams }) {
             resultCount={blogs.meta.pagination.total}
             title="Search Results"
             path="search"
-            className="search__banner"
           />
           <Blogs blogs={blogs.data} pagination={blogs.meta.pagination} />
         </Container>

@@ -23,7 +23,7 @@
       max-width: 490px;
     }
   }
-  &__wraper {
+  &__wrapper {
     @include flex(5px, center, center);
     flex-direction: column;
     width: 100%;

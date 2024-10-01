@@ -31,22 +31,20 @@ function CommentBar({
   } = useCommentBar({ blogId, commentId, refetch });
 
   return (
-    <section className="blog-commentBar">
-      <div className="blog-commentBar-title">
-        <h2
-          className={`blog-commentBar-${commentId ? "reply" : "comment"}--text`}
-        >
+    <section className="comment-bar">
+      <div className="comment-bar__title">
+        <h2 className={`comment-bar__${commentId ? "reply" : "comment"}-text`}>
           write a {commentId ? "reply" : "comment"}
         </h2>
 
         {commentId && <IoMdClose onClick={close} />}
       </div>
-      <form className="blog-commentBar-wraper" onSubmit={handleSubmit}>
+      <form className="comment-bar__wrapper" onSubmit={handleSubmit}>
         {!userToken && (
-          <div className="blog-commentBar-user_info">
+          <div className="comment-bar__user-info">
             <div className={`error-boundary ${error.name && "error"}`}>
               <input
-                className="blog-commentBar-input"
+                className="comment-bar__input"
                 type="text"
                 name="name"
                 value={name}
@@ -57,7 +55,7 @@ function CommentBar({
             </div>
             <div className={`error-boundary ${error.email && "error"}`}>
               <input
-                className="blog-commentBar-input"
+                className="comment-bar__input"
                 type="email"
                 name="email"
                 value={email}
@@ -67,7 +65,7 @@ function CommentBar({
               {error.email && <p className="error">{error.email} </p>}
             </div>
             <input
-              className="blog-commentBar-input"
+              className="comment-bar__input"
               type="text"
               name="website"
               value={website}
@@ -78,7 +76,7 @@ function CommentBar({
         )}
         <div className={`error-boundary ${error.comment && "error"}`}>
           <textarea
-            className="blog-commentBar-input blog-commentBar-comment"
+            className="comment-bar__input comment-bar__comment"
             name="comment"
             value={comment}
             id="comment"
@@ -89,7 +87,7 @@ function CommentBar({
           {error.comment && <p className="error">{error.comment} </p>}
         </div>
         {!userToken && (
-          <div className="blog-commentBar-feature">
+          <div className="comment-bar__feature">
             <input
               type="checkbox"
               id="save-info"
@@ -104,7 +102,7 @@ function CommentBar({
             </label>
           </div>
         )}
-        <button className="blog-commentBar-button" type="submit">
+        <button className="comment-bar__button" type="submit">
           post {commentId ? "Reply" : "comment"}
         </button>
       </form>

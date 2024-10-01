@@ -1,7 +1,7 @@
 @import "../../foundations/all";
 @import "../../base/constant.module";
 
-.#{$brand-name}-shortInfo {
+.#{$brand-name}-short-info {
   @include flex;
   font-size: 14px;
   text-transform: capitalize;

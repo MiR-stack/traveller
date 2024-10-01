@@ -39,8 +39,8 @@ const Product: React.FC<ProductComponentProps> = ({ product }) => {
         src={image.srcs.small ?? ""}
         alt={image.alt ?? "Product Image"}
       >
-        <div className="blog-product-content">
-          <Typography className="blog-product--name" variant="h4">
+        <div className="blog-product__content">
+          <Typography className="blog-product__name" variant="h4">
             {name}
           </Typography>
           <AffiliateLink name={affiliates[0].name} url={affiliates[0].url} />
@@ -55,7 +55,7 @@ const AffiliateLink: React.FC<{ name: string; url: string }> = ({
   url,
 }) => (
   <Link
-    className="blog-product--link link"
+    className="blog-product__link link"
     href={url}
     target="_blank"
     rel="noopener noreferrer"

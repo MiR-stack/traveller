@@ -75,14 +75,14 @@ function ProductCard({ product }: { product: Product }) {
       rel="noopener noreferrer"
     >
       <CustomImage
-        className="product-image"
+        className="product__image"
         src={product.image.srcs.small}
         alt={product.image.alt}
         sizes="(max-width: 600px) 30vw, (max-width: 900px) 25vw, (max-width: 1200px) 20vw, 18vw"
       />
-      <div className="product-content">
+      <div className="product__content">
         <ProductPrice price={product.price} />
-        <Typography className="product-name" variant="h4" component="h2">
+        <Typography className="product__name" variant="h4" component="h2">
           {product.name}
         </Typography>
       </div>
@@ -96,18 +96,18 @@ function ProductPrice({ price }: { price: ProductPrice }) {
 
   if (!hasDiscount) {
     return (
-      <Typography className="product-price--active" variant="body2">
+      <Typography className="product__price--active" variant="body2">
         ${price.regular}
       </Typography>
     );
   }
 
   return (
-    <div className="product-price">
-      <Typography className="product-price--active" variant="body2">
+    <div className="product__price">
+      <Typography className="product__price--active" variant="body2">
         ${price.discount}
       </Typography>
-      <Typography className="product-price--disabled" variant="body2">
+      <Typography className="product__price--disabled" variant="body2">
         ${price.regular}
       </Typography>
     </div>

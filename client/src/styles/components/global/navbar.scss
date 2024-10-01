@@ -1,35 +1,23 @@
 @import "../../foundations/all";
 @import "../../base/constant.module";
 
-.nav {
+.navbar {
   @include gthemed {
     background-color: t(background);
     border-bottom: 1px solid t(divider);
   }
 
-  &-wraper {
+  &__wrapper {
     @include flex(10px, space-between);
     width: 100%;
     padding: 5px 0;
   }
 
-  &-left {
+  &__left {
     @include flex;
   }
 
-  &-brand {
-    line-height: 60px;
-
-    &-name {
-      font-size: calc(1rem + 0.8vw) !important;
-
-      @include lg {
-        font-size: 25px !important;
-      }
-    }
-  }
-
-  &-destination {
+  .destination {
     @include flex;
     @include gthemed {
       color: t(text-muted);
@@ -72,15 +60,15 @@
       }
     }
 
-    &--icon {
+    &__icon {
       height: 25px;
       width: 25px;
     }
   }
-  &-destinations {
+  .destinations {
     position: relative;
 
-    &--wraper {
+    &__wraper {
       @include flex(0, flex-start, flex-start);
       flex-direction: column;
       position: absolute;
@@ -104,8 +92,8 @@
    *
    */
 
-  &-menus {
-    &-name {
+  .menus {
+    .menu__name {
       text-transform: capitalize;
       text-decoration: none;
       font-weight: 500;
@@ -121,22 +109,22 @@
     &-dropdown {
       position: relative;
 
-      &:hover .nav-menus-dropdown--wraper {
+      &:hover .menus-dropdown__wraper {
         display: flex;
       }
-      &--title {
+      &__title {
         @include flex;
         cursor: pointer;
       }
 
-      &--icon {
+      &__icon {
         font-size: 10px;
 
         @include gthemed {
           color: t(text);
         }
       }
-      &--wraper {
+      &__wraper {
         position: absolute;
         top: 101%;
         left: 0;
@@ -149,7 +137,7 @@
         }
         display: none;
       }
-      &--item {
+      &__item {
         padding: 10px;
         @include gthemed {
           border-bottom: 1px solid t(divider);
@@ -165,43 +153,33 @@
       }
     }
 
-    &-desktop {
+    &__container--desktop {
+      @include flex(15px);
+      list-style: none;
+
+      .menu__name {
+        line-height: 60px;
+        font-size: 90%;
+
+        @include md {
+          font-size: 100%;
+        }
+      }
+    }
+
+    &--desktop {
       display: none;
 
       @include sm {
         display: block;
       }
 
-      .nav-menus-icon {
+      .menus__icon {
         display: none;
-      }
-
-      &--container {
-        @include flex(15px);
-        list-style: none;
-
-        .nav-menus-name {
-          line-height: 60px;
-          font-size: 90%;
-
-          @include md {
-            font-size: 100%;
-          }
-        }
-      }
-    }
-    &-extended {
-      color: red;
-      @include sm {
-        display: none;
-      }
-
-      @include md {
-        display: block;
       }
     }
 
-    &-mobile {
+    &--mobile {
       position: fixed;
       top: 0;
       left: -100%;
@@ -213,29 +191,27 @@
       @include gthemed {
         background-color: t(background);
       }
+      .menu__name {
+        display: block;
+        width: 100%;
+        padding: 15px 10px;
+        @include gthemed {
+          border-bottom: 1px solid t(divider);
 
-      .nav-menus {
-        &-name {
-          display: block;
-          width: 100%;
-          padding: 15px 10px;
-          @include gthemed {
-            border-bottom: 1px solid t(divider);
-
-            &:hover {
-              background-color: t(background-2);
-            }
+          &:hover {
+            background-color: t(background-2);
           }
         }
-
+      }
+      .menus {
         &-dropdown {
-          &--title {
+          &__title {
             width: 100%;
             @include gthemed {
               border-bottom: 1px solid t(divider);
             }
           }
-          &--wraper {
+          &__wraper {
             margin: 10px;
             position: unset;
             @include gthemed {
@@ -243,7 +219,7 @@
             }
           }
 
-          &--item {
+          &__item {
             &:nth-last-child(1) {
               border: none;
             }
@@ -255,24 +231,35 @@
             }
           }
 
-          .nav-menus-name {
+          .menu__name {
             width: unset;
             border: none;
           }
         }
       }
     }
-    &-open {
+
+    &--extended {
+      @include sm {
+        display: none;
+      }
+
+      @include md {
+        display: block;
+      }
+    }
+
+    &--open {
       left: 0;
       transition: 0.3s linear;
     }
 
-    &-icon {
+    &__icon {
       @include flex(0, flex-end);
       padding-top: 5px;
       padding-right: 5px;
     }
-    &-close {
+    &__close {
       height: 25px;
       width: 25px;
       cursor: pointer;
@@ -289,13 +276,13 @@
 
   /*----------  mobile menus  ----------*/
 
-  &-mobile_menus {
+  .mobile-menus {
     display: flex;
     @include sm {
       display: none;
     }
 
-    &--icon {
+    &__icon {
       height: 25px;
       width: 25px;
       cursor: pointer;
@@ -313,7 +300,7 @@
 =            right section            =
 =============================================*/
 
-  &-right {
+  &__right {
     @include flex;
 
     /*----------  social medias  ----------*/
@@ -338,11 +325,11 @@
   &-search {
     @include flex(5px, center, center);
 
-    &--icon {
+    &__icon {
       display: flex;
       @include baseColor;
     }
-    &--input {
+    &__input {
       @include input;
       padding: 0;
       border: none;
@@ -378,7 +365,7 @@
 
   /*----------  theme  ----------*/
 
-  &-theme {
+  &__theme {
     @include baseColor;
     cursor: pointer;
     display: flex;

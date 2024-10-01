@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Traveller - Next.js Frontend
 
-## Getting Started
+This is the frontend of the **Traveller** website, built using **Next.js**. It connects to the backend API provided by **Strapi** for dynamic content management.
 
-First, run the development server:
+## **Table of Contents**
+
+1. [Introduction](#introduction)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Running the Development Server](#running-the-development-server)
+5. [Environment Variables](#environment-variables)
+6. [Build and Deployment](#build-and-deployment)
+7. [Folder Structure](#folder-structure)
+8. [Customization](#customization)
+9. [Support](#support)
+
+---
+
+## **Introduction**
+
+## This is the **Next.js** frontend for the **Traveller** website. The frontend is connected to the Strapi backend for content management.
+
+## **Prerequisites**
+
+- **Node.js** (v14.x or higher)
+- **Yarn** or **npm**
+
+---
+
+## **Installation**
+
+To get started, clone the project or download the source code and install the dependencies:
 
 ```bash
-npm run dev
+# Navigate to the frontend folder
+cd frontend
+
+# Install dependencies
+yarn install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Running the Development Server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Once the dependencies are installed, start the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn dev
+# or
+npm run dev
+```
 
-## Learn More
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+# Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The frontend requires a connection to the Strapi backend API. You need to set the NEXT_PUBLIC_API_URL in your .env file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Copy the example .env.example file to .env:
 
-## Deploy on Vercel
+```bash
+cp .env.example .env
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Update the .env file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+BASE_URL= http://127.0.0.1:1337
+NEXT_PUBLIC_STRAPI_URL =http://127.0.0.1:1337
+NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3000
+
+API_TOKEN=In the Strapi admin panel, navigate to the 'Settings' section and create a new API token. Set the token duration to unlimited and the token type to read-only.
+
+NEXT_PUBLIC_API_TOKEN=Create another API token with a custom type. Then, assign permissions for: blog(find), category(find), contact(create), destination(find), subscriber(create), comments(findAllFlat, findAllHierarchy, post, put, removeComment)
+
+REVALIDATION_SECRET=give any secret
+```
+
+Make sure the API URL points to the running Strapi instance.
+
+# Build and Deployment
+
+To create a production build of the website, run:
+
+```bash
+yarn build
+
+# or
+
+npm run build
+```
+
+This will generate optimized static assets in the `.next/` directory. You can deploy these assets to platforms like Vercel, Netlify, or any other static hosting provider.
+
+# Folder Structure
+
+```bash
+frontend/
+├── public # Static assets (images, fonts, etc.)
+├── src # Next.js source codes
+    ├── app # All pages
+    ├── components # Reusable UI components (Header, Footer, etc.)
+    ├── styles # Global and component-level styles
+├── .env.example # Example environment variables file
+├── package.json # Project dependencies and scripts
+└── README.md # Documentation
+```
+
+# Customization
+
+To customize the design and layout of the frontend, you can modify the following:
+
+- **navbar and Footer:** Located in `components/global/navbar.ts` and `components/global/footer.ts`.
+- **Global Styles:** Modify the global styles in `styles/base/_global.scss`.
+- **Pages:** Add or modify pages in the `app/` directory.
+
+# Support
+
+If you encounter any issues or need help, please contact us at habibmir811@gmail.com.

@@ -26,8 +26,8 @@ function ContentFooter({ url, title }: { url: string; title: string }) {
     },
   ];
   return (
-    <div className="blog-content-footer">
-      <div className="blog-content-share">
+    <div className="blog-content__footer">
+      <div className="blog-content__share">
         {share.map((media) => (
           <Link
             className="link"

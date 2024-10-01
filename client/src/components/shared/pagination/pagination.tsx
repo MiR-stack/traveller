@@ -42,9 +42,9 @@ const Pagination: React.FC<PaginationPropsType> = ({
     return pages.map((page) => (
       <button
         key={page}
-        className={`btn ${variables.brandName}-pagination-item ${
+        className={`btn ${variables.brandName}-pagination__item ${
           currentPage === page
-            ? `${variables.brandName}-pagination-item--active`
+            ? `${variables.brandName}-pagination__item--active`
             : ""
         }`}
         onClick={() => handleRandomPage(page)}

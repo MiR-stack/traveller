@@ -33,24 +33,24 @@ async function SpecialPost() {
   const date = getDate(createdAt);
 
   return (
-    <section className="special_post">
+    <section className="special-post">
       <CustomImage
-        className="special_post-image"
+        className="special-post__image"
         src={image?.srcs.main || ""}
         alt={image?.alt || "special post image"}
         sizes={`(min-width:1440px) 80vw, 100vw`}
         priority
       >
-        <div className="special_post-content">
+        <div className="special-post__content">
           <Typography
-            className="special_post-content-title"
+            className="special-post__title"
             variant="h2"
             component="h1"
           >
             {title}
           </Typography>
-          <Date className="special_post-content-date" date={date} />
-          <Link className="special_post-content-button link" href={slug}>
+          <Date className="special-post__date" date={date} />
+          <Link className="special-post__button link" href={slug}>
             read post
           </Link>
         </div>

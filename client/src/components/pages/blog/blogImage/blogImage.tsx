@@ -4,7 +4,7 @@ import { formatedImageTypes } from "@/types";
 function BlogImage({ srcs: { main }, alt }: formatedImageTypes) {
   return (
     <CustomImage
-      className="blog-image"
+      className="blog__image"
       src={main}
       alt={alt}
       priority

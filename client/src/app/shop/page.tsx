@@ -27,8 +27,8 @@ async function page({ searchParams }: { searchParams: searchParamsType }) {
           resultCount={total}
           resultText={`${total} products found`}
           title="buy travel essential items"
-          className="shop"
           path="shop"
+          variant="shop"
         />
         <main className="shop__main">
           <Products productsRes={products.data} />

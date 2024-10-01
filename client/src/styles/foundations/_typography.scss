@@ -11,30 +11,32 @@
   padding: 0;
 }
 
-.#{$brand-name}-h1 {
-  @include text($fs-6);
-  font-weight: 800;
-}
+.#{$brand-name}-text {
+  &--h1 {
+    @include text($fs-6);
+    font-weight: 800;
+  }
 
-.#{$brand-name}-h2 {
-  @include text($fs-5);
-  font-weight: 700;
-}
+  &--h2 {
+    @include text($fs-5);
+    font-weight: 700;
+  }
 
-.#{$brand-name}-h3 {
-  @include text($fs-4, text, --roboto-condensed);
-  font-weight: 600;
-}
+  &--h3 {
+    @include text($fs-4, text, --roboto-condensed);
+    font-weight: 600;
+  }
 
-.#{$brand-name}-h4 {
-  @include text($fs-3);
-  font-weight: 600;
-}
+  &--h4 {
+    @include text($fs-3);
+    font-weight: 600;
+  }
 
-.#{$brand-name}-body1 {
-  @include text($fs-3);
-}
+  &--body1 {
+    @include text($fs-3);
+  }
 
-.#{$brand-name}-body2 {
-  @include text($fs-1);
+  &--body2 {
+    @include text($fs-1);
+  }
 }

@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { getDate, getFormatedImage } from "@/utils";
 import { paginationTypes } from "@/types";
 import EmptyBlogs from "./emptyBlogs";
+
 interface blogTypes {
   attributes: {
     title: string;
@@ -46,15 +47,14 @@ function Blogs({
   });
 
   return (
-    <div className="search-blogs-container">
-      <div className="search-blogs">
+    <div className="search-blogs">
+      <div className="search-blogs__wrapper">
         {blogsData.map((blog) => (
           <Card3
             key={blog.slug}
             {...blog}
             readTime="3 minutes read"
             variant="search"
-            className="search-blogCard"
             options={{ country: false, date: true, shortDescription: true }}
             imageSizes={`(min-width:600px) 200px,120px`}
           />
@@ -63,7 +63,7 @@ function Blogs({
       {pagination.pageCount > 1 && (
         <Suspense fallback={<div>Loading...</div>}>
           <Pagination
-            className="search-blogs-pagination"
+            className="search-blogs__pagination"
             pageCount={pagination.pageCount}
             currentPage={pagination.page}
           />

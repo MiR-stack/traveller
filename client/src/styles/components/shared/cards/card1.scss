@@ -4,21 +4,21 @@
   @include flex;
   flex-direction: column;
 
-  &-image {
+  &__image {
     aspect-ratio: 4/2.8;
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-    &-link {
-      width: 100%;
-    }
   }
-  &-contents {
+  &__link {
+    width: 100%;
+  }
+  &__contents {
     @include flex(5px, center, center);
     flex-direction: column;
     text-align: center;
   }
-  &-country {
+  &__country {
     font-family: var(--rock-salt, $rock-salt);
     text-transform: capitalize;
     @include gthemed {
@@ -26,7 +26,7 @@
     }
   }
 
-  &-title {
+  &__title {
     font-family: var(--robot-condensed, $roboto-condensed);
     text-transform: capitalize;
     font-size: calc(0.9rem + 0.3vw);
@@ -36,43 +36,53 @@
     }
   }
 
-  &-category {
+  &__category {
     text-transform: uppercase;
     @include gthemed {
       color: t(text-2);
     }
   }
 
-  &-category,
-  &-country {
+  &__category,
+  &__country {
     font-size: 10px;
 
     @include sm {
       font-size: 14px;
     }
   }
+
+  &--related {
+    flex: 1 1 0;
+
+    &:nth-last-child(1) {
+      display: none;
+
+      @include sm {
+        display: flex;
+      }
+    }
+
+    .card1 {
+      &__contents {
+        align-items: flex-start;
+      }
+
+      &__title {
+        text-align: left;
+      }
+
+      &__country {
+        font-family: var(--roboto, $roboto-slab);
+        text-align: left;
+      }
+
+      &__footer {
+        font-size: 13px;
+        text-align: left;
+      }
+    }
+  }
 }
 
 /*----------  card1 related variant  ----------*/
-
-.card1-related {
-  flex: 1 1 0;
-
-  &-contents {
-    align-items: flex-start;
-  }
-
-  &-title {
-    text-align: left;
-  }
-
-  &-country {
-    font-family: var(--roboto, $roboto-slab);
-    text-align: left;
-  }
-
-  &-footer {
-    font-size: 13px;
-    text-align: left;
-  }
-}

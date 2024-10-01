@@ -43,27 +43,27 @@ const Comment = forwardRef<HTMLDivElement, commentPropsType>(function MyComment(
   } = useComment({ children, createdAt });
 
   return (
-    <div className="blog-comment-container" id={`comment-${id}`} ref={ref}>
-      <div className="blog-comment" ref={commentRef}>
+    <div className="blog-comment" id={`comment-${id}`} ref={ref}>
+      <div className="blog-comment__wrapper" ref={commentRef}>
         <Avatar name={author.name} size={id !== replyId ? "sm" : "md"} />
-        <div className="blog-comment-content">
-          <div className="blog-comment-header">
-            <div className="blog-comment-header--left">
+        <div className="blog-comment__content">
+          <div className="blog-comment__header">
+            <div className="blog-comment__header-left">
               <Typography
-                className="blog-comment-authorName"
+                className="blog-comment__author-name"
                 variant="h3"
                 component="h2"
               >
                 {author.name}
               </Typography>
               <Typography variant="body2">{time}</Typography>
-              {/* <div className="blog-comment-posting">
+              {/* <div className="blog-comment__posting">
                   <span className="loader" />
-                  <p className="blog-comment-posting--text">posting</p>
+                  <p className="blog-comment__posting-text">posting</p>
                 </div> */}
             </div>
             <div
-              className="blog-comment-replyBtn"
+              className="blog-comment__reply-button"
               onClick={() => {
                 commentbarOpen(replyId);
               }}
@@ -72,16 +72,16 @@ const Comment = forwardRef<HTMLDivElement, commentPropsType>(function MyComment(
               <p>reply</p>
             </div>
           </div>
-          <p className="blog-comment-text">{content}</p>
+          <p className="blog-comment__text">{content}</p>
         </div>
       </div>
       {children.length > 0 && (
-        <div className="blog-reply-container">
+        <div className="blog-comment__reply-container">
           {!reply && (
             <>
-              <div className="blog-comment-line" style={styles} />
+              <div className="blog-comment__line" style={styles} />
               <button
-                className="blog-reply-view"
+                className="blog-comment__reply-view"
                 ref={btnRef}
                 onClick={replyOpen}
               >
@@ -92,9 +92,9 @@ const Comment = forwardRef<HTMLDivElement, commentPropsType>(function MyComment(
 
           {reply &&
             children.map((reply, index) => (
-              <div className="blog-comment-reply" key={index}>
+              <div className="blog-comment__reply" key={index}>
                 <div
-                  className={`blog-comment-line`}
+                  className={`blog-comment__line`}
                   style={childStyles[index]}
                 />
 

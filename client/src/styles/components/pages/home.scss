@@ -90,8 +90,9 @@
     @include flex;
     flex-direction: column;
 
-    @include sm {
+    @include md {
       width: unset;
+      min-width: 800px;
     }
   }
   &__title {
@@ -105,9 +106,11 @@
     color: white !important;
     text-align: center;
     font-size: 90%;
+    width: 90%;
 
     @include sm {
       font-size: 100%;
+      width: 70%;
     }
   }
   &__btn {
@@ -117,6 +120,7 @@
     padding: 10px 20px;
     color: $white-10;
     background-color: $primary;
+    text-decoration: none;
     &:hover {
       color: $white;
       background-color: $primary-dark;

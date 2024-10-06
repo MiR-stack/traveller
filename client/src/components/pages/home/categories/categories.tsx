@@ -1,15 +1,7 @@
-"use client";
-
-import Typography from "@/components/shared/typography/typography";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import Container from "@/components/shared/container";
-import Link from "next/link";
-import { Autoplay } from "swiper/modules";
-import { useGetDataQuery } from "@/store/api/strapiApi";
+import { getStrapiData } from "@/utils";
+import { MASTER_TAG } from "@/utils/constants";
 import qs from "qs";
-import Skeleton from "@/components/utils/skeleton";
-import { icons } from "@/components/utils/icons";
+import CategoriesSlider from "./categoriesSlide";
 
 const query = qs.stringify({
   populate: {
@@ -18,33 +10,18 @@ const query = qs.stringify({
   fields: ["name", "slug", "icon"],
 });
 
-function Categories() {
-  const { data, isLoading } = useGetDataQuery({
-    path: "categories",
-    query,
+export interface homeCategory {
+  name: string;
+  slug: string;
+  icon: string;
+  count: number;
+}
+
+async function Categories() {
+  const { data } = await getStrapiData("categories", query, {
+    tags: [MASTER_TAG, "category"],
   });
-
-  if (isLoading)
-    return (
-      <div className="bg--1">
-        <Container maxWidth="xlg">
-          <div className="category-skeleton">
-            {Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <Skeleton
-                  key={index}
-                  className="category-skeleton__item"
-                  variant="rectangle"
-                  effect="wave"
-                />
-              ))}
-          </div>
-        </Container>
-      </div>
-    );
-
-  const categories = data?.data.map((item: any) => {
+  const categories: homeCategory[] = data?.map((item: any) => {
     const { name, slug, icon, blogs } = item.attributes;
     return {
       name,
@@ -53,63 +30,7 @@ function Categories() {
       count: blogs.data.attributes.count,
     };
   });
-
-  return (
-    <section className="category">
-      <Container maxWidth="xlg">
-        <Swiper
-          autoplay={{
-            delay: 8000,
-            disableOnInteraction: false,
-          }}
-          slidesPerView={3}
-          spaceBetween={20}
-          modules={[Autoplay]}
-          breakpoints={{
-            640: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
-            900: {
-              slidesPerView: 5,
-              spaceBetween: 30,
-            },
-            1200: {
-              slidesPerView: 6,
-              spaceBetween: 30,
-            },
-            1500: {
-              slidesPerView: 6,
-              spaceBetween: 40,
-            },
-          }}
-        >
-          {categories.map((category: any) => (
-            <SwiperSlide key={category.name}>
-              <Link
-                href={`/search?cat=${category.slug}`}
-                className="category__slide link"
-              >
-                {icons[category.icon as keyof typeof icons]}
-                <div className="category__details">
-                  <Typography className="category__blogs-count" variant="body2">
-                    {category.count} destinations
-                  </Typography>
-                  <Typography
-                    className="category__title"
-                    variant="h4"
-                    component="h2"
-                  >
-                    {category.name}
-                  </Typography>
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Container>
-    </section>
-  );
+  return <CategoriesSlider categories={categories} />;
 }
 
 export default Categories;

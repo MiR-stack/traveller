@@ -1,15 +1,10 @@
-"use client";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import SectionLayout from "../sectionLayout";
-import Card2 from "@/components/shared/cards/card2";
-import Navigation from "@/components/utils/navigation";
-import { useGetDataQuery } from "@/store/api/strapiApi";
-import qs from "qs";
 import { imageTypes } from "@/types/blog.types";
-import { getDate, getFormatedImage } from "@/utils";
-import Skeleton from "@/components/utils/skeleton";
-import { useMemo } from "react";
+import { getDate, getFormatedImage, getStrapiData } from "@/utils";
+import { MASTER_TAG } from "@/utils/constants";
+import qs from "qs";
+import suggestedPlace from ".";
+import SectionLayout from "../sectionLayout";
+import SuggestedPlaceSlider from "./suggestedPlaceSlider";
 
 const QUERY = qs.stringify({
   populate: {
@@ -33,7 +28,7 @@ const QUERY = qs.stringify({
   sort: "updatedAt:desc",
 });
 
-interface SuggestedPlace {
+export interface suggestedPlace {
   title: string;
   slug: string;
   createdAt: string;
@@ -61,77 +56,31 @@ interface PlaceData {
   };
 }
 
-function SuggestedPlace() {
-  const { data, isLoading } = useGetDataQuery({ path: "blogs", query: QUERY });
+async function SuggestedPlace() {
+  const { data } = await getStrapiData("blogs", QUERY, {
+    tags: [MASTER_TAG, "suggestedPlace"],
+  });
 
-  const suggestedPlaces = useMemo(() => {
-    if (!data?.data) return [];
+  const suggestedPlaces: suggestedPlace[] = data.map((place: PlaceData) => {
+    const { title, slug, createdAt, images, destination } = place.attributes;
+    const image = getFormatedImage({ data: images.portrait.data[0] });
 
-    return data.data.map((place: PlaceData) => {
-      const { title, slug, createdAt, images, destination } = place.attributes;
-      const image = getFormatedImage({ data: images.portrait.data[0] });
-
-      return {
-        title,
-        slug,
-        createdAt: getDate(createdAt),
-        image: { url: image?.srcs.medium, alt: image?.alt },
-        country: { name: destination.data?.attributes.name || "world" },
-      };
-    });
-  }, [data]);
+    return {
+      title,
+      slug,
+      createdAt: getDate(createdAt),
+      image: { url: image?.srcs.medium, alt: image?.alt },
+      country: { name: destination.data?.attributes.name || "world" },
+    };
+  });
 
   return (
     <SectionLayout
       title="Must-Visit Places"
       description="Discover breathtaking destinations that should be on every traveler's bucket list"
     >
-      {isLoading ? (
-        <SkeletonLoader />
-      ) : (
-        <SuggestedPlacesSwiper places={suggestedPlaces} />
-      )}
+      <SuggestedPlaceSlider places={suggestedPlaces} />
     </SectionLayout>
-  );
-}
-
-function SkeletonLoader() {
-  return (
-    <div className="wraper card2__skeltons">
-      {Array.from({ length: 5 }, (_, index) => (
-        <Skeleton key={index} className="card2__skeleton" variant="rectangle" />
-      ))}
-    </div>
-  );
-}
-
-function SuggestedPlacesSwiper({ places }: { places: SuggestedPlace[] }) {
-  return (
-    <Swiper
-      slidesPerView={2}
-      spaceBetween={15}
-      breakpoints={{
-        900: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1200: {
-          slidesPerView: 4,
-          spaceBetween: 30,
-        },
-        1500: {
-          slidesPerView: 5,
-          spaceBetween: 40,
-        },
-      }}
-    >
-      {places.map((place) => (
-        <SwiperSlide key={place.slug}>
-          <Card2 {...place} />
-        </SwiperSlide>
-      ))}
-      <Navigation />
-    </Swiper>
   );
 }
 

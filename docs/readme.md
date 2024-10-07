@@ -111,6 +111,7 @@ Before starting, ensure you have the following installed on your system:
     You can now access the Strapi admin panel at [http://localhost:1337/admin](http://localhost:1337/admin).
 
 5.  **Register on admin panel**
+    ![admin-panel-registration](./screenshots/strapi-admin-registration.png)
 6.  **Add settings and data:**
 
     - open another terminal on backend file location. then run this command
@@ -118,6 +119,10 @@ Before starting, ensure you have the following installed on your system:
       ```bash
 
       yarn strapi import -f /your-file-path/strapi-export.tar.gz
+
+      #or
+
+      yarn strapi transfer --from https://traveller-4xej.onrender.com/admin --form-token 9d2695270d916fac0d39ed590e337a260e74da90e4c1c577c006fbe70575e555d5c672997b73f2f40c326e88039358ef2b5393c183b0b09c41b043380293bbd24b6b3c9ad2c590a6dd46cf07b7d4564db1d0d9145ea36c8853a62cfbd6c9b6efc30a450cc62abe2c3da3fa2230581699c17230121e2871b0605a78ca9a865480 --force
       ```
 
       wait for complete data transfer. it will add all default settings and data.
@@ -152,7 +157,11 @@ Before starting, ensure you have the following installed on your system:
 
   1. `API_TOKEN:` Navigate to the backend admin panel > settings > API Token > Create API Token. Set the token duration to unlimited and the token type to read-only.
 
+     ![private-access](./screenshots/strapi-private-api-token.png)
+
   2. `NEXT_PUBLIC_API_TOKEN:` Create another API token with a custom token type. Grant the following permissions: `blog(find)`, `category(find)`, `contact(create)`, `destination(find)`, `subscriber(create)`, `comments(findAllFlat, findAllHierarchy, post, put, removeComment)`.
+
+     ![public-access](./screenshots/strapi-public-api-token.png)
 
   ```
   NEXT_PUBLIC_API_URL=http://localhost:1337

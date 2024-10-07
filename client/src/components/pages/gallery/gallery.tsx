@@ -1,25 +1,19 @@
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
-import { photos } from "./gallary.photos";
 import Typography from "@/components/shared/typography";
 import Link from "next/link";
 import qs from "qs";
 import { getFormatedImage, getStrapiData } from "@/utils";
-// import { formatedImageTypes } from "@/types";
+import { MASTER_TAG } from "@/utils/constants";
 
 const query = qs.stringify({
   populate: ["image"],
   fields: ["location", "shortDesc"],
 });
 
-// interface photo {
-//   image: formatedImageTypes;
-//   location: string;
-//   shortDesc: string;
-//   aspectRatio: number;
-// }
-
 async function Gallery() {
-  const photosRes = await getStrapiData("photos", query);
+  const photosRes = await getStrapiData("photos", query, {
+    tags: [MASTER_TAG, "gallery"],
+  });
 
   const photos = photosRes.data.map((photo: any) => {
     const { image: imageRes, location, shortDesc } = photo.attributes;

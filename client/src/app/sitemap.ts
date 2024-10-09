@@ -1,5 +1,5 @@
 import { getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import type { MetadataRoute } from "next";
 import qs from "qs";
 
@@ -9,7 +9,7 @@ const query = qs.stringify({
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data } = await getStrapiData("blogs", query, {
-    tags: [MASTER_TAG, "blogs"],
+    tags: [TAGS.MASTER_TAG, TAGS.BLOGS],
   });
 
   let map: MetadataRoute.Sitemap = [

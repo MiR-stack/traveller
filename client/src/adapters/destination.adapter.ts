@@ -28,7 +28,7 @@ const destinationAdapter = (
     let destinations: destinationType[] = [];
 
     data.forEach((destination) => {
-      const { name, slug, flag } = destination.attributes;
+      const { name, slug } = destination.attributes;
 
       destinations.push({
         name,

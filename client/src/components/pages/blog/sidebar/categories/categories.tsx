@@ -3,7 +3,7 @@ import SectionLayout from "../../sectionLayout";
 import Typography from "@/components/shared/typography";
 import Link from "next/link";
 import qs from "qs";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import { getStrapiData } from "@/utils";
 
 const query = qs.stringify({
@@ -15,7 +15,7 @@ const query = qs.stringify({
 
 async function Categories() {
   const categoriesRes = await getStrapiData("categories", query, {
-    tags: [MASTER_TAG, "categories"],
+    tags: [TAGS.MASTER_TAG, TAGS.CATEGORIES],
   });
 
   const categories = categoriesRes.data.reduce((acc: object[], item: any) => {

@@ -1,6 +1,6 @@
 import { formatedImageTypes } from "@/types";
 import { getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import qs from "qs";
 import HeroSlider from "./heroSlider";
 
@@ -23,7 +23,7 @@ export interface heroSliderBlog {
 
 async function Hero() {
   const { data } = await getStrapiData("blogs", query, {
-    tags: [MASTER_TAG, "hero"],
+    tags: [TAGS.MASTER_TAG, TAGS.HERO],
   });
 
   const heroData: heroSliderBlog[] = data?.map((item: any) => {

@@ -8,6 +8,7 @@ import qs from "qs";
 import { getStrapiData } from "@/utils";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { TAGS } from "@/utils/constants";
 
 interface SearchParams {
   con?: string;
@@ -52,7 +53,9 @@ async function SearchPage({ searchParams }: { searchParams: SearchParams }) {
   const query = buildQuery(filter, parseInt(page));
 
   try {
-    const blogs = await getStrapiData("blogs", query);
+    const blogs = await getStrapiData("blogs", query, {
+      tags: [TAGS.MASTER_TAG, TAGS.BLOGS],
+    });
 
     if (blogs.data.length === 0 && parseInt(page) > 1) {
       notFound();
@@ -101,6 +104,7 @@ function buildQuery(filter: object[], page: number): string {
       page,
       pageSize: PAGE_SIZE,
     },
+    sort: "updatedAt:desc",
   });
 }
 

@@ -1,6 +1,6 @@
 import { imageTypes } from "@/types/blog.types";
 import { getDate, getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import qs from "qs";
 import suggestedPlace from ".";
 import SectionLayout from "../sectionLayout";
@@ -58,7 +58,7 @@ interface PlaceData {
 
 async function SuggestedPlace() {
   const { data } = await getStrapiData("blogs", QUERY, {
-    tags: [MASTER_TAG, "suggestedPlace"],
+    tags: [TAGS.MASTER_TAG, TAGS.SUGGESTED],
   });
 
   const suggestedPlaces: suggestedPlace[] = data.map((place: PlaceData) => {

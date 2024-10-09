@@ -2,6 +2,7 @@ import Typography from "@/components/shared/typography/typography";
 import Link from "next/link";
 import { getStrapiData } from "@/utils";
 import qs from "qs";
+import { TAGS } from "@/utils/constants";
 
 const query = qs.stringify({
   fields: ["title", "slug"],
@@ -23,7 +24,9 @@ const query = qs.stringify({
 });
 
 const PopularPostsSection = async () => {
-  const blogs = await getStrapiData("blogs", query);
+  const blogs = await getStrapiData("blogs", query, {
+    tags: [TAGS.MASTER_TAG, TAGS.POPULAR],
+  });
 
   const popularBlogs = blogs.data.map((blog: any) => {
     const { title, slug, destination } = blog.attributes;

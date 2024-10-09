@@ -1,7 +1,7 @@
 import Avatar from "@/components/shared/avatar";
 import Typography from "@/components/shared/typography";
 import { icons } from "@/components/utils/icons";
-import { imageAttrTypes, imageTypes } from "@/types";
+import { imageTypes } from "@/types";
 import Link from "next/link";
 
 export interface authorPropsType {

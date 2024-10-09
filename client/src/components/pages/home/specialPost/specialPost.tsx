@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getFormatedImage, getStrapiData } from "@/utils";
 import qs from "qs";
 import { getDate } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 
 const query = qs.stringify({
   fields: ["title", "slug", "createdAt"],
@@ -21,7 +21,7 @@ const query = qs.stringify({
 
 async function SpecialPost() {
   const blog = await getStrapiData("blogs", query, {
-    tags: [MASTER_TAG, "specialPost"],
+    tags: [TAGS.MASTER_TAG, TAGS.SPECIAL],
   });
 
   if (!blog.data.length) return null;

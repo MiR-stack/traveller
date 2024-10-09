@@ -6,6 +6,7 @@ import "@/styles/components/pages/shop.scss";
 import { Suspense } from "react";
 import qs from "qs";
 import { getStrapiData } from "@/utils";
+import { TAGS } from "@/utils/constants";
 
 interface searchParamsType {
   q: string;
@@ -16,7 +17,9 @@ const PAGE_SIZE = 12;
 
 async function page({ searchParams }: { searchParams: searchParamsType }) {
   const query = queryBuilder(searchParams);
-  const products = await getStrapiData("products", query);
+  const products = await getStrapiData("products", query, {
+    tags: [TAGS.MASTER_TAG, TAGS.PRODUCTS],
+  });
 
   const { pageCount, page: currentPage, total } = products.meta.pagination;
 
@@ -60,6 +63,7 @@ const queryBuilder = (searchParams: searchParamsType) => {
       page: page,
       pageSize: PAGE_SIZE || 8,
     },
+    sort: "updatedAt:desc",
   });
 
   return query;

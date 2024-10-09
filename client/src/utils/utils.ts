@@ -1,6 +1,6 @@
 import { destinationAdapter } from "@/adapters/destination.adapter";
 import { formatedImageTypes, imageTypes, strapiDataResTypes } from "@/types";
-import { MASTER_TAG } from "./constants";
+import { TAGS } from "./constants";
 import qs from "qs";
 import { parseISO, format } from "date-fns";
 
@@ -207,7 +207,7 @@ const destinationQuery = qs.stringify({
 
 const getDestinations = async (variant: "nav" | "footer") => {
   const { data } = await getStrapiData("destinations", destinationQuery, {
-    tags: [MASTER_TAG, "destinations"],
+    tags: [TAGS.MASTER_TAG, TAGS.DESTINATIONS],
   });
 
   return destinationAdapter(data, variant);
@@ -231,7 +231,7 @@ const query = qs.stringify({
 
 const getSocialMedias = async () => {
   const mediaRes = await getStrapiData("brand", query, {
-    tags: [MASTER_TAG, "social_medias"],
+    tags: [TAGS.MASTER_TAG, TAGS.BRAND],
   });
 
   return mediaRes?.data?.attributes?.social_medias;

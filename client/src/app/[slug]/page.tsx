@@ -6,7 +6,7 @@ import Sidebar from "@/components/pages/blog/sidebar";
 import Container from "@/components/shared/container";
 import "@/styles/components/pages/blog.scss";
 import { getDate, getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import { strapiFieldsModifier } from "@/utils/utils";
 import { notFound } from "next/navigation";
 import qs from "qs";
@@ -103,7 +103,7 @@ async function fetchBlogData(slug: string) {
   });
 
   const { data } = await getStrapiData("blogs", query, {
-    tags: [MASTER_TAG, slug, "blogs"],
+    tags: [TAGS.MASTER_TAG, slug],
   });
 
   return data[0];

@@ -3,6 +3,7 @@ import SectionLayout from "@/components/pages/home/sectionLayout/sectionLayout";
 import Card1 from "@/components/shared/cards/card1/card1";
 import { getFormatedImage, getStrapiData } from "@/utils";
 import qs from "qs";
+import { TAGS } from "@/utils/constants";
 
 interface BlogData {
   title: string;
@@ -36,7 +37,9 @@ const QUERY = qs.stringify({
 });
 
 const fetchLatestBlogs = async (): Promise<BlogData[]> => {
-  const blogs = await getStrapiData("blogs", QUERY, { revalidate: 3600 });
+  const blogs = await getStrapiData("blogs", QUERY, {
+    tags: [TAGS.MASTER_TAG, TAGS.BLOGS],
+  });
 
   return blogs.data.map((blog: any) => {
     const { title, slug, destination, categories, images } = blog.attributes;

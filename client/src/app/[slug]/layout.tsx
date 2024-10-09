@@ -1,7 +1,7 @@
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/navbar";
 import { getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import { Metadata } from "next";
 import qs from "qs";
 
@@ -87,7 +87,7 @@ async function fetchSeoData(slug: string) {
   });
 
   const { data } = await getStrapiData("blogs", seoQuery, {
-    tags: [MASTER_TAG, slug, "blogs"],
+    tags: [TAGS.MASTER_TAG, slug],
   });
 
   return data[0]?.attributes;

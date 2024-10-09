@@ -3,7 +3,7 @@ import Typography from "@/components/shared/typography/typography";
 import Link from "next/link";
 import { socialMediaTypes } from "@/types";
 import { icons } from "@/components/utils/icons";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import { getStrapiData } from "@/utils";
 import qs from "qs";
 
@@ -14,7 +14,7 @@ const query = qs.stringify({
 
 const BrandSection = async () => {
   const brandRes = await getStrapiData("brand", query, {
-    tags: [MASTER_TAG, "brand"],
+    tags: [TAGS.MASTER_TAG, TAGS.BRAND],
   });
 
   const { short_description, social_medias } = brandRes.data.attributes;

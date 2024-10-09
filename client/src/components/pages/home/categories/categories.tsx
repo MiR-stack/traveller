@@ -1,5 +1,5 @@
 import { getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import qs from "qs";
 import CategoriesSlider from "./categoriesSlide";
 
@@ -8,6 +8,7 @@ const query = qs.stringify({
     blogs: { count: true },
   },
   fields: ["name", "slug", "icon"],
+  sort: "updatedAt:desc",
 });
 
 export interface homeCategory {
@@ -19,7 +20,7 @@ export interface homeCategory {
 
 async function Categories() {
   const { data } = await getStrapiData("categories", query, {
-    tags: [MASTER_TAG, "category"],
+    tags: [TAGS.MASTER_TAG, TAGS.CATEGORIES],
   });
   const categories: homeCategory[] = data?.map((item: any) => {
     const { name, slug, icon, blogs } = item.attributes;

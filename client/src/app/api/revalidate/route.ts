@@ -1,10 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const secret = request.nextUrl.searchParams.get("secret");
-    const tag = request.nextUrl.searchParams.get("tag");
+    const res = await request.json();
+    const model = res.model;
+    const slug = res.entry?.slug;
+    const event = res.event;
+
+    let tag = request.nextUrl.searchParams.get("tag");
+
+    if (!tag) {
+      tag = model;
+    }
+    if (event === "entry.update" && model === "blog") {
+      tag = slug;
+    }
+
+    const secret = request.headers.get("revalidation-secret");
 
     if (secret !== process.env.REVALIDATION_SECRET) {
       return NextResponse.json({ message: "Invalid secret" }, { status: 401 });

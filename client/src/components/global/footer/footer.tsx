@@ -4,7 +4,7 @@ import Container from "@/components/shared/container";
 import "@/styles/components/global/footer.scss";
 import BrandSection from "./brandSection";
 import DestinationsSection from "./destinationSection";
-import PopularPostsSection from "./popuarPostsSection";
+import PopularPostsSection from "./popularPostsSection";
 
 interface FooterProps {
   bg?: "bg1" | "bg2";

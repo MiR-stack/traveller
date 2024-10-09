@@ -5,7 +5,7 @@ import Container from "../container";
 import NewsletterForm from "./newsletterForm";
 import { getFormatedImage, getStrapiData } from "@/utils";
 import qs from "qs";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 
 const query = qs.stringify({
   populate: ["image"],
@@ -14,7 +14,7 @@ const query = qs.stringify({
 
 async function Newsletter() {
   const { data } = await getStrapiData("newsletter", query, {
-    tags: [MASTER_TAG, "newsletter"],
+    tags: [TAGS.MASTER_TAG, TAGS.NEWSLETTER],
   });
 
   const { name, short_description, image: imageRes } = data.attributes;

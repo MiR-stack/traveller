@@ -3,7 +3,7 @@ import Typography from "@/components/shared/typography";
 import Link from "next/link";
 import qs from "qs";
 import { getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 
 const query = qs.stringify({
   populate: ["image"],
@@ -12,7 +12,7 @@ const query = qs.stringify({
 
 async function Gallery() {
   const photosRes = await getStrapiData("photos", query, {
-    tags: [MASTER_TAG, "gallery"],
+    tags: [TAGS.MASTER_TAG, TAGS.PHOTOS],
   });
 
   const photos = photosRes.data.map((photo: any) => {

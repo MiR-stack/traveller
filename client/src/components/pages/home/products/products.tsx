@@ -5,7 +5,7 @@ import Container from "@/components/shared/container";
 import CustomImage from "@/components/shared/bgImageContainer/bgImageContainer";
 import Typography from "@/components/shared/typography";
 import { getFormatedImage, getStrapiData } from "@/utils";
-import { MASTER_TAG } from "@/utils/constants";
+import { TAGS } from "@/utils/constants";
 import qs from "qs";
 
 const QUERY = qs.stringify({
@@ -15,6 +15,7 @@ const QUERY = qs.stringify({
     start: 0,
     limit: 5,
   },
+  sort: "updatedAt:desc",
 });
 
 interface ProductPrice {
@@ -36,7 +37,7 @@ interface Product {
 
 async function Products() {
   const products = await getStrapiData("products", QUERY, {
-    tags: [MASTER_TAG, "travelEssentials"],
+    tags: [TAGS.MASTER_TAG, TAGS.PRODUCTS],
   });
 
   const essentialsProducts: Product[] = products.data.map((product: any) => {

@@ -64,14 +64,17 @@
       }
 
       &__title {
-        max-height: 48px;
-        overflow: hidden;
         @include sm {
           font-size: calc(1rem + 0.5vw);
         }
       }
       &__read-time,
       &__date {
+        display: none;
+
+        @media (min-width: 361px) {
+          display: flex;
+        }
         @include sm {
           font-size: 15px;
         }

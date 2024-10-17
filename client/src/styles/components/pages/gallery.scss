@@ -48,6 +48,11 @@
     &__description {
       text-transform: capitalize;
       color: $white;
+      display: none;
+
+      @include sm {
+        display: block;
+      }
     }
 
     &__location {

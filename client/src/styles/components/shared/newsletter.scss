@@ -58,8 +58,12 @@
   }
   &__input {
     &-wraper {
-      width: 49%;
+      width: 100%;
       margin-bottom: 10px;
+
+      @include sm {
+        width: 49%;
+      }
       @include lg {
         width: 204px;
       }
@@ -70,7 +74,7 @@
     }
   }
   &__btn {
-    padding: 6px 20px;
+    padding: 10px 20px;
     background-color: $primary;
     color: $white;
     text-transform: uppercase;

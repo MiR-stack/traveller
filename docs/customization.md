@@ -9,6 +9,9 @@ To customize the UI, you can modify the components in the `/frontend` folder. Fo
 To change the site’s logo:
 
 - Replace the favicon file in `frontend/src/app/favicon.ico` with your own logo.
+- **upload logos from strapi backend:**
+
+  ![logos](./screenshots/strapi-logo-upload.png)
 
 ## **2. Customizing the Backend**
 
@@ -25,8 +28,14 @@ For backend customization (e.g., adding new content types or fields):
    - Create or edit content types as needed (e.g., add a new collection for blog posts, services, etc.).
    - Strapi makes it easy to add new fields, such as text, images, or relational fields.
 
+     ![edit-models](./screenshots/strapi-backend-modify.png)
+     **note:** you can modify models only development mode
+
 3. **Managing Content**:
+
    - Use the **Content Manager** in Strapi to create, edit, and delete content for your website. The changes you make here will be reflected on the frontend.
+
+     ![upload-content](./screenshots/strapi-content-edit.png)
 
 ---
 

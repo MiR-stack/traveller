@@ -122,7 +122,7 @@ Before starting, ensure you have the following installed on your system:
 
       #or
 
-      yarn strapi transfer --from https://traveller-4xej.onrender.com/admin --form-token 9d2695270d916fac0d39ed590e337a260e74da90e4c1c577c006fbe70575e555d5c672997b73f2f40c326e88039358ef2b5393c183b0b09c41b043380293bbd24b6b3c9ad2c590a6dd46cf07b7d4564db1d0d9145ea36c8853a62cfbd6c9b6efc30a450cc62abe2c3da3fa2230581699c17230121e2871b0605a78ca9a865480 --force
+      yarn strapi transfer --from https://traveller-4xej.onrender.com/admin --from-token 9d2695270d916fac0d39ed590e337a260e74da90e4c1c577c006fbe70575e555d5c672997b73f2f40c326e88039358ef2b5393c183b0b09c41b043380293bbd24b6b3c9ad2c590a6dd46cf07b7d4564db1d0d9145ea36c8853a62cfbd6c9b6efc30a450cc62abe2c3da3fa2230581699c17230121e2871b0605a78ca9a865480 --force
       ```
 
       wait for complete data transfer. it will add all default settings and data.
@@ -159,7 +159,7 @@ Before starting, ensure you have the following installed on your system:
 
      ![private-access](./screenshots/strapi-private-api-token.png)
 
-  2. `NEXT_PUBLIC_API_TOKEN:` Create another API token with a custom token type. Grant the following permissions: `blog(find)`, `category(find)`, `contact(create)`, `destination(find)`, `subscriber(create)`, `comments(findAllFlat, findAllHierarchy, post, put, removeComment)`.
+  2. `NEXT_PUBLIC_API_TOKEN:` Create another API token with a custom token type. Grant the following permissions: `contact(create)`, `subscriber(create)`, `comments(findAllFlat, findAllHierarchy)`.
 
      ![public-access](./screenshots/strapi-public-api-token.png)
 
@@ -200,6 +200,42 @@ This will start the backend server at[http://localhost:1337](http://localhost:13
 ```
 
 This will start the frontend server at [http://localhost:3000](http://localhost:1337).
+
+## Webhooks
+
+For performance optimization, we use Next.js tag caching system by default. To see updated content from the backend, you need to revalidate tags. This can be done by creating webhooks in Strapi. You should create five webhooks in total.
+
+![webhooks](./screenshots/strapi-webhooks.png)
+
+### Creating Webhooks
+
+Navigate to Settings > Webhooks > Create new webhook
+
+1. **Revalidate (most important):** 
+   - Name: `revalidate` (or any name you prefer)
+   - URL: `http://www.your-front-end.com/api/revalidate`
+   - Events: **update**, **publish**, **unpublish**
+   - Description: Most content will update in the frontend when you update, publish, or unpublish any content. This webhook doesn't need to be triggered manually.
+
+   ![revalidate-webhook](./screenshots/strapi-webhooks-revalidate.png)
+
+2. **Hero:** 
+   - URL: `http://www.your-front-end.com/api/revalidate?tag=hero`
+   - Description: Trigger this webhook to update your hero section.
+
+3. **Special:** 
+   - URL: `http://www.your-front-end.com/api/revalidate?tag=special`
+   - Description: Trigger this webhook to update special posts.
+
+4. **Popular:** 
+   - URL: `http://www.your-front-end.com/api/revalidate?tag=popular`
+   - Description: Trigger this webhook to update popular posts.
+
+5. **Suggested:** 
+   - URL: `http://www.your-front-end.com/api/revalidate?tag=suggested`
+   - Description: Trigger this webhook to update must-visit posts.
+
+Note: For webhooks 2-5, you can set up appropriate events based on your content update frequency and requirements.
 
 ## 7. Deployment
 

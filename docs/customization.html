@@ -28,6 +28,10 @@
       h3 {
         color: #35424a;
       }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
       pre {
         background: #f8f8f8;
         border: 1px solid #ddd;
@@ -50,115 +54,148 @@
       <h1>Customization - Traveller Documentation</h1>
     </header>
     <main>
-      <section id="customization">
-        <h2>1. Customization</h2>
-        <h3>1. Customizing the Frontend</h3>
-        <p>
-          To customize the UI, you can modify the components in the
-          <code>/frontend</code> folder. For example:
-        </p>
-        <ul>
-          <li>
-            <strong>Navbar</strong> and <strong>Footer</strong>: These
-            components are located in the
-            <code>frontend/components/global</code> directory. You can edit the
-            <code>navbar.ts</code> and <code>footer.ts</code> files to customize
-            the site’s navigation and footer sections.
-          </li>
-        </ul>
-        <p>To change the site’s logo:</p>
-        <ul>
-          <li>
-            Replace the favicon file in
-            <code>frontend/src/app/favicon.ico</code> with your own logo.
-          </li>
-        </ul>
-        <h3>2. Customizing the Backend</h3>
-        <p>
-          For backend customization (e.g., adding new content types or fields):
-        </p>
-        <ol>
-          <li>
-            <strong>Log in to the Strapi Admin Panel</strong>:
-            <ul>
-              <li>
-                Access the Strapi admin panel at
-                <code>http://localhost:1337/admin</code>.
-              </li>
-              <li>Use the credentials created during the setup process.</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Creating or Modifying Content Types</strong>:
-            <ul>
-              <li>
-                In the admin panel, navigate to
-                <strong>Content-Type Builder</strong>.
-              </li>
-              <li>
-                Create or edit content types as needed (e.g., add a new
-                collection for blog posts, services, etc.).
-              </li>
-              <li>
+      <h2 id="-1-customizing-the-frontend-">
+        <strong>1. Customizing the Frontend</strong>
+      </h2>
+      <p>
+        To customize the UI, you can modify the components in the
+        <strong>/frontend</strong> folder. For example:
+      </p>
+      <ul>
+        <li>
+          <strong>Navbar</strong> and <strong>Footer</strong>: These components
+          are located in the
+          <strong>frontend/components/global</strong> directory. You can edit
+          the <strong>navbar.ts</strong> and <strong>footer.ts</strong> files to
+          customize the site’s navigation and footer sections.
+        </li>
+      </ul>
+      <p>To change the site’s logo:</p>
+      <ul>
+        <li>
+          Replace the favicon file in
+          <strong>frontend/src/app/favicon.ico</strong> with your own logo.
+        </li>
+        <li>
+          <p><strong>upload logos from strapi backend:</strong></p>
+          <p><img src="./screenshots/strapi-logo-upload.png" alt="logos" /></p>
+        </li>
+      </ul>
+      <h2 id="-2-customizing-the-backend-">
+        <strong>2. Customizing the Backend</strong>
+      </h2>
+      <p>
+        For backend customization (e.g., adding new content types or fields):
+      </p>
+      <ol>
+        <li>
+          <p><strong>Log in to the Strapi Admin Panel</strong>:</p>
+          <ul>
+            <li>
+              Access the Strapi admin panel at
+              <strong>http://localhost:1337/admin</strong>.
+            </li>
+            <li>Use the credentials created during the setup process.</li>
+          </ul>
+        </li>
+        <li>
+          <p><strong>Creating or Modifying Content Types</strong>:</p>
+          <ul>
+            <li>
+              In the admin panel, navigate to
+              <strong>Content-Type Builder</strong>.
+            </li>
+            <li>
+              Create or edit content types as needed (e.g., add a new collection
+              for blog posts, services, etc.).
+            </li>
+            <li>
+              <p>
                 Strapi makes it easy to add new fields, such as text, images, or
                 relational fields.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>Managing Content</strong>:
-            <ul>
-              <li>
+              </p>
+              <p>
+                <img
+                  src="./screenshots/strapi-backend-modify.png"
+                  alt="edit-models"
+                />
+                <strong>note:</strong> you can modify models only development
+                mode
+              </p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p><strong>Managing Content</strong>:</p>
+          <ul>
+            <li>
+              <p>
                 Use the <strong>Content Manager</strong> in Strapi to create,
                 edit, and delete content for your website. The changes you make
                 here will be reflected on the frontend.
-              </li>
-            </ul>
-          </li>
-        </ol>
-      </section>
+              </p>
+              <p>
+                <img
+                  src="./screenshots/strapi-content-edit.png"
+                  alt="upload-content"
+                />
+              </p>
+            </li>
+          </ul>
+        </li>
+      </ol>
       <hr />
-      <section id="common-issues">
-        <h2>2. Common Issues and Troubleshooting</h2>
-        <h3>Issue: API Not Connecting</h3>
-        <p>
-          <strong>Solution:</strong> Make sure the
-          <code>NEXT_PUBLIC_API_URL</code> environment variable in the
-          <code>.env</code> file is correctly pointing to your Strapi backend.
-          Check that the backend is running and accessible.
-        </p>
-        <h3>Issue: Database Connection Failed</h3>
-        <p>
-          <strong>Solution:</strong> Verify that the database configuration in
-          the <code>backend/.env</code> file is correct. Ensure that the
+      <h1 id="-2-common-issues-and-troubleshooting-">
+        <strong>2. Common Issues and Troubleshooting</strong>
+      </h1>
+      <h2 id="-issue-api-not-connecting-">
+        <strong>Issue: API Not Connecting</strong>
+      </h2>
+      <ul>
+        <li>
+          <strong>Solution</strong>: Make sure the
+          <strong>NEXT_PUBLIC_API_URL</strong> environment variable in the
+          <strong>.env</strong> file is correctly pointing to your Strapi
+          backend. Check that the backend is running and accessible.
+        </li>
+      </ul>
+      <h2 id="-issue-database-connection-failed-">
+        <strong>Issue: Database Connection Failed</strong>
+      </h2>
+      <ul>
+        <li>
+          <strong>Solution</strong>: Verify that the database configuration in
+          the <strong>backend/.env</strong> file is correct. Ensure that the
           database server is running and accessible.
-        </p>
-        <h3>Issue: Port Already in Use</h3>
-        <p>
-          <strong>Solution:</strong> If you encounter a "port already in use"
-          error, change the default ports in the environment files or stop any
-          other processes using the same port.
-        </p>
-      </section>
+        </li>
+      </ul>
+      <h2 id="-issue-port-already-in-use-">
+        <strong>Issue: Port Already in Use</strong>
+      </h2>
+      <ul>
+        <li>
+          <strong>Solution</strong>: If you encounter a &quot;port already in
+          use&quot; error, change the default ports in the environment files or
+          stop any other processes using the same port.
+        </li>
+      </ul>
       <hr />
-      <section id="support">
-        <h2>3. Support</h2>
-        <p>
-          If you run into any issues or need assistance, please reach out to our
-          support team:
-        </p>
-        <ul>
-          <li><strong>Email:</strong> habibmir811@gmail.com</li>
-          <li>
-            <strong>Response Time:</strong> We typically respond within 24-48
-            hours.
-          </li>
-        </ul>
-        <p>
-          Thank you for choosing <strong>TRAVELLER</strong>! We hope you enjoy
-          building your website with this template.
-        </p>
-      </section>
+      <h1 id="-3-support-"><strong>3. Support</strong></h1>
+      <p>
+        If you run into any issues or need assistance, please reach out to our
+        support team:
+      </p>
+      <ul>
+        <li><strong>Email</strong>: habibmir811@gmail.com</li>
+        <li>
+          <strong>Response Time</strong>: We typically respond within 24-48
+          hours.
+        </li>
+      </ul>
+      <p>
+        Thank you for choosing <strong>TRAVELLER</strong>! We hope you enjoy
+        building your website with this template.
+      </p>
     </main>
     <footer>
       <p>&copy; 2023 Traveller Documentation</p>

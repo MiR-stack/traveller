@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  map = data.map((item: any) => {
+  const blogsMap = data.map((item: any) => {
     const { url, updatedAt } = item.attributes;
     return {
       url,
@@ -43,5 +43,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return map;
+  return [...map, ...blogsMap];
 }

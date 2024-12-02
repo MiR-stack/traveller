@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let metaTwitter: Twitter = {
     ...defaultMetaSocial,
   };
-  if (twitter.title) {
+  if (twitter) {
     const twitterImage = getFormatedImage(twitter.image);
 
     metaTwitter = {

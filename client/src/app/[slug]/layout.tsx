@@ -1,11 +1,21 @@
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/navbar";
-import { getFormatedImage, getStrapiData } from "@/utils";
+import { fetchSeoData, getFormatedImage, getStrapiData } from "@/utils";
 import { TAGS } from "@/utils/constants";
 import { Metadata } from "next";
+import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import { Twitter } from "next/dist/lib/metadata/types/twitter-types";
 import qs from "qs";
 
 type Props = { params: { slug: string } };
+
+type MetaSocial = {
+  title: string;
+  card?: string;
+  description: string;
+  images: string[];
+  type?: string;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seoData = await fetchSeoData(params.slug);
@@ -17,34 +27,60 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { metaTitle, metaDescription, metaImage, keywords, metaSocial } = seo;
   const image = getFormatedImage(metaImage!);
 
-  const twitter = metaSocial.find(
+  const twitter = metaSocial?.find(
     (item: any) => item.socialNetwork === "Twitter"
   );
-  const facebook = metaSocial.find(
+  const facebook = metaSocial?.find(
     (item: any) => item.socialNetwork === "Facebook"
   );
 
-  const twitterImage = twitter ? getFormatedImage(twitter.image) : null;
-  const facebookImage = facebook ? getFormatedImage(facebook.image) : null;
+  // define default meta social
+  const defaultMetaSocial: MetaSocial = {
+    title: metaTitle,
+    card: "summary_large_image",
+    description: metaDescription,
+    images: [image?.srcs.small || ""],
+  };
+
+  // creat meta for twitter
+  let metaTwitter: Twitter = {
+    ...defaultMetaSocial,
+  };
+  if (twitter.title) {
+    const twitterImage = getFormatedImage(twitter.image);
+
+    metaTwitter = {
+      ...metaTwitter,
+      title: twitter.title,
+      description: twitter.description,
+      images: [twitterImage?.srcs.medium || image?.srcs.small || ""],
+    };
+  }
+
+  // create opengraph
+  let openGraph: OpenGraph = {
+    ...defaultMetaSocial,
+    type: "article",
+    publishedTime: updatedAt,
+  };
+
+  if (facebook) {
+    const facebookImage = facebook ? getFormatedImage(facebook.image) : null;
+    openGraph = {
+      ...openGraph,
+      title: facebook?.title,
+      description: facebook?.description || metaDescription,
+      images: [facebookImage?.srcs.small || image?.srcs.small || ""],
+    };
+  }
 
   return {
     title: metaTitle,
     description: metaDescription,
     keywords,
     category: category?.name,
-    openGraph: {
-      title: facebook?.title,
-      description: facebook?.description || metaDescription,
-      type: "article",
-      publishedTime: updatedAt,
-      images: [facebookImage?.srcs.small || image?.srcs.small || ""],
-    },
-    twitter: {
-      title: twitter?.title,
-      card: "summary_large_image",
-      description: twitter?.description,
-      images: [twitterImage?.srcs.medium || image?.srcs.small || ""],
-    },
+    openGraph,
+    twitter: metaTwitter,
     verification: {
       google: "google",
       yandex: "yandex",
@@ -67,28 +103,3 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default layout;
-
-async function fetchSeoData(slug: string) {
-  const seoQuery = qs.stringify({
-    populate: {
-      seo: {
-        populate: ["metaSocial.image", "metaImage"],
-      },
-      category: {
-        fields: ["name"],
-      },
-    },
-    fields: ["slug", "updatedAt"],
-    filters: {
-      slug: {
-        $eq: slug,
-      },
-    },
-  });
-
-  const { data } = await getStrapiData("blogs", seoQuery, {
-    tags: [TAGS.MASTER_TAG, slug],
-  });
-
-  return data[0]?.attributes;
-}

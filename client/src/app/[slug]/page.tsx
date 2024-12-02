@@ -5,9 +5,14 @@ import Header from "@/components/pages/blog/header";
 import Sidebar from "@/components/pages/blog/sidebar";
 import Container from "@/components/shared/container";
 import "@/styles/components/pages/blog.scss";
-import { getDate, getFormatedImage, getStrapiData } from "@/utils";
+import {
+  generateJsonLD,
+  getDate,
+  getFormatedImage,
+  getStrapiData,
+} from "@/utils";
 import { TAGS } from "@/utils/constants";
-import { strapiFieldsModifier } from "@/utils/utils";
+import { fetchSeoData, strapiFieldsModifier } from "@/utils/utils";
 import { notFound } from "next/navigation";
 import qs from "qs";
 
@@ -24,6 +29,8 @@ async function Page({ params }: Props) {
     product,
     readTime,
     createdAt,
+    updatedAt,
+    description,
     images,
     content,
     profile,
@@ -39,6 +46,25 @@ async function Page({ params }: Props) {
     "avatar",
     "social_medias",
   ]) as authorPropsType;
+
+  // creating json ld
+  const seoData = await fetchSeoData(params.slug);
+
+  const { seo } = seoData;
+
+  const { metaTitle, metaDescription, metaImage, keywords } = seo;
+  const MetaImage = getFormatedImage(metaImage!);
+
+  const jsonLd = generateJsonLD({
+    headline: metaTitle || title,
+    updatedAt,
+    createdAt,
+    description: metaDescription || description,
+    image: MetaImage?.srcs.small || image?.srcs.small || "",
+    keywords,
+    url,
+    authorName: author.name,
+  });
 
   return (
     <Container maxWidth="xlg">
@@ -60,6 +86,10 @@ async function Page({ params }: Props) {
         />
         <Sidebar product={product} />
       </main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </Container>
   );
 }
@@ -94,7 +124,15 @@ async function fetchBlogData(slug: string) {
         },
       },
     },
-    fields: ["title", "url", "createdAt", "readTime", "content"],
+    fields: [
+      "title",
+      "description",
+      "url",
+      "createdAt",
+      "updatedAt",
+      "readTime",
+      "content",
+    ],
     filters: {
       slug: {
         $eq: slug,

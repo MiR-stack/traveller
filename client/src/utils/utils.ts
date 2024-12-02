@@ -237,6 +237,37 @@ const getSocialMedias = async () => {
   return mediaRes?.data?.attributes?.social_medias;
 };
 
+/**
+ * fetch seo data from server
+ * @param slug
+ * @returns
+ */
+
+async function fetchSeoData(slug: string) {
+  const seoQuery = qs.stringify({
+    populate: {
+      seo: {
+        populate: ["metaSocial.image", "metaImage"],
+      },
+      category: {
+        fields: ["name"],
+      },
+    },
+    fields: ["slug", "updatedAt"],
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+  });
+
+  const { data } = await getStrapiData("blogs", seoQuery, {
+    tags: [TAGS.MASTER_TAG, slug],
+  });
+
+  return data[0]?.attributes;
+}
+
 export {
   getData,
   getStrapiURL,
@@ -248,4 +279,5 @@ export {
   getDestinations,
   getDate,
   getSocialMedias,
+  fetchSeoData,
 };

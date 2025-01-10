@@ -36,6 +36,7 @@ function CustomImage({
     >
       <Image
         alt={alt}
+        title={alt}
         src={src}
         fill
         sizes={sizes}

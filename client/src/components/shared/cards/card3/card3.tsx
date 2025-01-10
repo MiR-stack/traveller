@@ -24,6 +24,7 @@ interface card3PropsType {
     readTime?: boolean;
     shortDescription?: boolean;
   };
+  titleComponent?: keyof JSX.IntrinsicElements;
 }
 
 const initOptions = {
@@ -45,6 +46,7 @@ function Card3({
   shortDescription,
   createdAt,
   options,
+  titleComponent = "h1",
 }: card3PropsType) {
   if (options) {
     options = {
@@ -98,7 +100,7 @@ function Card3({
           <Typography
             className={`${variables.brandName}-card3__title `}
             variant="h4"
-            component="h1"
+            component={titleComponent}
           >
             {title}
           </Typography>

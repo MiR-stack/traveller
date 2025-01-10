@@ -47,7 +47,7 @@ const HeroSlider = ({ data }: heroSliderProps) => {
               sizes={`(max-width:1550px) 100vw, 1550px,`}
             >
               <div className="hero__content">
-                <Typography className="hero__title" variant="h1">
+                <Typography className="hero__title" variant="h1" component="h2">
                   {blog.title}
                 </Typography>
                 <Typography variant="body2" className="hero__description">

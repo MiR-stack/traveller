@@ -44,6 +44,7 @@ async function LatestPosts() {
             {...blog}
             key={blog.slug}
             readTime={blog.readTime + " minutes read"}
+            titleComponent="h3"
           />
         ))}
       </div>

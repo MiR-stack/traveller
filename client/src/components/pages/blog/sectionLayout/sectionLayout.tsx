@@ -9,7 +9,7 @@ interface sectionLayoutPropsType {
 function SectionLayout({ title, className, children }: sectionLayoutPropsType) {
   return (
     <section className={`blog-section ${className ?? ""}`}>
-      <Typography className="blog-section__title" variant="h3" component="h1">
+      <Typography className="blog-section__title" variant="h3" component="h2">
         {title}
       </Typography>
       {children}

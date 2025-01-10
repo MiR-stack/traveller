@@ -52,6 +52,7 @@ async function RelatedBlogs({
             {...blog}
             variant="related"
             readTime={blog.readTime + " minute read"}
+            titleComponent="h3"
           />
         ))}
       </div>

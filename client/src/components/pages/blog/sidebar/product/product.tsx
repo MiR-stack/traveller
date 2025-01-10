@@ -40,7 +40,11 @@ const Product: React.FC<ProductComponentProps> = ({ product }) => {
         alt={image.alt ?? "Product Image"}
       >
         <div className="blog-product__content">
-          <Typography className="blog-product__name" variant="h4">
+          <Typography
+            className="blog-product__name"
+            variant="h4"
+            component="h3"
+          >
             {name}
           </Typography>
           <AffiliateLink name={affiliates[0].name} url={affiliates[0].url} />

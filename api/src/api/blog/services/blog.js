@@ -25,7 +25,7 @@ module.exports = createCoreService("api::blog.blog", () => ({
       .join("-");
   },
 
-  beforeAction(event) {
+  async beforeAction(event) {
     const { title, slug, url, content } = event.params.data;
 
     if (!title) return;
@@ -33,9 +33,18 @@ module.exports = createCoreService("api::blog.blog", () => ({
     let newSlug = slug;
 
     if (!slug) {
-      newSlug = this.slugify(title);
+      const ctx = strapi.requestContext.get();
+
+      const keyword = ctx.request.body.seo?.keywords?.split(",")[0];
+      newSlug = this.slugify(keyword || title);
 
       event.params.data.slug = newSlug;
+
+      // create url
+      const clientUrl = env("CLIENT_URL");
+      const URL = `${clientUrl}/${newSlug}`;
+
+      event.params.data.url = URL;
     }
 
     if (!url) {

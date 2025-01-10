@@ -46,7 +46,7 @@ function Destinations({
         ) : (
           <>
             <TbWorld className="destination__icon" />
-            <Typography variant="h4" component="h1">
+            <Typography variant="h4" component="div">
               destinations
             </Typography>
           </>

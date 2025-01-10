@@ -5,9 +5,9 @@ function EmptyComments() {
     <div className="empty-comment">
       <MdInsertComment className="empty-comment__icon" />
 
-      <h1 className="empty-comment__text">
+      <h3 className="empty-comment__text">
         what do you think about this article?
-      </h1>
+      </h3>
     </div>
   );
 }

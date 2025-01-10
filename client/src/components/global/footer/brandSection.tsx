@@ -21,7 +21,7 @@ const BrandSection = async () => {
 
   return (
     <div className="footer-brand">
-      <Brand variant="footer" component="h2" />
+      <Brand variant="footer" />
       <Typography className="footer-brand__description" variant="body1">
         {short_description}
       </Typography>

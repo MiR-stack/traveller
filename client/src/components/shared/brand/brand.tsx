@@ -10,7 +10,6 @@ interface brandPropsType {
   isMoto?: boolean;
   variant?: "extended" | "nav" | "footer";
   logo?: "horizontal" | "vertical" | "mobile" | "wordmark" | "nav" | false;
-  component?: "h1" | "h2";
 }
 
 interface logosType {
@@ -29,7 +28,6 @@ async function Brand({
   isMoto = false,
   variant = "extended",
   logo = false,
-  component = "h1",
 }: brandPropsType) {
   const brandRes = await getStrapiData("brand", query, {
     tags: [TAGS.MASTER_TAG, TAGS.BRAND],
@@ -88,11 +86,7 @@ async function Brand({
     } else {
       return (
         <div className="brand__container">
-          <Typography
-            variant="h3"
-            className={`brand__name `}
-            component={component}
-          >
+          <Typography variant="h3" className={`brand__name `} component={"p"}>
             {name}
           </Typography>
           {moto && isMoto && (

@@ -17,7 +17,7 @@ function Author({ name, role, bio, social_medias, avatar }: authorPropsType) {
     <section className="blog-author">
       <Avatar name={name} avatar={avatar?.data.attributes} size="lg" />
       <div>
-        <Typography className="blog-author__name" variant="h4">
+        <Typography className="blog-author__name" variant="h4" component="h3">
           {name} . <span className="blog-author__role">{role}</span>
         </Typography>
         <Typography className="blog-author__bio" variant="body2">

@@ -8,6 +8,7 @@ interface card1PropTypes extends basicBlogTypes {
   className?: string;
   variant?: "related";
   readTime?: string;
+  titleComponent?: keyof JSX.IntrinsicElements;
 }
 
 function Card1({
@@ -20,6 +21,7 @@ function Card1({
   variant,
   createdAt,
   readTime,
+  titleComponent = "h2",
 }: card1PropTypes) {
   return (
     <div
@@ -40,7 +42,11 @@ function Card1({
           {country.name}
         </Typography>
         <Link className="link" href={slug}>
-          <Typography className={`card1__title `} variant="h4" component="h2">
+          <Typography
+            className={`card1__title `}
+            variant="h4"
+            component={titleComponent}
+          >
             {title}
           </Typography>
         </Link>

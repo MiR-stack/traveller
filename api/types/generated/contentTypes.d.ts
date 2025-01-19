@@ -469,6 +469,7 @@ export interface ApiBrandBrand extends Schema.SingleType {
         minLength: 3;
       }>;
     publishedAt: Attribute.DateTime;
+    seo: Attribute.Component<'shared.seo'>;
     short_description: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 250;

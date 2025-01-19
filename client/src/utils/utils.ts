@@ -3,6 +3,8 @@ import { formatedImageTypes, imageTypes, strapiDataResTypes } from "@/types";
 import { TAGS } from "./constants";
 import qs from "qs";
 import { parseISO, format } from "date-fns";
+import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import { Twitter } from "next/dist/lib/metadata/types/twitter-types";
 
 async function getData(url: string) {
   const res = await fetch(url);
@@ -268,6 +270,84 @@ async function fetchSeoData(slug: string) {
   return data[0]?.attributes;
 }
 
+interface MetaSocial {
+  title: string;
+  card?: string;
+  description: string;
+  images: string[];
+  type?: string;
+}
+
+const getMetaData = (seo: any, updatedAt: string) => {
+  const { metaTitle, metaDescription, metaImage, keywords, metaSocial } = seo;
+  const image = getFormatedImage(metaImage!);
+
+  const twitter = metaSocial?.find(
+    (item: any) => item.socialNetwork === "Twitter"
+  );
+  const facebook = metaSocial?.find(
+    (item: any) => item.socialNetwork === "Facebook"
+  );
+
+  // define default meta social
+  const defaultMetaSocial: MetaSocial = {
+    title: metaTitle,
+    card: "summary_large_image",
+    description: metaDescription,
+    images: [image?.srcs.small || ""],
+  };
+
+  // creat meta for twitter
+  let metaTwitter: Twitter = {
+    ...defaultMetaSocial,
+  };
+  if (twitter) {
+    const twitterImage = getFormatedImage(twitter.image);
+
+    metaTwitter = {
+      ...metaTwitter,
+      title: twitter.title,
+      description: twitter.description,
+      images: [twitterImage?.srcs.medium || image?.srcs.small || ""],
+    };
+  }
+
+  // create opengraph
+  let openGraph: OpenGraph = {
+    ...defaultMetaSocial,
+    type: "article",
+    publishedTime: updatedAt,
+  };
+
+  if (facebook) {
+    const facebookImage = facebook ? getFormatedImage(facebook.image) : null;
+    openGraph = {
+      ...openGraph,
+      title: facebook?.title,
+      description: facebook?.description || metaDescription,
+      images: [facebookImage?.srcs.small || image?.srcs.small || ""],
+    };
+  }
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords,
+    category: "travel",
+    openGraph,
+    twitter: metaTwitter,
+    verification: {
+      google: "google",
+      yandex: "yandex",
+      yahoo: "yahoo",
+      bing: "bing",
+      other: {
+        me: ["contact@earthheavens.com"],
+      },
+    },
+  };
+};
+
 export {
   getData,
   getStrapiURL,
@@ -280,4 +360,5 @@ export {
   getDate,
   getSocialMedias,
   fetchSeoData,
+  getMetaData,
 };

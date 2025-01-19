@@ -22,12 +22,12 @@ module.exports = createCoreService("api::blog.blog", () => ({
       .trim()
       .replace(/[^a-zA-Z ]/g, "")
       .split(" ")
-      .join("-");
+      .join("-")
+      .toLowerCase();
   },
 
   async beforeAction(event) {
     const { title, slug, url, content } = event.params.data;
-
     if (!title) return;
 
     let newSlug = slug;

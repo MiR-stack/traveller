@@ -37,8 +37,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
   const { seo, updatedAt } = data.attributes;
 
-  return (
-    getMetaData(seo, updatedAt) || {
+  if (!seo) {
+    return {
       title: `Discover Top Travel Destinations & Tips | Earth Heavens`,
       description:
         "Explore the best travel destinations, tips, and guides to make your adventures unforgettable. Find inspiration, advice, and travel resources for your next trip",
@@ -54,8 +54,10 @@ export const generateMetadata = async (): Promise<Metadata> => {
         "nature wonders",
         "must-visit locations",
       ],
-    }
-  );
+    };
+  }
+
+  return getMetaData(seo, updatedAt);
 };
 
 async function RootLayout({

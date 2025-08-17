@@ -67,9 +67,9 @@ async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <title>
+      <head>
         <meta name="google-adsense-account" content="ca-pub-9802622065700000" />
-      </title>
+      </head>
       <body
         className={`${roboto.variable} ${roboto_Condensed.variable} ${roboto_Slab.variable} ${rock_salt.variable} ${oswald.variable} ${wellfleet.variable}`}
       >
